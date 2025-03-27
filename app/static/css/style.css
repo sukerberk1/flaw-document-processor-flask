@@ -133,3 +133,12 @@ button:hover {
     border-radius: 4px;
     margin-top: 20px;
 }
+
+.excel-metadata {
+    background-color: #e3f2fd;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 10px 0;
+    border-left: 4px solid #2196f3;
+    font-size: 0.9em;
+}

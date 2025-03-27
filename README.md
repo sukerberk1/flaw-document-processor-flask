@@ -1,14 +1,15 @@
-# PDF Summarizer
+# Document Summarizer
 
-A web application that summarizes PDF documents using natural language processing techniques.
+A web application that summarizes PDF and Excel documents using natural language processing techniques.
 
 ## Features
 
-- Upload PDF files
-- Extract text content from PDFs
+- Upload PDF and Excel files
+- Extract text content from documents
 - Generate concise summaries using NLP
 - Adjustable summary length
 - Display word count statistics
+- Excel-specific metadata display
 
 ## Project Structure
 
