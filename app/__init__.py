@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from app.features.web import pdf_blueprint
 
 def create_app(config=None):
@@ -20,6 +20,6 @@ def create_app(config=None):
     # Register a simple index route
     @app.route('/')
     def index():
-        return app.send_static_file('index.html')
+        return render_template('index.html')
     
     return app
