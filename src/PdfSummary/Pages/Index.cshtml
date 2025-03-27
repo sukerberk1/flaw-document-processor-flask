@@ -1,0 +1,95 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "PDF Summarizer";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="text-center mb-0">PDF Summarizer</h2>
+                </div>
+                <div class="card-body">
+                    <form id="uploadForm" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="pdfFile" class="form-label">Upload a PDF file</label>
+                            <input class="form-control" type="file" id="pdfFile" accept=".pdf" required>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Generate Summary</button>
+                        </div>
+                    </form>
+                    
+                    <div id="loadingIndicator" class="text-center mt-4 d-none">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="mt-2">Processing your PDF...</p>
+                    </div>
+                    
+                    <div id="resultContainer" class="mt-4 d-none">
+                        <h3>Summary</h3>
+                        <div id="summaryResult" class="p-3 bg-light border rounded"></div>
+                    </div>
+                    
+                    <div id="errorContainer" class="mt-4 d-none">
+                        <div class="alert alert-danger" role="alert">
+                            <span id="errorMessage"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const fileInput = document.getElementById('pdfFile');
+            if (!fileInput.files[0]) {
+                showError('Please select a PDF file');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            
+            // Show loading indicator
+            document.getElementById('loadingIndicator').classList.remove('d-none');
+            document.getElementById('resultContainer').classList.add('d-none');
+            document.getElementById('errorContainer').classList.add('d-none');
+            
+            try {
+                const response = await fetch('/api/pdfsummary', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.status} ${response.statusText}`);
+                }
+                
+                const result = await response.json();
+                
+                // Display the summary
+                document.getElementById('summaryResult').innerText = result.summary;
+                document.getElementById('resultContainer').classList.remove('d-none');
+            } catch (error) {
+                showError(error.message);
+            } finally {
+                document.getElementById('loadingIndicator').classList.add('d-none');
+            }
+        });
+        
+        function showError(message) {
+            const errorElement = document.getElementById('errorMessage');
+            errorElement.innerText = message;
+            document.getElementById('errorContainer').classList.remove('d-none');
+        }
+    </script>
+}
