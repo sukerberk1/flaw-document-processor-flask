@@ -59,5 +59,3 @@ class ExcelProcessorService:
             sheet_summary['statistics'] = stats
         
         return sheet_summary
-        
-        return summary
