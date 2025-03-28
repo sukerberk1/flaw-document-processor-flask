@@ -29,18 +29,32 @@ def upload_pdf():
     
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
+        
+        # Make sure the upload folder exists
+        os.makedirs(current_app.config['UPLOAD_FOLDER'], exist_ok=True)
+        
         file_path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
         file.save(file_path)
         
         try:
             document = service.process_pdf(file_path)
-            os.remove(file_path)  # Clean up the uploaded file
+            
+            # Only remove the file if it exists
+            if os.path.exists(file_path):
+                os.remove(file_path)  # Clean up the uploaded file
             
             return jsonify({
                 'filename': document.filename,
                 'summary': document.summary
             })
         except Exception as e:
-            return jsonify({'error': str(e)}), 500
+            # Log the error for debugging
+            print(f"Error processing PDF: {str(e)}")
+            
+            # Try to clean up the file even if processing failed
+            if os.path.exists(file_path):
+                os.remove(file_path)
+                
+            return jsonify({'error': f"Failed to process PDF: {str(e)}"}), 500
     
     return jsonify({'error': 'Invalid file type'}), 400
