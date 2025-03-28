@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}PDF Processor{% endblock %}
+
+{% block content %}
+<div class="pdf-processor">
+    <h1>PDF Processor</h1>
+    <p>Upload a PDF file to get an AI-generated summary.</p>
+    
+    <div class="upload-section">
+        <form id="upload-form" enctype="multipart/form-data">
+            <div class="file-input-wrapper">
+                <input type="file" id="pdf-file" name="file" accept=".pdf" required>
+                <label for="pdf-file" class="file-label">
+                    Choose PDF File
+                </label>
+            </div>
+            <button type="submit" class="submit-btn">Process PDF</button>
+        </form>
+    </div>
+    
+    <div id="result-section" class="result-section" style="display: none;">
+        <h2>Summary</h2>
+        <div class="summary-content">
+            <p id="summary-text"></p>
+        </div>
+    </div>
+    
+    <div id="error-section" class="error-section" style="display: none;">
+        <p class="error-message"></p>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/pdf_processor.js') }}"></script>
+{% endblock %} 

@@ -1,70 +1,49 @@
-# Document Summarizer
+# Flask Vertical Slice Architecture
 
-A web application that summarizes PDF and Excel documents using natural language processing techniques.
-
-## Features
-
-- Upload PDF and Excel files
-- Extract text content from documents
-- Generate concise summaries using NLP
-- Adjustable summary length
-- Display word count statistics
-- Excel-specific metadata display
+This project demonstrates a Flask web application structured using the vertical slice architecture pattern, where code is organized by feature rather than by technical layer.
 
 ## Project Structure
 
-The application follows a vertical slice architecture for modularity:
-
-```
-app/
-├── features/
-│   ├── pdf_processing/  # PDF extraction and summarization
-│   └── web/             # Web controllers and routes
-├── static/              # CSS and JavaScript
-└── templates/           # HTML templates
-```
+Each feature has its own directory containing all the components it needs:
+- API endpoints (api.py)
+- Data models (models.py)
+- Business logic (services.py)
+- UI views (views.py)
+- Tests for each component
 
 ## Setup
 
-### Prerequisites
+1. Clone the repository
+2. Create a virtual environment: `python -m venv venv`
+3. Activate the virtual environment:
+   - Windows: `venv\Scripts\activate`
+   - Unix/MacOS: `source venv/bin/activate`
+4. Install dependencies: `pip install -r requirements.txt`
+5. Run the application: `./run.sh` or `flask run`
 
-- Python 3.8+
-- pip
+## Start Local Development
 
-### Installation
-
-1. Create a virtual environment:
-```bash
-python3 -m venv venv
+### First make sure run.sh is executable (if not already)
+```
+chmod +x run.sh
 ```
 
-2. Activate the virtual environment:
-```bash
-# On macOS/Linux
-source venv/bin/activate
-
-# On Windows
-venv\Scripts\activate
+### Then run it
+```
+./run.sh
 ```
 
-3. Install dependencies:
-```bash
-pip install -r requirements.txt
+## Testing
+
+Run tests with pytest:
+```
+pytest
 ```
 
-### Running the Application
+## Features
 
-Start the Flask development server:
-```bash
-python app.py
-```
+### Feature One
+Description of what feature one does.
 
-The application will be available at http://127.0.0.1:5000/
-
-## Usage
-
-1. Open the application in your web browser
-2. Upload a PDF file
-3. Adjust the summary length using the slider
-4. Click "Summarize" to process the PDF
-5. View the generated summary and statistics
+### Feature Two
+Description of what feature two does.

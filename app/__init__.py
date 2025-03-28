@@ -10,12 +10,8 @@ def create_app(config_name='default'):
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
     
     # Import and register blueprints for features
-    from app.features.feature_one.views import feature_one_bp
-    from app.features.feature_two.views import feature_two_bp
     from app.features.pdf_processor.views import pdf_processor_bp
     
-    app.register_blueprint(feature_one_bp)
-    app.register_blueprint(feature_two_bp)
     app.register_blueprint(pdf_processor_bp)
     
     # Register home page route
@@ -23,7 +19,22 @@ def create_app(config_name='default'):
     def home():
         # Dynamically list all features
         features_path = os.path.join(app.root_path, 'features')
-        features = [os.path.basename(f) for f in glob.glob(os.path.join(features_path, '*')) if os.path.isdir(f)]
-        return render_template('home.html', features=features)
+        features = []
+        
+        # Get all directories in the features folder that aren't __pycache__
+        for item in os.listdir(features_path):
+            full_path = os.path.join(features_path, item)
+            if os.path.isdir(full_path) and not item.startswith('__') and not item.startswith('.'):
+                # Check if this directory contains a views.py file (indicating it's a feature module)
+                if os.path.exists(os.path.join(full_path, 'views.py')):
+                    features.append(item)
+        
+        # Create a dictionary of available features with their route availability
+        available_features = {}
+        for feature in features:
+            route_name = feature + '.index'
+            available_features[feature] = route_name in app.view_functions
+        
+        return render_template('home.html', features=features, available_features=available_features)
     
     return app

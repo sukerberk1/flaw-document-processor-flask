@@ -10,7 +10,7 @@
     <div class="feature-card">
         <h2>{{ feature|capitalize }}</h2>
         <p>Explore the {{ feature }} feature.</p>
-        {% if feature + '.index' in current_app.view_functions %}
+        {% if available_features[feature] %}
             <a href="{{ url_for(feature + '.index') }}" class="feature-link">Explore {{ feature|capitalize }}</a>
         {% else %}
             <span class="feature-link">Feature not available</span>
