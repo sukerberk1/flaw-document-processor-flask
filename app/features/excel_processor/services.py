@@ -46,6 +46,7 @@ class ExcelProcessorService:
                 sheet_summary = self._generate_summary_from_dataframe(df, sheet_name)
                 summary['sheet_summaries'][sheet_name] = sheet_summary
         
+        logging.debug(f"Generated summary: {summary}")
         return summary
 
     def _generate_summary_from_dataframe(self, df, sheet_name):
