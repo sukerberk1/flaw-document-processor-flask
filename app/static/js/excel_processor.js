@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const data = await response.json();
 
             if (response.ok) {
-                analysisText.textContent = JSON.stringify(data.summary, null, 2);
+                analysisText.textContent = data.text_summary;
                 resultSection.style.display = 'block';
             } else {
                 showError(data.error || 'An error occurred while processing the file');

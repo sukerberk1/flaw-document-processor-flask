@@ -2,7 +2,11 @@ import logging
 import pandas as pd
 from openpyxl import load_workbook
 from dataclasses import dataclass
+import openai
 from typing import Dict, Any, List
+
+# Ensure to set your OpenAI API key
+openai.api_key = 'your-api-key-here'
 
 @dataclass
 class ExcelDocument:
@@ -47,7 +51,24 @@ class ExcelProcessorService:
                 summary['sheet_summaries'][sheet_name] = sheet_summary
         
         logging.debug(f"Generated summary before return: {summary}")
-        return summary
+        # Generate a text summary using ChatGPT
+        text_summary = self._generate_text_summary(summary)
+        logging.debug(f"Generated text summary: {text_summary}")
+        return {'summary': summary, 'text_summary': text_summary}
+
+    def _generate_text_summary(self, summary: Dict[str, Any]) -> str:
+        """Generate a text summary using ChatGPT."""
+        prompt = f"Summarize the following Excel data summary in plain English:\n{summary}"
+        try:
+            response = openai.Completion.create(
+                engine="text-davinci-003",
+                prompt=prompt,
+                max_tokens=150
+            )
+            return response.choices[0].text.strip()
+        except Exception as e:
+            logging.error(f"Error generating text summary: {e}")
+            return "Failed to generate text summary."
 
     def _generate_summary_from_dataframe(self, df, sheet_name):
         """Generate a summary from a DataFrame."""
