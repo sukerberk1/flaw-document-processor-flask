@@ -1,5 +1,4 @@
 #!/bin/bash
-export FLASK_APP=app.py
+export FLASK_APP=app
 export FLASK_ENV=development
-export PYTHONPATH=$PYTHONPATH:$(pwd)
-python3 -m flask run
+flask run
