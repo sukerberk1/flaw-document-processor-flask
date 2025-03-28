@@ -9,7 +9,7 @@ excel_processor_bp = Blueprint('excel_processor', __name__,
 
 service = ExcelProcessorService()
 
-ALLOWED_EXTENSIONS = {'xls', 'xlsx'}
+ALLOWED_EXTENSIONS = {'xls', 'xlsx', 'csv'}
 
 def allowed_file(filename):
     """Check if the file has an allowed extension."""
