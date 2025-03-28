@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome to Flask Vertical Slice App{% endblock %}
+
+{% block content %}
+<div class="features-list">
+    <h1>Available Features</h1>
+    
+    <div class="feature-card">
+        <h2>Feature One</h2>
+        <p>This feature demonstrates basic CRUD operations and REST API endpoints.</p>
+        <a href="{{ url_for('feature_one.index') }}" class="feature-link">Explore Feature One</a>
+    </div>
+
+    <div class="feature-card">
+        <h2>Feature Two</h2>
+        <p>This feature shows another example of vertical slice architecture.</p>
+        <a href="{{ url_for('feature_two.index') }}" class="feature-link">Explore Feature Two</a>
+    </div>
+
+    <div class="feature-card">
+        <h2>PDF Processor</h2>
+        <p>Upload PDF files and get AI-generated summaries using OpenAI's GPT model.</p>
+        <a href="{{ url_for('pdf_processor.index') }}" class="feature-link">Process PDFs</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
+{% endblock %} 
