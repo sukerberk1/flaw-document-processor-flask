@@ -13,6 +13,7 @@ def create_app(config_name='default'):
     from app.features.pdf_processor.views import pdf_processor_bp
     
     app.register_blueprint(pdf_processor_bp)
+    app.register_blueprint(excel_processor_bp)
     
     # Register home page route
     @app.route('/')
