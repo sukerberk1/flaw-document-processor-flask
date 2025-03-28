@@ -5,7 +5,7 @@ from app.features.pdf_processor.services import PDFProcessorService
 
 pdf_processor_bp = Blueprint('pdf_processor', __name__, 
                           url_prefix='/pdf-processor',
-                          template_folder='.')  # Look for templates in the current directory
+                          template_folder='template')  # Look for templates in the template directory
 
 service = PDFProcessorService()
 
@@ -16,7 +16,7 @@ def allowed_file(filename):
 
 @pdf_processor_bp.route('/')
 def index():
-    return render_template('./template/index.html')
+    return render_template('index.html')
 
 @pdf_processor_bp.route('/upload', methods=['POST'])
 def upload_pdf():

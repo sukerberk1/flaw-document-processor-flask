@@ -3,7 +3,7 @@
 {% block title %}PDF Processor{% endblock %}
 
 {% block content %}
-<div class="pdf-processor">
+<div class="page-container">
     <h1>PDF Processor</h1>
     <p>Upload a PDF file to get an AI-generated summary.</p>
     
@@ -33,5 +33,5 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="{{ url_for('static', filename='js/pdf_processor.js') }}"></script>
+<script src="{{ url_for('static', filename='js/pdf.js') }}"></script>
 {% endblock %} 

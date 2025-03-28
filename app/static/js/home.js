@@ -1,6 +1,6 @@
 // Add a simple animation when the page loads
 document.addEventListener('DOMContentLoaded', function () {
-    const featureCards = document.querySelectorAll('.feature-card');
+    const featureCards = document.querySelectorAll('.card');
 
     // Add a fade-in effect to each card
     featureCards.forEach((card, index) => {

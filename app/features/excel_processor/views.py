@@ -1,7 +1,11 @@
-from flask import Blueprint, request, jsonify
+import os
+from flask import Blueprint, render_template, request, jsonify, current_app
+from werkzeug.utils import secure_filename
 from .services import ExcelProcessorService
 
-excel_processor_bp = Blueprint('excel_processor', __name__, url_prefix='/excel-processor')
+excel_processor_bp = Blueprint('excel_processor', __name__,
+                             url_prefix='/excel-processor',
+                             template_folder='.')  # Look for templates in the current directory
 
 service = ExcelProcessorService()
 
@@ -14,21 +18,32 @@ def allowed_file(filename):
 @excel_processor_bp.route('/')
 def index():
     """Render the index page for Excel processing."""
-    return "Excel Processor Home"
+    return render_template('./template/index.html')
 
 @excel_processor_bp.route('/upload', methods=['POST'])
 def upload_excel():
     """Handle Excel file upload and processing."""
     if 'file' not in request.files:
         return jsonify({'error': 'No file part'}), 400
-
+        
     file = request.files['file']
-
     if file.filename == '':
         return jsonify({'error': 'No selected file'}), 400
-
+        
     if file and allowed_file(file.filename):
-        summary = service.process_excel(file)
-        return jsonify({'summary': summary})
-
+        filename = secure_filename(file.filename)
+        file_path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
+        file.save(file_path)
+        
+        try:
+            result = service.process_excel(file_path)
+            os.remove(file_path)  # Clean up the uploaded file
+            
+            return jsonify({
+                'filename': filename,
+                'summary': result
+            })
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+    
     return jsonify({'error': 'Invalid file type'}), 400
