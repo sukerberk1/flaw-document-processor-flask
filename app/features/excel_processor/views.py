@@ -49,7 +49,7 @@ def upload_excel():
         try:
             logging.debug("Processing file...")
             result = service.process_excel(file_path)
-            logging.debug("File processed successfully.")
+            logging.debug(f"File processed successfully. Summary: {result}")
             os.remove(file_path)  # Clean up the uploaded file
             
             return jsonify({
