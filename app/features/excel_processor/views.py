@@ -31,6 +31,7 @@ def upload_excel():
         return jsonify({'error': 'No file part'}), 400
         
     file = request.files['file']
+    logging.debug("Checking if a file is selected.")
     if file.filename == '':
         return jsonify({'error': 'No selected file'}), 400
         
@@ -59,4 +60,5 @@ def upload_excel():
             logging.error(f"Error processing file: {e}")
             return jsonify({'error': 'Failed to process file'}), 500
     
+    logging.debug("Invalid file type.")
     return jsonify({'error': 'Invalid file type'}), 400

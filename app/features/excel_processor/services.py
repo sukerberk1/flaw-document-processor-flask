@@ -19,12 +19,15 @@ class ExcelProcessorService:
         Returns:
             Dictionary containing summary information about the Excel file
         """
+        logging.debug(f"Processing file: {file_path}")
         if file_path.endswith('.csv'):
             # Read CSV file
+            logging.debug("Reading CSV file.")
             df = pd.read_csv(file_path)
             summary = self._generate_summary_from_dataframe(df, 'CSV')
         else:
             # Load the workbook to get sheet names and metadata
+            logging.debug("Loading Excel workbook.")
             workbook = load_workbook(file_path, read_only=True, data_only=True)
             
             # Get basic information
@@ -37,6 +40,7 @@ class ExcelProcessorService:
             # Use pandas to read each sheet and get statistics
             for sheet_name in workbook.sheetnames:
                 # Read sheet with pandas
+                logging.debug(f"Reading sheet: {sheet_name}")
                 df = pd.read_excel(file_path, sheet_name=sheet_name)
                 sheet_summary = self._generate_summary_from_dataframe(df, sheet_name)
                 summary['sheet_summaries'][sheet_name] = sheet_summary
