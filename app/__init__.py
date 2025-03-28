@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 import os
+import glob
 
 def create_app(config_name='default'):
     app = Flask(__name__)
@@ -20,6 +21,9 @@ def create_app(config_name='default'):
     # Register home page route
     @app.route('/')
     def home():
-        return render_template('home.html')
+        # Dynamically list all features
+        features_path = os.path.join(app.root_path, 'features')
+        features = [os.path.basename(f) for f in glob.glob(os.path.join(features_path, '*')) if os.path.isdir(f)]
+        return render_template('home.html', features=features)
     
     return app
