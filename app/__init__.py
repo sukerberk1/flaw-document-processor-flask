@@ -11,6 +11,7 @@ def create_app(config_name='default'):
     
     # Import and register blueprints for features
     from app.features.pdf_processor.views import pdf_processor_bp
+    from app.features.excel_processor.views import excel_processor_bp
     
     app.register_blueprint(pdf_processor_bp)
     app.register_blueprint(excel_processor_bp)
