@@ -68,22 +68,51 @@ class ExcelProcessorService:
             for sheet_name in summary['sheet_names']:
                 sheet_data = summary['sheet_summaries'][sheet_name]
                 text_parts.append(
-                    f"Sheet '{sheet_name}': {sheet_data['rows']} rows, {sheet_data['columns']} columns."
+                    f"\nSheet '{sheet_name}': {sheet_data['rows']} rows, {sheet_data['columns']} columns."
                 )
+                
+                # Add column names
+                if sheet_data.get('column_names'):
+                    text_parts.append(f"Columns: {', '.join(sheet_data['column_names'])}.")
                 
                 # Add numeric column stats if available
                 if sheet_data.get('numeric_columns') and sheet_data.get('statistics'):
                     num_cols = len(sheet_data['numeric_columns'])
-                    text_parts.append(f"Contains {num_cols} numeric column(s).")
+                    text_parts.append(f"Contains {num_cols} numeric column(s): {', '.join(sheet_data['numeric_columns'])}.")
+                    
+                    # Add key statistics for numeric columns
+                    for col in sheet_data['numeric_columns']:
+                        if col in sheet_data['statistics']:
+                            stats = sheet_data['statistics'][col]
+                            text_parts.append(
+                                f"  • {col}: min={stats['min']:.1f}, max={stats['max']:.1f}, avg={stats['mean']:.1f}"
+                            )
             
-            return " ".join(text_parts)
+            return "\n".join(text_parts)
         else:
             # For CSV files
             rows = summary.get('rows', 0)
             cols = summary.get('columns', 0)
-            num_cols = len(summary.get('numeric_columns', []))
+            col_names = summary.get('column_names', [])
+            num_cols = summary.get('numeric_columns', [])
             
-            return f"CSV file with {rows} rows and {cols} columns. Contains {num_cols} numeric column(s)."
+            text_parts = [
+                f"CSV file with {rows} rows and {cols} columns.",
+                f"Columns: {', '.join(col_names)}."
+            ]
+            
+            if num_cols:
+                text_parts.append(f"Contains {len(num_cols)} numeric column(s): {', '.join(num_cols)}.")
+                
+                # Add key statistics for numeric columns
+                for col in num_cols:
+                    if 'statistics' in summary and col in summary['statistics']:
+                        stats = summary['statistics'][col]
+                        text_parts.append(
+                            f"  • {col}: min={stats['min']:.1f}, max={stats['max']:.1f}, avg={stats['mean']:.1f}"
+                        )
+            
+            return "\n".join(text_parts)
 
     def _generate_summary_from_dataframe(self, df, sheet_name):
         """Generate a summary from a DataFrame."""

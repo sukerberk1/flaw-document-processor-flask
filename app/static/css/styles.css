@@ -162,6 +162,18 @@ h1 {
     color: #333;
 }
 
+.summary-text {
+    font-family: 'Consolas', 'Monaco', monospace;
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 4px;
+    border-left: 4px solid #3498db;
+    white-space: pre-wrap;
+    line-height: 1.5;
+    overflow-x: auto;
+    margin: 0;
+}
+
 .error-section {
     margin-top: 1rem;
     padding: 1rem;
