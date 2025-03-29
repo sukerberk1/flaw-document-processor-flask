@@ -21,29 +21,9 @@ Each feature has its own directory containing all the components it needs:
 4. Install dependencies: `pip install -r requirements.txt`
 5. Run the application: `./run.sh` or `flask run`
 
-## Start Local Development
-
-### First make sure run.sh is executable (if not already)
-```
-chmod +x run.sh
-```
-
-### Then run it
-```
-./run.sh
-```
-
 ## Testing
 
 Run tests with pytest:
 ```
 pytest
 ```
-
-## Features
-
-### Feature One
-Description of what feature one does.
-
-### Feature Two
-Description of what feature two does.

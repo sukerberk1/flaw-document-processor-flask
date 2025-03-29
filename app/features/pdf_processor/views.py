@@ -5,7 +5,8 @@ from app.features.pdf_processor.services import PDFProcessorService
 
 pdf_processor_bp = Blueprint('pdf_processor', __name__, 
                           url_prefix='/pdf-processor',
-                          template_folder='template')  # Look for templates in the template directory
+                          template_folder='template',
+                          static_folder='template')  # Serve static files from template directory
 
 service = PDFProcessorService()
 
