@@ -22,7 +22,6 @@ Each feature has its own directory containing all the components it needs:
 5. Run the application: `./run.sh` or `flask run`
 
 ## Testing
-
 Run tests with pytest:
 ```
 pytest
