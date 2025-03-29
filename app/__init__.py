@@ -40,3 +40,6 @@ def create_app(config_name='default'):
         return render_template('home.html', features=features, available_features=available_features)
     
     return app
+
+# Create the application instance
+app = create_app()
