@@ -67,7 +67,7 @@ Detailed instructions for LLMs can be found in the [**feature_conventions.md**](
    flask run
    ```
 
-## ✅ Testing
+## Testing
 
 Run all tests using `pytest`:
 
