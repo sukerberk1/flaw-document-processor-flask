@@ -1,4 +1,4 @@
-# Vertical Slice Architecture (Flask)
+# Vertical Slice Architecture
 
 This project demonstrates how to apply **Vertical Slice Architecture** to a Flask web application, where the application is organized by **features**, not technical layers.
 
