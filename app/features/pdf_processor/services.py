@@ -16,23 +16,28 @@ ASSISTANT_SYSTEM_PROMPT = """
                     Your answer should be in Polish language.
                     """
 
-DEFECTS_LOCATION_INSTRUCTIONS = """\n
-Provide a location of the defects in the document.
-Defects may be in different locations in the document. Provide every location in the document which has a corresponding defect.
-If there are no defects in the document, please say "There are no defects in the document".
-"""
+DEFECT_LIST_INSTRUCTIONS = """\n
+You must provide a list of defects from the following report document.
+Document contains various defects in various locations.
+Example of defect format in the doument:
+<defect-example>
+latarnia doświetleniowa - kiosk I - sala rozpraw nr 30 - zmurszenie blachy (dziura) przy oknie
+</defect-example>
 
+Your answer should strictly follow a json format:
+[
+    {
+        "name": "Latarnia doświetleniowa - zmurszenie blachy (dziura) przy oknie",
+        "location":"Sąd Rejonowy w Zamości Kiosk I - sala rozpraw nr 30"
+    }
+]
 
-DEFECTS_NAME_INSTRUCTIONS = """\n
-Provide a name of the defect or defects from the following report document.
-The name of the defect should be a short, consise name you come up with based on the content of the document.
-Let it be of max 250 characters
-"""
+The location should be as concrete as possible, including the name of the building, room number, and any other relevant information.
+The addres of the building is included in the document.
 
-DEFECTS_DESCRIPTION_INSTRUCTIONS = """\n
-Provide a description of a defect or defects from the following report document.
-The description should be an overview of the defect, including its name and location which is contained in the document.
-If there are multiple defects in the document, please provide a description for each defect.
+Destructure the defect in the document as in the example above.
+
+You have to list all of the defects present in the document. Go line by line and extract all the defects from the document. 
 """
 
 def get_document_delimited(text: str) -> str:
@@ -89,35 +94,17 @@ class PDFProcessorService:
         except Exception as e:
             print(f"OpenAI API error: {str(e)}")
             return f"Error asking llm: {str(e)}"
-        
-    def generate_defect_locations(self, text) -> str:
-        return self.ask_llm(text, [
-                    { "role": "system", "content": ASSISTANT_SYSTEM_PROMPT},
-                    {"role": "user", "content": DEFECTS_LOCATION_INSTRUCTIONS + get_document_delimited(text)},
-                ]) + "\n\n"
 
-    def generate_defect_name(self, text) -> str:
-        return self.ask_llm(text, [
-                    { "role": "system", "content": ASSISTANT_SYSTEM_PROMPT},
-                    {"role": "user", "content": DEFECTS_NAME_INSTRUCTIONS + get_document_delimited(text)},
-                ]) + "\n\n"
     
-    def generate_defect_description(self, text) -> str:
+    def generate_defect_list(self, text) -> str:
         return self.ask_llm(text, [
                     { "role": "system", "content": ASSISTANT_SYSTEM_PROMPT},
-                    {"role": "user", "content": DEFECTS_DESCRIPTION_INSTRUCTIONS + get_document_delimited(text)},
+                    {"role": "user", "content": DEFECT_LIST_INSTRUCTIONS + get_document_delimited(text)},
                 ]) + "\n\n"
     
     def process_pdf(self, file_path):
         """Process a PDF file and return a PDFDocument with summary."""
         filename = os.path.basename(file_path)
         content = self.read_pdf(file_path)
-        summary = f"""
-        Name:
-        {self.generate_defect_name(content)}
-        Description:
-        {self.generate_defect_description(content)}
-        Locations:
-        {self.generate_defect_locations(content)}
-        """
+        summary = self.generate_defect_list(content)
         return PDFDocument(filename, content, summary) 
