@@ -1,0 +1,2366 @@
+[
+    {
+        "name": "Latarnia doświetleniowa - zmurszenie blachy (dziura) przy oknie",
+        "location": "Sąd Okręgowy w Zamości Kiosk I - sala rozpraw nr 30"
+    },
+    {
+        "name": "Latarnia doświetleniowa - zmurszenie blachy (dziura) przy oknie",
+        "location": "Sąd Okręgowy w Zamości Kiosk II - sala rozpraw nr 32"
+    },
+    {
+        "name": "Latarnia doświetleniowa - zmurszenie blachy i rozszczelnienie",
+        "location": "Sąd Okręgowy w Zamości Kiosk IV - sala rozpraw nr 36"
+    },
+    {
+        "name": "Latarnia doświetleniowa - rozszczelnienie blachy",
+        "location": "Sąd Okręgowy w Zamości Kiosk V - sala rozpraw nr 38"
+    },
+    {
+        "name": "Latarnia doświetleniowa - niedoszczelnienie blachy",
+        "location": "Sąd Okręgowy w Zamości Kiosk VI - sala rozpraw nr 40"
+    },
+    {
+        "name": "Przeciek przez dach - Sąd Rejonowy w Zamości Sala Rozpraw nr 28",
+        "location": "Sąd Rejonowy w Zamości Sala Rozpraw nr 28"
+    },
+    {
+        "name": "Zarysowania tynku stropu - Sąd Rejonowy w Zamości Piwnica S.O.",
+        "location": "Sąd Rejonowy w Zamości Piwnica S.O."
+    },
+    {
+        "name": "Zarysowania tynku ściany przy ościeżnicy - Sąd Rejonowy w Zamości hydrofornia 027B",
+        "location": "Sąd Rejonowy w Zamości hydrofornia 027B"
+    },
+    {
+        "name": "Pęknięte 3 płytki terakoty - Sąd Rejonowy w Zamości P. 026 Archiwum akt",
+        "location": "Sąd Rejonowy w Zamości P. 026 Archiwum akt"
+    },
+    {
+        "name": "Zarysowania tynku ścian i zaciek na ścianie - Sąd Rejonowy w Zamości P.022",
+        "location": "Sąd Rejonowy w Zamości P.022"
+    },
+    {
+        "name": "Zaciek na kasetonie - Sąd Rejonowy w Zamości korytarz przy p. 023",
+        "location": "Sąd Rejonowy w Zamości korytarz przy p. 023"
+    },
+    {
+        "name": "Zarysowania tynku ściany - Sąd Rejonowy w Zamości P.019 - 20",
+        "location": "Sąd Rejonowy w Zamości P.019 - 20"
+    },
+    {
+        "name": "Zarysowania tynku ściany przy ościeżnicy",
+        "location": "Zamość Korytarz przy P.08"
+    },
+    {
+        "name": "Zarysowania tynku ściany",
+        "location": "Zamość Korytarz przy P.013"
+    },
+    {
+        "name": "Zarysowania tynku ściany",
+        "location": "Zamość P.013"
+    },
+    {
+        "name": "Zarysowania tynku ściany",
+        "location": "Zamość P.011"
+    },
+    {
+        "name": "Zarysowanie tynku w narożu ściany",
+        "location": "Zamość Korytarz przy P.09"
+    },
+    {
+        "name": "Zarysowania tynku ściany przy stropie",
+        "location": "Zamość Poczekalnia dla skazanych – 3 cela"
+    },
+    {
+        "name": "Odspojenie płytek glazury",
+        "location": "Zamość Korytarz wzdłuż cel"
+    },
+    {
+        "name": "Zarysowania tynku ściany",
+        "location": "Zamość Klatka schodowa naprzeciwko P.027"
+    },
+    {
+        "name": "Zarysowania tynku ścian za rurą",
+        "location": "Zamość P.026C"
+    },
+    {
+        "name": "Drzwi do regulacji - zarysowania tynku wzdłuż ściany nad drzwiami i klamka drzwi do regulacji",
+        "location": "Sąd Rejonowy w Zamości - PARTER S.O."
+    },
+    {
+        "name": "WC5 - zarysowania tynku w kabinie i przedsionku",
+        "location": "Sąd Rejonowy w Zamości - PARTER S.O. - WC5"
+    },
+    {
+        "name": "WC5 - zarysowania tynku na korytarzu z zewnątrz nad drzwiami",
+        "location": "Sąd Rejonowy w Zamości - PARTER S.O. - WC5"
+    },
+    {
+        "name": "WC4 - zarysowania tynku w kabinie i przedsionku",
+        "location": "Sąd Rejonowy w Zamości - PARTER S.O. - WC4"
+    },
+    {
+        "name": "Poczekalnia naprzeciwko Sali nr 14 - zarysowania tynku ściany między obrazami",
+        "location": "Sąd Rejonowy w Zamości - PARTER S.O."
+    },
+    {
+        "name": "Korytarz - poprawić mocowanie uchwytów elektromagnesu w ścianie",
+        "location": "Sąd Rejonowy w Zamości - PARTER S.O."
+    },
+    {
+        "name": "P.27 - zarysowania tynku przy parapecie",
+        "location": "Sąd Rejonowy w Zamości - PARTER S.O. - P.27"
+    },
+    {
+        "name": "P.28 - zarysowania tynku ściany lewa strona",
+        "location": "Sąd Rejonowy w Zamości - PARTER S.O. - P.28"
+    },
+    {
+        "name": "P.29 - zarysowania tynku ściany przy drzwiach",
+        "location": "Sąd Rejonowy w Zamości - PARTER S.O. - P.29"
+    },
+    {
+        "name": "P.30 - zarysowania tynku przy ościeżnicy",
+        "location": "Sąd Rejonowy w Zamości - PARTER S.O. - P.30"
+    },
+    {
+        "name": "Korytarz naprzeciwko P.30 - zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - PARTER S.O."
+    },
+    {
+        "name": "P.31 - regulacja okna, zarysowania tynku ściany",
+        "location": "Sąd Rejonowy w Zamości - PARTER S.O. - P.31"
+    },
+    {
+        "name": "P.32 - zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - PARTER S.O. - P.32"
+    },
+    {
+        "name": "Korytarz n/p P.31 - pęknięcie ściany",
+        "location": "Sąd Rejonowy w Zamości - PARTER S.O."
+    },
+    {
+        "name": "Zarysowania tynku",
+        "location": "Sąd Rejonowy w Zamości P.10"
+    },
+    {
+        "name": "Zarysowania tynku",
+        "location": "Sąd Rejonowy w Zamości P.34"
+    },
+    {
+        "name": "Zarysowania tynku przy ościeżnicy drzwi",
+        "location": "Sąd Rejonowy w Zamości P.36"
+    },
+    {
+        "name": "Zarysowania tynku",
+        "location": "Sąd Rejonowy w Zamości P.6 i 7"
+    },
+    {
+        "name": "Zarysowania tynku w rogu, regulacja okna",
+        "location": "Sąd Rejonowy w Zamości P.37"
+    },
+    {
+        "name": "Zarysowania tynku, nietrwały montaż anemostatu",
+        "location": "Sąd Rejonowy w Zamości P.38"
+    },
+    {
+        "name": "Zarysowania tynku przy oknie prawa strona",
+        "location": "Sąd Rejonowy w Zamości P.39"
+    },
+    {
+        "name": "Zarysowania tynku",
+        "location": "Sąd Rejonowy w Zamości korytarz przy P.39"
+    },
+    {
+        "name": "Zarysowania tynku",
+        "location": "Sąd Rejonowy w Zamości P.40"
+    },
+    {
+        "name": "Zarysowania tynku",
+        "location": "Sąd Rejonowy w Zamości P.41"
+    },
+    {
+        "name": "Zarysowania tynku",
+        "location": "Sąd Rejonowy w Zamości P.41A"
+    },
+    {
+        "name": "Zarysowania tynku",
+        "location": "Sąd Rejonowy w Zamości pomiędzy salami rozpraw 2 i 4"
+    },
+    {
+        "name": "Zarysowania tynku po lewej stronie nad ościeżnicą",
+        "location": "Sąd Rejonowy w Zamości P.43"
+    },
+    {
+        "name": "Pęknięta glazura nad lustrem",
+        "location": "Sąd Rejonowy w Zamości WC2 obok pokoju 44"
+    },
+    {
+        "name": "Zarysowania tynku",
+        "location": "Sąd Rejonowy w Zamości P.44"
+    },
+    {
+        "name": "Poprawić kaseton",
+        "location": "Sąd Rejonowy w Zamości P.45"
+    },
+    {
+        "name": "Zarysowania tynku (dwa) przy korytarzu n/p P.47",
+        "location": "Sąd Rejonowy w Zamości, korytarz n/p P.47"
+    },
+    {
+        "name": "Zarysowania tynku nad drzwiami",
+        "location": "Sąd Rejonowy w Zamości, P.47"
+    },
+    {
+        "name": "Zarysowania tynku wzdłuż ściany po prawnej stronie",
+        "location": "Sąd Rejonowy w Zamości, P.48"
+    },
+    {
+        "name": "Zarysowania tynku ścian przy wejściu na strefę sędziowską SO",
+        "location": "Sąd Rejonowy w Zamości, segment SB1"
+    },
+    {
+        "name": "Zarysowania tynku ściany",
+        "location": "Sąd Rejonowy w Zamości, pokój ławników wydziału karnego (korytarz łączący strefę sędziowską z korytarzem ogólnodostępnym, przy Sali rozpraw 2)"
+    },
+    {
+        "name": "Zarysowania tynku ścian we wszystkich pokojach pomocniczych",
+        "location": "Sąd Rejonowy w Zamości, Sala Rozpraw nr 2"
+    },
+    {
+        "name": "Zarysowania tynku ścian i drzwiczki \"kowbojskie\" do poprawy (grubsze wkręty)",
+        "location": "Sąd Rejonowy w Zamości, Sala Rozpraw nr 4"
+    },
+    {
+        "name": "Poprawić maskowanie dylatacji przy Sali od strony sędziowskiej",
+        "location": "Sąd Rejonowy w Zamości, Sala Rozpraw nr 6"
+    },
+    {
+        "name": "Zarysowania tynku ściany przy grzejniku",
+        "location": "Sąd Rejonowy w Zamości, korytarz przy Sali Rozpraw nr 6"
+    },
+    {
+        "name": "Pęknięcie terakoty przy wejściu do pokoi pokrzywdzonych (prawe drzwi) i niestabilny montaż drzwiczek \"kowbojskich\" do ławy oskarżonych",
+        "location": "Sąd Rejonowy w Zamości, Sala Rozpraw nr 8"
+    },
+    {
+        "name": "Zarysowania tynku ściany przy ościeżnicy",
+        "location": "Sąd Rejonowy w Zamości, Sala Rozpraw nr 10"
+    },
+    {
+        "name": "Zarysowania tynku, pęknięcia sufitu i uszkodzone dwa kasetony",
+        "location": "Sąd Rejonowy w Zamości, Sala Rozpraw nr 12"
+    },
+    {
+        "name": "Zarysowania tynku (zarysowania tynku ściany nad ościeżnicą)",
+        "location": "Zamość Sąd Rejonowy P. 55"
+    },
+    {
+        "name": "Zarysowania tynku (zarysowania tynku ściany przy drzwiach i opadnięte drzwi)",
+        "location": "Zamość Sąd Rejonowy P. 56"
+    },
+    {
+        "name": "Zarysowania tynku (zarysowania tynku ściany)",
+        "location": "Zamość Sąd Rejonowy P. 58"
+    },
+    {
+        "name": "Rozwarcie i uchylenie okna",
+        "location": "Zamość Sąd Rejonowy P. 60"
+    },
+    {
+        "name": "Zarysowania tynku (zarysowania tynku ścian)",
+        "location": "Zamość Sąd Rejonowy P. 61"
+    },
+    {
+        "name": "Zarysowania tynku (zarysowania tynku ścian)",
+        "location": "Zamość Sąd Rejonowy P. 62"
+    },
+    {
+        "name": "Zarysowania tynku (zarysowania tynku na ścianie pomiędzy WC7 i WC8)",
+        "location": "Zamość Sąd Rejonowy Korytarz przy P.62"
+    },
+    {
+        "name": "Zarysowania tynku (zarysowania tynku ścian w środku)",
+        "location": "Zamość Sąd Rejonowy WC7"
+    },
+    {
+        "name": "Zarysowania tynku (zarysowania tynku ścian w środku)",
+        "location": "Zamość Sąd Rejonowy WC8"
+    },
+    {
+        "name": "Zarysowania tynku (zarysowania tynku nad drzwiami)",
+        "location": "Zamość Sąd Rejonowy P. 66"
+    },
+    {
+        "name": "Zarysowania tynku (zarysowania tynku ścian, klamka drzwi do regulacji)",
+        "location": "Zamość Sąd Rejonowy P. 67"
+    },
+    {
+        "name": "Zarysowania tynku (ścian)",
+        "location": "Sąd Rejonowy w Zamości, pokój nr 68"
+    },
+    {
+        "name": "Zarysowania tynku (ścian)",
+        "location": "Sąd Rejonowy w Zamości, pokój nr 69"
+    },
+    {
+        "name": "Zarysowania tynku (ścian)",
+        "location": "Sąd Rejonowy w Zamości, pokój nr 70"
+    },
+    {
+        "name": "Zarysowania tynku (ścian)",
+        "location": "Sąd Rejonowy w Zamości, pokój nr 71"
+    },
+    {
+        "name": "Zarysowania tynku (ścian)",
+        "location": "Sąd Rejonowy w Zamości, pokój nr 72"
+    },
+    {
+        "name": "Drzwi do regulacji",
+        "location": "Sąd Rejonowy w Zamości, korytarz do klatki schodowej przy pokoju nr 70"
+    },
+    {
+        "name": "Zarysowania tynku (ściany) w pokoju",
+        "location": "Sąd Rejonowy w Zamości, pokój gościnny B2"
+    },
+    {
+        "name": "Szczeliny pomiędzy klepkami parkietu",
+        "location": "Sąd Rejonowy w Zamości, pokój nr 149"
+    },
+    {
+        "name": "Szczeliny pomiędzy klepkami parkietu",
+        "location": "Sąd Rejonowy w Zamości, pokój nr 151"
+    },
+    {
+        "name": "Zarysowania tynku - zarysowania tynku ściany zewnętrznej obok drzwi",
+        "location": "Zamość - WC męski"
+    },
+    {
+        "name": "Zaciek na suficie i zalany kaseton",
+        "location": "Zamość - P.152 - Duża sala konferencyjna"
+    },
+    {
+        "name": "Zarysowania tynku - zarysowania tynku sufit u",
+        "location": "Zamość - P.147"
+    },
+    {
+        "name": "Zarysowania tynku - zarysowania tynku ściany przy ościeżnicy",
+        "location": "Zamość - P.101"
+    },
+    {
+        "name": "Zarysowania tynku - zarysowania tynku ściany lewa strona i zalany kaseton",
+        "location": "Zamość - P.144"
+    },
+    {
+        "name": "Pęknięcie ściany",
+        "location": "Zamość - poczekalnia n/p Sali 16"
+    },
+    {
+        "name": "Zarysowania tynku - zarysowania tynku ściany za szafami",
+        "location": "Zamość - P.143A"
+    },
+    {
+        "name": "Glify do poprawki estetycznej",
+        "location": "Zamość - P.142"
+    },
+    {
+        "name": "Okno się nie otwiera",
+        "location": "Zamość - P.141"
+    },
+    {
+        "name": "Zarysowania sufitu",
+        "location": "Zamość - P.140"
+    },
+    {
+        "name": "Dwa okna do regulacji, szczeliny pomiędzy klepkami parkietu",
+        "location": "Zamość - P.139"
+    },
+    {
+        "name": "Zarysowania sufitu",
+        "location": "Zamość - Poczekalnia n/p Sali nr 20"
+    },
+    {
+        "name": "Zarysowania tynku ścian, okno się nie otwiera, glif do poprawki estetycznej, obłupany kawałek szyby",
+        "location": "Zamość - P. 138"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Zamość - P.138A"
+    },
+    {
+        "name": "Zarysowania tynku ściany lewa strona, klamka drzwi do regulacji",
+        "location": "Zamość - P.137"
+    },
+    {
+        "name": "Szczeliny pomiędzy klepkami parkietu powstałe w wyniku jego naturalnej reakcji na zmienne warunki wilgotnościowe w pomieszczeniu",
+        "location": "Zamość - P.135"
+    },
+    {
+        "name": "Zalane kasetony przy pisuarze",
+        "location": "Zamość - WC5"
+    },
+    {
+        "name": "Zarysowania tynku ściany przy ościeżnicy",
+        "location": "Zamość - P.135"
+    },
+    {
+        "name": "Zarysowania tynku ściany prawa strona, klamka drzwi do regulacji",
+        "location": "Zamość - P.134"
+    },
+    {
+        "name": "Zarysowania tynku ściany prawa strona",
+        "location": "Zamość - P.133"
+    },
+    {
+        "name": "Zabrudzenia przy anemostacie",
+        "location": "Zamość - P. 133A"
+    },
+    {
+        "name": "Zarysowanie tynku ściany",
+        "location": "Zamość - Poczekalnia n/p Sali 24"
+    },
+    {
+        "name": "Zarysowania tynku",
+        "location": "Zamość - Korytarz przy P.130"
+    },
+    {
+        "name": "Pęknięcia ściany poziome i pionowe",
+        "location": "Zamość - P.130"
+    },
+    {
+        "name": "Okno do regulacji",
+        "location": "Zamość - P.129"
+    },
+    {
+        "name": "Okno do regulacji",
+        "location": "Zamość - P.128"
+    },
+    {
+        "name": "Zarysowania tynku ściany nad ościeżnicy drzwi",
+        "location": "Zamość - P.127"
+    },
+    {
+        "name": "Zarysowania tynku ściany przy drzwiach przejściowych",
+        "location": "Zamość - P.126"
+    },
+    {
+        "name": "Zarysowania tynku dwóch ścian",
+        "location": "Zamość - P.125"
+    },
+    {
+        "name": "Zarysowania tynku ścian od ościeżnicy",
+        "location": "Zamość - P.124"
+    },
+    {
+        "name": "Zarysowania tynku ścian od ościeżnicy",
+        "location": "Zamość - P.123"
+    },
+    {
+        "name": "Zarysowania tynku ścian od ościeżnicy",
+        "location": "Zamość - P.122"
+    },
+    {
+        "name": "Nietrwały montaż uszczelki w ościeżnicy, zarysowania tynku ścian",
+        "location": "Zamość - P.117"
+    },
+    {
+        "name": "Zarysowania tynku ścian w przedsionku, dwa kasetony w kabinie są do poprawy",
+        "location": "Zamość - WC7"
+    },
+    {
+        "name": "Zarysowania tynku ściany",
+        "location": "Zamość - Ściana zewnętrzna pomiędzy P.117 i WC7"
+    },
+    {
+        "name": "Zarysowania tynku dwóch ścian",
+        "location": "Zamość - WC8"
+    },
+    {
+        "name": "Zarysowania tynku ścian w dwóch salach pomocniczych",
+        "location": "Zamość - Sala Rozpraw nr 16"
+    },
+    {
+        "name": "Zarysowania sufitu, uszkodzone 2 kasetony, uszkodzona płytka terakoty",
+        "location": "Zamość - Sala Rozpraw nr 18"
+    },
+    {
+        "name": "Zarysowania tynku ścian y",
+        "location": "Zamość - Sala Rozpraw nr 20"
+    },
+    {
+        "name": "Zarysowania tynku ściany działowej z obu stron",
+        "location": "Zamość - Sala Rozpraw nr 24"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - Sala Rozpraw nr 26"
+    },
+    {
+        "name": "Przeciek w dwóch miejscach w okolicach pulpitu dla świadków",
+        "location": "Sąd Rejonowy w Zamości - Sala Rozpraw nr 28"
+    },
+    {
+        "name": "Okno do regulacji na dociskach i zarysowania tynku ściany",
+        "location": "Sąd Rejonowy w Zamości - P. 177"
+    },
+    {
+        "name": "Zarysowania tynku ściany",
+        "location": "Sąd Rejonowy w Zamości - P. 175"
+    },
+    {
+        "name": "Zarysowania tynku ściany i okno do regulacji",
+        "location": "Sąd Rejonowy w Zamości - P. 174"
+    },
+    {
+        "name": "Zarysowania tynku ściany przy słupku (blisko dylatacji)",
+        "location": "Sąd Rejonowy w Zamości - Korytarz przy P. 174"
+    },
+    {
+        "name": "Zaciek na kasetonie",
+        "location": "Sąd Rejonowy w Zamości - P. 173"
+    },
+    {
+        "name": "Zaciek na kasetonie i ścianie, okno do regulacji na dociskach, zarysowania tynku na ścianie przy ościeżnicy",
+        "location": "Sąd Rejonowy w Zamości - P. 171"
+    },
+    {
+        "name": "Glify do poprawki estetycznej i regulacja okna na dociskach, sprawdzić parapet zewnętrzny, zarysowania tynku na ścianie",
+        "location": "Sąd Rejonowy w Zamości - P. 170"
+    },
+    {
+        "name": "Pęknięcie ściany",
+        "location": "Sąd Rejonowy w Zamości - P. 169"
+    },
+    {
+        "name": "Odspojona glazura",
+        "location": "Sąd Rejonowy w Zamości - WC10"
+    },
+    {
+        "name": "Okno do regulacji",
+        "location": "Sąd Rejonowy w Zamości - P. 166"
+    },
+    {
+        "name": "Zarysowania tynku nad ościeżnicą",
+        "location": "Sąd Rejonowy w Zamości II PIĘTRO S.O. P.251"
+    },
+    {
+        "name": "Zarysowania tynku wzdłuż sufitu i ściany naroże lewego okna",
+        "location": "Sąd Rejonowy w Zamości II PIĘTRO S.O. P.252"
+    },
+    {
+        "name": "Zarysowania w narożach okien",
+        "location": "Sąd Rejonowy w Zamości II PIĘTRO S.O. P.253"
+    },
+    {
+        "name": "Zarysowania w narożach okna",
+        "location": "Sąd Rejonowy w Zamości Sala Rozpraw Kancelarii Tajnej"
+    },
+    {
+        "name": "Zarysowania tynku między pokojami",
+        "location": "Sąd Rejonowy w Zamości II PIĘTRO S.O. P.254 - 255"
+    },
+    {
+        "name": "Zarysowania tynku ściany przy drzwiach i nad drzwiami",
+        "location": "Sąd Rejonowy w Zamości II PIĘTRO S.O. P.255"
+    },
+    {
+        "name": "Nie działa klimatyzacja",
+        "location": "Sąd Rejonowy w Zamości P.159"
+    },
+    {
+        "name": "Zarysowania tynku - zarysowania tynku nad ościeżnicą drzwi, zaciek na kasetonie i klamka drzwi do regulacji",
+        "location": "Zamość - P.249"
+    },
+    {
+        "name": "Zarysowania tynku - zarysowania tynku ściany 2x lewa strona, glify do poprawki estetycznej",
+        "location": "Zamość - P.246"
+    },
+    {
+        "name": "Zarysowania tynku - zarysowania tynku na ścianie",
+        "location": "Zamość - Korytarz n/p Sali Rozpraw nr 30"
+    },
+    {
+        "name": "Zarysowania tynku - zarysowania tynku lewa strona ściany przy oknie, szczeliny pomiędzy klepkami parkietu oraz opadnięte skrzydło okna",
+        "location": "Zamość - P.245"
+    },
+    {
+        "name": "Zarysowania tynku - zarysowania tynku ściany prawa strona, opadnięte skrzydło okna i glify do poprawki estetycznej",
+        "location": "Zamość - P.244"
+    },
+    {
+        "name": "Zarysowania tynku - zarysowania tynku ściana lewa przy oknie, glify do poprawki estetycznej, zarysowania tynku przy suficie",
+        "location": "Zamość - P.243"
+    },
+    {
+        "name": "Obróbka zestawu aluminiowego do poprawy",
+        "location": "Zamość - Korytarz między P.243 i P.242"
+    },
+    {
+        "name": "Zarysowania tynku - zarysowania tynku ścian za szafą od strony pokoju 205",
+        "location": "Zamość - P.204"
+    },
+    {
+        "name": "Zarysowania tynku - zarysowania tynku wszystkich 3 ścian",
+        "location": "Zamość - P.205"
+    },
+    {
+        "name": "Zarysowania tynku - zarysowania tynku nad i przy ościeżnicy",
+        "location": "Zamość - P.242"
+    },
+    {
+        "name": "Zarysowania tynku - zarysowania tynku dwóch ścian i glify do poprawki estetycznej",
+        "location": "Zamość - P.241"
+    },
+    {
+        "name": "Pęknięcie ściany",
+        "location": "Zamość - Poczekalnia przy Sali 34"
+    },
+    {
+        "name": "Zarysowania tynku - zarysowania tynku ściany lewa strona przy ościeżnicy i regulacja okna",
+        "location": "Zamość - P.240"
+    },
+    {
+        "name": "Zarysowania tynku przy ościeżnicy, pęknięcie sufitu nad drzwiami",
+        "location": "Sąd Rejonowy w Zamości P.208"
+    },
+    {
+        "name": "Zarysowania tynku od strony korytarza po obu stronach ścian",
+        "location": "Sąd Rejonowy w Zamości Klatka schodowa n/p P.208"
+    },
+    {
+        "name": "Zarysowania tynku przy wyłączniku światła zewnętrznego",
+        "location": "Sąd Rejonowy w Zamości WC4"
+    },
+    {
+        "name": "Zarysowania tynku przy ościeżnicy, zaciek na kasetonie",
+        "location": "Sąd Rejonowy w Zamości P.235"
+    },
+    {
+        "name": "Glify do poprawki estetycznej",
+        "location": "Sąd Rejonowy w Zamości P.236"
+    },
+    {
+        "name": "Glify do poprawki estetycznej",
+        "location": "Sąd Rejonowy w Zamości P.233"
+    },
+    {
+        "name": "Glify do poprawki estetycznej i okno do regulacji",
+        "location": "Sąd Rejonowy w Zamości P.233A"
+    },
+    {
+        "name": "Zalany kaseton z lampą oraz glify do poprawki estetycznej, regulacja okna tymczasowo doszczelnione gąbką, zarysowania na suficie",
+        "location": "Sąd Rejonowy w Zamości P.232"
+    },
+    {
+        "name": "Glify do poprawki estetycznej i zarysowania sufitu",
+        "location": "Sąd Rejonowy w Zamości P.231"
+    },
+    {
+        "name": "Poprawić dwa kasetony",
+        "location": "Sąd Rejonowy w Zamości P.215 sala konf."
+    },
+    {
+        "name": "Zarysowania tynku (przy oknie prawa strona) i okno do regulacji",
+        "location": "Zamość - Koniec korytarza OZSS (obok pokoju 226)"
+    },
+    {
+        "name": "Kaseton z lampą zalany, zabrudzenia przy anemostacie",
+        "location": "Zamość - WC 6"
+    },
+    {
+        "name": "Glazura do poprawy w przedsionku, na przeciwko P.225",
+        "location": "Zamość - WC 7"
+    },
+    {
+        "name": "Zarysowania tynku (ściana z pisuarem) oraz pęknięte płytki glazury w kabinie",
+        "location": "Zamość - WC 8"
+    },
+    {
+        "name": "Glazura do sprawdzenia",
+        "location": "Zamość - WC 9"
+    },
+    {
+        "name": "Opadnięte skrzydło okna do regulacji i luźna klamka drzwi",
+        "location": "Zamość - P. 223"
+    },
+    {
+        "name": "Odspojony cokolik",
+        "location": "Zamość - Korytarz naprzeciwko P.223"
+    },
+    {
+        "name": "Glify do poprawki estetycznej, prawe okno rozpina się, problem z prawym zawiasem okna",
+        "location": "Zamość - P. 222"
+    },
+    {
+        "name": "Zarysowania tynku (prawa strona ściany)",
+        "location": "Zamość - P. 211"
+    },
+    {
+        "name": "Zarysowania tynku (nad drzwiami, sufit, ściana)",
+        "location": "Zamość - Sala Rozpraw nr 30"
+    },
+    {
+        "name": "Zarysowania tynku ściany oraz sufitu",
+        "location": "Sąd Rejonowy w Zamości Sala Rozpraw nr 32 - pokój dla oczekujących po lewej"
+    },
+    {
+        "name": "Zarysowania tynku ściany",
+        "location": "Sąd Rejonowy w Zamości Sala Rozpraw nr 40 - pomieszczenie lewe"
+    },
+    {
+        "name": "Zarysowania tynku ściany nad drzwiami",
+        "location": "Sąd Rejonowy w Zamości P.278"
+    },
+    {
+        "name": "Zarysowania tynku od ościeżnicy drzwi zewnątrz i wewnątrz",
+        "location": "Sąd Rejonowy w Zamości P.277"
+    },
+    {
+        "name": "Zalanie i pęknięcie przy klapie oddymiania",
+        "location": "Sąd Rejonowy w Zamości Klatka schodowa pomiędzy P.277 i P.276"
+    },
+    {
+        "name": "Klamka drzwi do regulacji",
+        "location": "Sąd Rejonowy w Zamości P.276"
+    },
+    {
+        "name": "Szczeliny pomiędzy klepkami parkietu powstałe w wyniku jego naturalnej reakcji na zmienne warunki wilgotnościowe w pomieszczeniu",
+        "location": "Sąd Rejonowy w Zamości P.275 - klamka drzwi do regulacji"
+    },
+    {
+        "name": "Okno do regulacji",
+        "location": "Sąd Rejonowy w Zamości P.274"
+    },
+    {
+        "name": "Glify do poprawki estetycznej",
+        "location": "Sąd Rejonowy w Zamości P.273"
+    },
+    {
+        "name": "Zarysowania tynku ściany lewa strona",
+        "location": "Sąd Rejonowy w Zamości P.272"
+    },
+    {
+        "name": "Zarysowanie tynku ściany",
+        "location": "Sąd Rejonowy w Zamości Korytarz pomiędzy pokojami 272 i WC10"
+    },
+    {
+        "name": "Zarysowania tynku ściany w kabinie",
+        "location": "Sąd Rejonowy w Zamości WC11"
+    },
+    {
+        "name": "Klamka drzwi do regulacji i okno do regulacji",
+        "location": "Sąd Rejonowy w Zamości P.269"
+    },
+    {
+        "name": "Zarysowania tynku - ubytek okleiny ościeżnicy drzwi",
+        "location": "Zamość - P.266"
+    },
+    {
+        "name": "Zarysowania tynku - glif okna do poprawki estetycznej",
+        "location": "Zamość - P.265"
+    },
+    {
+        "name": "Zarysowania tynku - ścian i sufitu nad drzwiami",
+        "location": "Zamość - P.263"
+    },
+    {
+        "name": "Zarysowania tynku - ściany przy oknie",
+        "location": "Zamość - P.302"
+    },
+    {
+        "name": "Zarysowania tynku - w narożach ściany, przy oknie - zmurszenie tynku",
+        "location": "Zamość - P.303"
+    },
+    {
+        "name": "Zarysowania tynku - przy wejściu na dach na drzwiami i na poziomie klamki",
+        "location": "Zamość - Korytarz"
+    },
+    {
+        "name": "Zarysowania tynku - przy oknie, glify do poprawki estetycznej",
+        "location": "Zamość - P.304"
+    },
+    {
+        "name": "Zarysowania tynku - ścian i sufitu przy dylatacji",
+        "location": "Zamość - P.259"
+    },
+    {
+        "name": "Zarysowania tynku przy ościeżnicy",
+        "location": "Zamość - P.305"
+    },
+    {
+        "name": "Zarysowania tynku nad nadprożem",
+        "location": "Zamość - Hol przy socjalnym"
+    },
+    {
+        "name": "Zarysowania sufit obok wejścia na klatkę schodową",
+        "location": "Zamość - Korytarz przy rewizji"
+    },
+    {
+        "name": "Zarysowania tynku nad drzwiami zewnętrznymi",
+        "location": "Zamość - WC1"
+    },
+    {
+        "name": "Zarysowania tynku nad drzwiami",
+        "location": "Zamość - P.317"
+    },
+    {
+        "name": "Zarysowania tynku poziome od wejścia do wyjścia wzdłuż ściany",
+        "location": "Zamość - P.319"
+    },
+    {
+        "name": "Zarysowania tynku sufitu nad godłem i ściany od lewej strony od sekretariatu",
+        "location": "Zamość - Gabinet prezesa"
+    },
+    {
+        "name": "Szczeliny pomiędzy klepkami parkietu powstałe w wyniku jego naturalnej reakcji na zmienne warunki atmosferyczne",
+        "location": "Zamość - Gabinet Vice"
+    },
+    {
+        "name": "Zarysowania tynku",
+        "location": "Zamość - P.314"
+    },
+    {
+        "name": "Zarysowania tynku ściana",
+        "location": "Zamość - Korytarz naprzeciwko pokoju P.312"
+    },
+    {
+        "name": "Szczeliny pomiędzy klepkami parkietu powstałe w wyniku jego naturalnej reakcji na zmienne warunki wilgotnościowe w pomieszczeniu",
+        "location": "Zamość - P.311"
+    },
+    {
+        "name": "Zarysowania tynku - uszkodzenia mechaniczne szyby oraz szczeliny pomiędzy klepkami parkietu",
+        "location": "Zamość - Sąd Rejonowy, pokój 310"
+    },
+    {
+        "name": "Zarysowania tynku - uszkodzenia mechaniczne szyby oraz szczeliny pomiędzy klepkami parkietu",
+        "location": "Zamość - Sąd Rejonowy, pokój 309"
+    },
+    {
+        "name": "Zarysowania tynku - uszkodzenia mechaniczne szyby",
+        "location": "Zamość - Sąd Rejonowy, pokój 308"
+    },
+    {
+        "name": "Zarysowania tynku - pęknięta ściana działowa obustronnie",
+        "location": "Zamość - Sąd Rejonowy, pokój 307"
+    },
+    {
+        "name": "Glify do poprawki estetycznej i pęknięcia za kalendarzem",
+        "location": "Zamość - Sąd Rejonowy, pokój 307A"
+    },
+    {
+        "name": "Zacieki na kasetonach",
+        "location": "Zamość - Sąd Rejonowy, naprzeciwko pokoju 314"
+    },
+    {
+        "name": "Nieszczelności obróbek blacharskich nad latarniami doświetleniowymi",
+        "location": "Zamość - Sąd Rejonowy, Sala Rozpraw 37"
+    },
+    {
+        "name": "Nieszczelności obróbek blacharskich nad latarniami doświetleniowymi oraz ich korozja",
+        "location": "Zamość - Sąd Rejonowy, Sala Rozpraw 39"
+    },
+    {
+        "name": "Nieszczelności obróbek blacharskich nad latarniami doświetleniowymi",
+        "location": "Zamość - Sąd Rejonowy, Sala Rozpraw 41"
+    },
+    {
+        "name": "Nieszczelności obróbek blacharskich nad latarniami doświetleniowymi",
+        "location": "Zamość - Sąd Rejonowy, Sala Rozpraw 43"
+    },
+    {
+        "name": "Nieszczelności obróbek blacharskich nad latarniami doświetleniowymi",
+        "location": "Zamość - Sąd Rejonowy, Sala Rozpraw 45"
+    },
+    {
+        "name": "Nieszczelności oraz wyłamania obróbek blacharskich",
+        "location": "Sąd Rejonowy w Zamości - Sala Rozpraw 47"
+    },
+    {
+        "name": "Nieszczelności obróbek blacharskich nad latarniami doświetleniowymi oraz pęknięcia obróbek blacharskich",
+        "location": "Sąd Rejonowy w Zamości - Sala Rozpraw 49"
+    },
+    {
+        "name": "Nieszczelności obróbek blacharskich nad latarniami doświetleniowymi",
+        "location": "Sąd Rejonowy w Zamości - Sala Rozpraw 51"
+    },
+    {
+        "name": "Nieszczelność obróbek blacharskich",
+        "location": "Sąd Rejonowy w Zamości - Fosa doświetleniowa"
+    },
+    {
+        "name": "Nieszczelności centrali",
+        "location": "Sąd Rejonowy w Zamości - Centrala R8NW"
+    },
+    {
+        "name": "Korozja śrub montażowych agregatu wody lodowej",
+        "location": "Sąd Rejonowy w Zamości - Centrala R8NW"
+    },
+    {
+        "name": "Do uzupełnienia papa na obróbkach ogniomurów przy elewacji BSO",
+        "location": "Sąd Rejonowy w Zamości - Wyjście na dach z P.262"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - P.053"
+    },
+    {
+        "name": "Zarysowania tynku ścian, ubytki w uszczelnieniu przejść instalacyjnych",
+        "location": "Sąd Rejonowy w Zamości - P.056"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - P.058"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - P.059"
+    },
+    {
+        "name": "Zarysowania tynku ścian oraz zarysowania tynku nad drzwiami",
+        "location": "Sąd Rejonowy w Zamości - P.060"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - P.062"
+    },
+    {
+        "name": "Ubytki w uszczelnieniu przejść instalacyjnych",
+        "location": "Sąd Rejonowy w Zamości - P.063"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - P.064"
+    },
+    {
+        "name": "Zarysowania tynku ścian oraz naroży",
+        "location": "Sąd Rejonowy w Zamości - P.065"
+    },
+    {
+        "name": "Zarysowania tynku ścian oraz zarysowania tynku nad drzwiami",
+        "location": "Zamość P.065A"
+    },
+    {
+        "name": "Glify okienne do poprawki estetycznej",
+        "location": "Zamość P.066"
+    },
+    {
+        "name": "Glify okienne do poprawki estetycznej",
+        "location": "Zamość P.068"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Zamość P.070"
+    },
+    {
+        "name": "Glify okienne do poprawki estetycznej",
+        "location": "Zamość P.070A"
+    },
+    {
+        "name": "Zarysowania tynku ścian, zarysowania na sufitach podwieszanych, glify okienne do poprawki estetycznej",
+        "location": "Zamość P.071 (serwerownia SR)"
+    },
+    {
+        "name": "Wymagana regulacja drzwi",
+        "location": "Zamość P.072"
+    },
+    {
+        "name": "Zarysowania tynku nad drzwiami oraz zarysowania tynku w narożach",
+        "location": "Zamość P.078"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Zamość P.078A"
+    },
+    {
+        "name": "Zalany kaseton",
+        "location": "Zamość P.079"
+    },
+    {
+        "name": "Zarysowania tynku ścian, naroży oraz sufitu",
+        "location": "Zamość P.080"
+    },
+    {
+        "name": "Zalany kaseton",
+        "location": "Zamość P.080B"
+    },
+    {
+        "name": "Wymagana regulacja drzwi",
+        "location": "Zamość P.080C"
+    },
+    {
+        "name": "Glify okienne do poprawki estetycznej",
+        "location": "Zamość P.084"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Zamość P.085"
+    },
+    {
+        "name": "Zarysowania tynku ścian, wymagana regulacja okna, glify okienne do poprawki estetycznej",
+        "location": "Zamość P.086"
+    },
+    {
+        "name": "Zarysowania tynku ścian, glify okienne do poprawki estetycznej",
+        "location": "Zamość P.088"
+    },
+    {
+        "name": "Pęknięcia glazury",
+        "location": "Sąd Rejonowy w Zamości P.090"
+    },
+    {
+        "name": "Ocierająca uszczelka drzwi",
+        "location": "Sąd Rejonowy w Zamości P.092"
+    },
+    {
+        "name": "Zarysowania tynku ścian, usterka ościeżnicy oraz okucia drzwi",
+        "location": "Sąd Rejonowy w Zamości P.093"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości P.0123"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości Korytarz pomiędzy P.080/P.080D"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości Hol przy P.080C/P.080G"
+    },
+    {
+        "name": "Wymagana regulacja drzwi",
+        "location": "Sąd Rejonowy w Zamości Klatka schodowa S.R. nr 11"
+    },
+    {
+        "name": "Wymagana regulacja drzwi",
+        "location": "Sąd Rejonowy w Zamości Klatka schodowa S.R. nr 13"
+    },
+    {
+        "name": "Pęknięcia glazury",
+        "location": "Sąd Rejonowy w Zamości Toaleta damska dla interesantów"
+    },
+    {
+        "name": "Otwór w suficie podwieszanym",
+        "location": "Sąd Rejonowy w Zamości Klatka schodowa na środku długości korytarza dla aresztantów"
+    },
+    {
+        "name": "Zabrudzenia przy anemostacie",
+        "location": "Sąd Rejonowy w Zamości P.1"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości P.2"
+    },
+    {
+        "name": "Glify okienne do poprawki estetycznej, zarysowania tynku ścian, zarysowania sufitu podwieszanego",
+        "location": "Sąd Rejonowy w Zamości P.3"
+    },
+    {
+        "name": "Zarysowania tynku ścian oraz zarysowanie tynku nad drzwiami",
+        "location": "Sąd Rejonowy w Zamości P.4"
+    },
+    {
+        "name": "Zarysowania tynku nad drzwiami, zarysowania sufitu podwieszanego",
+        "location": "Sąd Rejonowy w Zamości P.5"
+    },
+    {
+        "name": "Zarysowania tynku ścian oraz zarysowanie tynku nad drzwiami",
+        "location": "Sąd Rejonowy w Zamości P.6"
+    },
+    {
+        "name": "Zarysowania tynku ścian oraz zarysowanie tynku nad drzwiami, wymagana regulacja drzwi",
+        "location": "Sąd Rejonowy w Zamości P.7"
+    },
+    {
+        "name": "Glify okienne - poprawki estetyczne, zarysowania tynku ścian",
+        "location": "Zamość, Sąd Rejonowy, P.8"
+    },
+    {
+        "name": "Glify okienne - poprawki estetyczne, zarysowania tynku ścian oraz zarysowania tynku nad drzwiami, zabrudzenia przy anemostacie",
+        "location": "Zamość, Sąd Rejonowy, P.9"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Zamość, Sąd Rejonowy, P.10"
+    },
+    {
+        "name": "Glify okienne - poprawki estetyczne, uszkodzenia parapetu zewnętrznego",
+        "location": "Zamość, Sąd Rejonowy, 10A"
+    },
+    {
+        "name": "Glify okienne - poprawki estetyczne, zarysowania tynku ścian, wymagana regulacja okien",
+        "location": "Zamość, Sąd Rejonowy, P.11"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Zamość, Sąd Rejonowy, P.12"
+    },
+    {
+        "name": "Glify okienne - poprawki estetyczne, nieszczelność pomiędzy parapetem i ościeżnicą okna, zarysowania tynku ścian, zalany sufit płyt G-K",
+        "location": "Zamość, Sąd Rejonowy, P.13"
+    },
+    {
+        "name": "Glify okienne - poprawki estetyczne, zarysowania tynku ścian",
+        "location": "Zamość, Sąd Rejonowy, P.14"
+    },
+    {
+        "name": "Glify okienne - poprawki estetyczne, zarysowania tynku ścian",
+        "location": "Zamość, Sąd Rejonowy, P.15"
+    },
+    {
+        "name": "Zabrudzenia przy anemostacie",
+        "location": "Zamość, Sąd Rejonowy, P.17"
+    },
+    {
+        "name": "Zabrudzenia przy anemostacie",
+        "location": "Zamość, Sąd Rejonowy, P.17A"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Zamość, Sąd Rejonowy, P.19"
+    },
+    {
+        "name": "Zarysowania sufitu podwieszanego, zabrudzenia przy anemostacie",
+        "location": "Zamość, Sąd Rejonowy, P.20"
+    },
+    {
+        "name": "Zarysowania tynku ścian, wymagana regulacja okien, zabrudzenia przy anemostacie",
+        "location": "Zamość, Sąd Rejonowy, P.21"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Zamość, Sąd Rejonowy, P.22"
+    },
+    {
+        "name": "Zarysowania tynku ścian, zarysowania tynku pod parapetem",
+        "location": "Zamość, Sąd Rejonowy, P.23"
+    },
+    {
+        "name": "Glify okienne - poprawki estetyczne, zarysowania tynku ścian, nad drzwiami",
+        "location": "Zamość, Sąd Rejonowy, P.24"
+    },
+    {
+        "name": "Zarysowania tynku nad drzwiami",
+        "location": "Sąd Rejonowy w Zamości - pokój 25"
+    },
+    {
+        "name": "Zarysowania tynku ścian, wymagana regulacja okien",
+        "location": "Sąd Rejonowy w Zamości - pokój 26"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - pokój 30"
+    },
+    {
+        "name": "Zarysowania tynku ścian, zarysowania sufitu podwieszanego",
+        "location": "Sąd Rejonowy w Zamości - pokój 31"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - pokój 32"
+    },
+    {
+        "name": "Zarysowania tynku w narożach",
+        "location": "Sąd Rejonowy w Zamości - pokój 33"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - pokój 34"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - pokój 38"
+    },
+    {
+        "name": "Zarysowania tynku nad drzwiami",
+        "location": "Sąd Rejonowy w Zamości - pokój 42"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - pokój 46"
+    },
+    {
+        "name": "Zarysowania sufitu podwieszanego",
+        "location": "Sąd Rejonowy w Zamości - pokój 50B"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - pokój 52"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - pokój 55"
+    },
+    {
+        "name": "Pęknięcia glazury",
+        "location": "Sąd Rejonowy w Zamości - pokój 59"
+    },
+    {
+        "name": "Glify okienne do poprawki estetycznej",
+        "location": "Sąd Rejonowy w Zamości - pokój 62"
+    },
+    {
+        "name": "Zarysowania tynku ścian, zarysowania sufitu podwieszanego",
+        "location": "Sąd Rejonowy w Zamości - pokój 64"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - pokój 65"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - pokój 67"
+    },
+    {
+        "name": "Zarysowania tynku w narożach",
+        "location": "Sąd Rejonowy w Zamości - P.68"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - P.69"
+    },
+    {
+        "name": "Wymagana regulacja okien",
+        "location": "Sąd Rejonowy w Zamości - P.71"
+    },
+    {
+        "name": "Zarysowania tynku nad drzwiami",
+        "location": "Sąd Rejonowy w Zamości - P.73"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - P.75"
+    },
+    {
+        "name": "Zarysowania tynku nad drzwiami",
+        "location": "Sąd Rejonowy w Zamości - P.76"
+    },
+    {
+        "name": "Glify okienne do poprawki estetycznej, zarysowania tynku nad drzwiami",
+        "location": "Sąd Rejonowy w Zamości - P.77"
+    },
+    {
+        "name": "Glify okienne do poprawki estetycznej, zarysowania tynku nad drzwiami, wymagana regulacja okien",
+        "location": "Sąd Rejonowy w Zamości - P.78"
+    },
+    {
+        "name": "Glify okienne do poprawki estetycznej, zarysowania tynku ścian oraz nad drzwiami",
+        "location": "Sąd Rejonowy w Zamości - P.79"
+    },
+    {
+        "name": "Glify okienne do poprawki estetycznej, zarysowania tynku pod parapetami, zalany kaseton",
+        "location": "Sąd Rejonowy w Zamości - P.80"
+    },
+    {
+        "name": "Glify okienne do poprawki estetycznej",
+        "location": "Sąd Rejonowy w Zamości - P.81"
+    },
+    {
+        "name": "Zarysowania sufitu podwieszanego",
+        "location": "Sąd Rejonowy w Zamości - P.82"
+    },
+    {
+        "name": "Zarysowania sufitu podwieszanego",
+        "location": "Sąd Rejonowy w Zamości - P.83"
+    },
+    {
+        "name": "Zarysowania tynku nad drzwiami, zabrudzenia przy anemostacie",
+        "location": "Sąd Rejonowy w Zamości - P.84"
+    },
+    {
+        "name": "Zarysowania sufitu podwieszanego",
+        "location": "Sąd Rejonowy w Zamości - P.85"
+    },
+    {
+        "name": "Zalany kaseton z lampą",
+        "location": "Sąd Rejonowy w Zamości - P.86"
+    },
+    {
+        "name": "Zarysowania sufitu podwieszanego, awaria lampy, zalepiony czujnik SSWIN",
+        "location": "Sąd Rejonowy w Zamości - P.87"
+    },
+    {
+        "name": "Zarysowania tynku ścian, zarysowania sufitu podwieszanego, zalepiony czujnik SSWIN",
+        "location": "Sąd Rejonowy w Zamości - P.88"
+    },
+    {
+        "name": "Zarysowania tynku w narożach, nieszczelności stolarki okiennej",
+        "location": "Sąd Rejonowy w Zamości - P.89"
+    },
+    {
+        "name": "Zarysowania tynku w narożach",
+        "location": "Sąd Rejonowy w Zamości - pokój 91"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - pokój 90"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - poczekalnia pomiędzy P.2/P.3"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - poczekalnia pomiędzy P.9/P.10"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - hol przy kasie"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - hol wejście H"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - hol przed BOI"
+    },
+    {
+        "name": "Wyrwany uchwyt drzwi ppoż.",
+        "location": "Sąd Rejonowy w Zamości - hol przy P.29"
+    },
+    {
+        "name": "Zarysowania tynku w narożach",
+        "location": "Sąd Rejonowy w Zamości - hol przy P.93"
+    },
+    {
+        "name": "Zarysowania tynku ścian, zarysowania sufitu podwieszanego",
+        "location": "Sąd Rejonowy w Zamości - sala rozpraw 3 (pom. pomocnicze)"
+    },
+    {
+        "name": "Zarysowania tynku ścian w pom. pomocniczych",
+        "location": "Sąd Rejonowy w Zamości - sala rozpraw 5"
+    },
+    {
+        "name": "Zarysowania tynku ścian w pom. pomocniczych",
+        "location": "Sąd Rejonowy w Zamości - sala rozpraw 7"
+    },
+    {
+        "name": "Zarysowania tynku ścian, zarysowania sufitu podwieszanego",
+        "location": "Sąd Rejonowy w Zamości - hol przy szatni Samoobsługowej"
+    },
+    {
+        "name": "Zalany kaseton z czujką",
+        "location": "Sąd Rejonowy w Zamości - PPD 36"
+    },
+    {
+        "name": "Wymagana regulacja drzwi aluminiowych zewnętrznych, zarysowania tynku ścian, zarysowania sufitu podwieszanego, nieszczelność boilera",
+        "location": "Sąd Rejonowy w Zamości - bufet"
+    },
+    {
+        "name": "Długi czas reakcji kontroli dostępu, problem z odczytem karty",
+        "location": "Sąd Rejonowy w Zamości - wejście/wyjście do Sal i Rozpraw nr 11"
+    },
+    {
+        "name": "Częste awarie oświetlenia",
+        "location": "Zamość Sąd Rejonowy - Sala Rozpraw 19"
+    },
+    {
+        "name": "Szczelina pomiędzy cokołem i posadzką",
+        "location": "Zamość Sąd Rejonowy - Hall główny"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych, zniszczony kaseton",
+        "location": "Zamość Sąd Rejonowy - P.102"
+    },
+    {
+        "name": "Zarysowania tynku ścian, zabrudzenia przy anemostacie",
+        "location": "Zamość Sąd Rejonowy - P.103"
+    },
+    {
+        "name": "Zarysowania tynku ścian, zabrudzenia przy anemostacie",
+        "location": "Zamość Sąd Rejonowy - P.103A"
+    },
+    {
+        "name": "Zarysowania tynku ścian, glify okienne do poprawek estetycznych, parapet zewnętrzny wymaga naprawy",
+        "location": "Zamość Sąd Rejonowy - P.104"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych, zabrudzenia przy anemostacie",
+        "location": "Zamość Sąd Rejonowy - P.105"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych, zabrudzenia przy anemostacie",
+        "location": "Zamość Sąd Rejonowy - P.106"
+    },
+    {
+        "name": "Wymagana regulacja okna, glify okienne do poprawek estetycznych, zabrudzenia przy anemostacie",
+        "location": "Zamość Sąd Rejonowy - P.107"
+    },
+    {
+        "name": "Zarysowania tynku ścian, zalany kaseton z lampą",
+        "location": "Zamość Sąd Rejonowy - P.108"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Zamość Sąd Rejonowy - P.109"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Zamość Sąd Rejonowy - P.111"
+    },
+    {
+        "name": "Zarysowania tynku ścian, zabrudzenia przy anemostacie",
+        "location": "Zamość Sąd Rejonowy - P.112"
+    },
+    {
+        "name": "Zarysowania tynku ścian, zabrudzenia przy anemostacie, sufit do poprawek estetycznych",
+        "location": "Zamość Sąd Rejonowy - P.113"
+    },
+    {
+        "name": "Brak usterek",
+        "location": "Zamość Sąd Rejonowy - P.115"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Zamość Sąd Rejonowy - P.116"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości P.117"
+    },
+    {
+        "name": "Wymagana regulacja okna",
+        "location": "Sąd Rejonowy w Zamości P.117"
+    },
+    {
+        "name": "Awaria lampy",
+        "location": "Sąd Rejonowy w Zamości P.117"
+    },
+    {
+        "name": "Zarysowania sufitu podwieszanego",
+        "location": "Sąd Rejonowy w Zamości P.118"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości P.119"
+    },
+    {
+        "name": "Zarysowania sufitu podwieszanego",
+        "location": "Sąd Rejonowy w Zamości P.119"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości P.119"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości P.120A"
+    },
+    {
+        "name": "Widoczne przecieki pod parapetem",
+        "location": "Sąd Rejonowy w Zamości P.120A"
+    },
+    {
+        "name": "Zarysowania tynku ścian nad drzwiami",
+        "location": "Sąd Rejonowy w Zamości P.122"
+    },
+    {
+        "name": "Zarysowania tynku pod parapetem",
+        "location": "Sąd Rejonowy w Zamości P.122"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości P.122"
+    },
+    {
+        "name": "Zarysowania tynku ścian nad drzwiami",
+        "location": "Sąd Rejonowy w Zamości P.123"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości P.124"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości P.124"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości P.125"
+    },
+    {
+        "name": "Zabrudzenia przy anemostacie",
+        "location": "Sąd Rejonowy w Zamości P.125"
+    },
+    {
+        "name": "Parapet zewnętrzny wymaga naprawy",
+        "location": "Sąd Rejonowy w Zamości P.125"
+    },
+    {
+        "name": "Zarysowania tynku nad drzwiami",
+        "location": "Sąd Rejonowy w Zamości P.126"
+    },
+    {
+        "name": "Uszkodzona ościeżnica",
+        "location": "Sąd Rejonowy w Zamości P.126"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości P.127"
+    },
+    {
+        "name": "Zabrudzenia przy anemostacie",
+        "location": "Sąd Rejonowy w Zamości P.127"
+    },
+    {
+        "name": "Pęknięcia glazury",
+        "location": "Sąd Rejonowy w Zamości P.130"
+    },
+    {
+        "name": "Zarysowania sufitu podwieszanego",
+        "location": "Sąd Rejonowy w Zamości P.132A"
+    },
+    {
+        "name": "Zabrudzenia przy anemostacie",
+        "location": "Sąd Rejonowy w Zamości P.132A"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości P.132A"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości P.133A"
+    },
+    {
+        "name": "Wymagana regulacja drzwi",
+        "location": "Sąd Rejonowy w Zamości P.134"
+    },
+    {
+        "name": "Zabrudzenia przy anemostacie",
+        "location": "Sąd Rejonowy w Zamości P.134A"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości P.134B"
+    },
+    {
+        "name": "Zabrudzenia przy anemostacie",
+        "location": "Sąd Rejonowy w Zamości - P.135A"
+    },
+    {
+        "name": "Odspojone płytki na ścianie z dylatacją, zabrudzenia przy anemostacie",
+        "location": "Sąd Rejonowy w Zamości - P.136"
+    },
+    {
+        "name": "Wymagana regulacja drzwi",
+        "location": "Sąd Rejonowy w Zamości - P.137"
+    },
+    {
+        "name": "Zabrudzenia przy anemostacie",
+        "location": "Sąd Rejonowy w Zamości - P.137A"
+    },
+    {
+        "name": "Zabrudzenia przy anemostacie",
+        "location": "Sąd Rejonowy w Zamości - P.137B"
+    },
+    {
+        "name": "Zarysowania tynku ścian, sufit do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości - P.139A"
+    },
+    {
+        "name": "Zarysowania tynku ścian, pęknięcia glazury",
+        "location": "Sąd Rejonowy w Zamości - P.144"
+    },
+    {
+        "name": "Zarysowania tynku w narożach, zalany kaseton, pęknięcia glazury",
+        "location": "Sąd Rejonowy w Zamości - P.145"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości - P.146"
+    },
+    {
+        "name": "Wymagana regulacja okna",
+        "location": "Sąd Rejonowy w Zamości - P.147"
+    },
+    {
+        "name": "Zarysowania tynku w narożach, glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości - P.148A"
+    },
+    {
+        "name": "Zalany sufit z płyt G-K, glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości - P.149"
+    },
+    {
+        "name": "Zarysowania tynku pod parapetem",
+        "location": "Sąd Rejonowy w Zamości - P.150"
+    },
+    {
+        "name": "Zarysowania tynku w narożach",
+        "location": "Sąd Rejonowy w Zamości - P.151"
+    },
+    {
+        "name": "Uszkodzona klamka drzwi, wymagana regulacja okna, sufit do poprawek estetycznych, glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości - P.152"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości - P.153"
+    },
+    {
+        "name": "Wymagana regulacja okna, glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości - P.154"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych, głośna praca nawiewu z wentylacji",
+        "location": "Sąd Rejonowy w Zamości - P.155"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości P.156"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości P.157"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości P.158"
+    },
+    {
+        "name": "Zarysowania tynku ścian, glify okienne do poprawek estetycznych, parapet zewnętrzny wymaga naprawy",
+        "location": "Sąd Rejonowy w Zamości P.160"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości P.161"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych, parapet zewnętrzny wymaga naprawy",
+        "location": "Sąd Rejonowy w Zamości P.162"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości P.164"
+    },
+    {
+        "name": "Zarysowania sufitu podwieszanego",
+        "location": "Sąd Rejonowy w Zamości P.165"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości P.166"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości P.167"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych, zabrudzenia przy anemostacie, zarysowania sufitu podwieszanego",
+        "location": "Sąd Rejonowy w Zamości P.168"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości P.169"
+    },
+    {
+        "name": "Zabrudzenia przy anemostacie",
+        "location": "Sąd Rejonowy w Zamości P.170"
+    },
+    {
+        "name": "Zarysowania tynku w narożach",
+        "location": "Sąd Rejonowy w Zamości P.173"
+    },
+    {
+        "name": "Zalane kasetony (kaseton z lampą, kaseton z czujnikiem, kaseton z anemostatem)",
+        "location": "Sąd Rejonowy w Zamości P.174"
+    },
+    {
+        "name": "Zarysowania tynku ścian, zarysowania sufitu podwieszanego, głośna praca klimakonwektora",
+        "location": "Sąd Rejonowy w Zamości P.177"
+    },
+    {
+        "name": "Wymagana regulacja drzwi",
+        "location": "Sąd Rejonowy w Zamości P.179"
+    },
+    {
+        "name": "Kaseton - zalany",
+        "location": "Sąd Rejonowy w Zamości Pokój Gościnny 1"
+    },
+    {
+        "name": "Glify okienne - do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości Pokój Gościnny 1"
+    },
+    {
+        "name": "Parapet zewnętrzny - wymaga naprawy",
+        "location": "Sąd Rejonowy w Zamości Pokój Gościnny 1"
+    },
+    {
+        "name": "Glify okienne - do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości Pokój Gościnny 2"
+    },
+    {
+        "name": "Zarysowania tynku ścian - pom. pomocnicze",
+        "location": "Sąd Rejonowy w Zamości Sala Rozpraw 15"
+    },
+    {
+        "name": "Kaseton - zniszczony",
+        "location": "Sąd Rejonowy w Zamości Sala Rozpraw 15"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości Sala Rozpraw 17"
+    },
+    {
+        "name": "Regulacja drzwi aluminiowych - wymagana",
+        "location": "Sąd Rejonowy w Zamości Sala Rozpraw 17"
+    },
+    {
+        "name": "Zarysowania tynku ścian - pom. pomocnicze",
+        "location": "Sąd Rejonowy w Zamości Sala Rozpraw 33"
+    },
+    {
+        "name": "Zarysowania sufitu podwieszanego",
+        "location": "Sąd Rejonowy w Zamości Sala Rozpraw 33"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości Poczekalnia pomiędzy P.102/P.103"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości Poczekalnia pomiędzy P.107/P.108"
+    },
+    {
+        "name": "Zarysowania sufitu podwieszanego",
+        "location": "Sąd Rejonowy w Zamości Poczekalnia pomiędzy P.107/P.108"
+    },
+    {
+        "name": "Zarysowania sufitu podwieszanego",
+        "location": "Sąd Rejonowy w Zamości Poczekalnia pomiędzy P.114/P.115"
+    },
+    {
+        "name": "Widoczne przecieki pod parapetem",
+        "location": "Sąd Rejonowy w Zamości Poczekalnia pomiędzy P.114/P.115"
+    },
+    {
+        "name": "Glify okienne - do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości Poczekalnia pomiędzy P.114/P.115"
+    },
+    {
+        "name": "Parapet zewnętrzny - wymaga naprawy",
+        "location": "Sąd Rejonowy w Zamości Poczekalnia pomiędzy P.114/P.115"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości Poczekalnia pomiędzy P.119/P.120"
+    },
+    {
+        "name": "Zarysowania sufitu podwieszanego",
+        "location": "Sąd Rejonowy w Zamości Poczekalnia pomiędzy P.123/P.124"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości Klatka schodowa obok P.161"
+    },
+    {
+        "name": "Glify okienne - do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości Hol przy P.147"
+    },
+    {
+        "name": "Zarysowania sufitu podwieszanego",
+        "location": "Zamość - Hol przy P.177"
+    },
+    {
+        "name": "Zalany sufit z płyt G -K",
+        "location": "Zamość - PPD 101"
+    },
+    {
+        "name": "Mleczna szyba",
+        "location": "Zamość - Hol Pokoi Gościnnych"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych, parapet zewnętrzny wymaga naprawy",
+        "location": "Zamość - Okno Ppoż."
+    },
+    {
+        "name": "Zabrudzenia przy anemostacie",
+        "location": "Zamość - Boczne pomieszczenie przy Sali Rozpraw 17"
+    },
+    {
+        "name": "Zarysowania tynku nad drzwiami",
+        "location": "Zamość - P.202"
+    },
+    {
+        "name": "Zarysowania tynku nad drzwiami",
+        "location": "Zamość - P.203"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Zamość - P.203A"
+    },
+    {
+        "name": "Wymagana regulacja okien",
+        "location": "Zamość - P.205"
+    },
+    {
+        "name": "Zabrudzenia przy anemostacie",
+        "location": "Zamość - P.208"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych",
+        "location": "Zamość - P.209"
+    },
+    {
+        "name": "Zarysowania tynku nad drzwiami, wymagana regulacja okien",
+        "location": "Zamość - P.210"
+    },
+    {
+        "name": "Zarysowania tynku ścian i nad drzwiami",
+        "location": "Zamość - P.211"
+    },
+    {
+        "name": "Zarysowania tynku ścian, zabrudzenia przy anemostacie, sufit do poprawek estetycznych",
+        "location": "Zamość - P.212"
+    },
+    {
+        "name": "Zarysowania tynku ścian, sufit do poprawek estetycznych",
+        "location": "Zamość - P.213"
+    },
+    {
+        "name": "Zarysowania tynku ścian, zabrudzenia przy anemostacie",
+        "location": "Zamość - P.214"
+    },
+    {
+        "name": "Nieszczelność pomiędzy parapetem i oknem, zarysowania tynku ścian, sufit do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości, pokój 215"
+    },
+    {
+        "name": "Zarysowania tynku nad drzwiami, zniszczony kaseton z lampą",
+        "location": "Sąd Rejonowy w Zamości, pokój 216"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości, pokój 219"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych, zarysowania sufitów podwieszanych, zarysowania tynku ścian, dylatacja do poprawy",
+        "location": "Sąd Rejonowy w Zamości, pokój 220"
+    },
+    {
+        "name": "Parapet zewnętrzny wymaga naprawy, zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości, pokój 223"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości, pokój 224"
+    },
+    {
+        "name": "Zarysowania tynku ścian, zarysowania sufitów podwieszanych",
+        "location": "Sąd Rejonowy w Zamości, pokój 225"
+    },
+    {
+        "name": "Zarysowania tynku nad drzwiami",
+        "location": "Sąd Rejonowy w Zamości, pokój 226"
+    },
+    {
+        "name": "Zarysowania tynku nad drzwiami",
+        "location": "Sąd Rejonowy w Zamości, pokój 228"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości, pokój 229"
+    },
+    {
+        "name": "Zalany kaseton z lampą, ocierająca uszczelka drzwi",
+        "location": "Sąd Rejonowy w Zamości, pokój 230"
+    },
+    {
+        "name": "Zarysowania sufitów podwieszanych",
+        "location": "Sąd Rejonowy w Zamości, pokój 233"
+    },
+    {
+        "name": "Szczelina pomiędzy cokołem i posadzką",
+        "location": "Sąd Rejonowy w Zamości, korytarz przy pokoju 236"
+    },
+    {
+        "name": "Zabrudzenia przy anemostacie",
+        "location": "Sąd Rejonowy w Zamości, pokój 237"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości, pokój 240A"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - pokój 241"
+    },
+    {
+        "name": "Pęknięcia glazury",
+        "location": "Sąd Rejonowy w Zamości - pokój 243"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - pokój 243A"
+    },
+    {
+        "name": "Zabrudzenia przy anemostacie",
+        "location": "Sąd Rejonowy w Zamości - pokój 245"
+    },
+    {
+        "name": "Zarysowania sufitów podwieszanych",
+        "location": "Sąd Rejonowy w Zamości - pokój 247"
+    },
+    {
+        "name": "Zarysowania tynku ścian, zalany sufit z płyt G -K",
+        "location": "Sąd Rejonowy w Zamości - pokój 250"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - pokój 253"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - pokój 254"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości - pokój 259"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych, zarysowania tynku ścian, wymagana regulacja okien",
+        "location": "Sąd Rejonowy w Zamości - pokój 260"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - pokój 261"
+    },
+    {
+        "name": "Sufit podwieszany do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości - pokój 262"
+    },
+    {
+        "name": "Wymagana regulacja okien",
+        "location": "Sąd Rejonowy w Zamości - pokój 264"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości - pokój 266"
+    },
+    {
+        "name": "Zarysowania tynku ścian, zdemontowana płyta rewizyjna poszycia sufitu",
+        "location": "Sąd Rejonowy w Zamości - pokój 270"
+    },
+    {
+        "name": "Zabrudzenia przy anemostacie",
+        "location": "Sąd Rejonowy w Zamości - pokój 271"
+    },
+    {
+        "name": "Zabrudzenia przy anemostacie",
+        "location": "Sąd Rejonowy w Zamości - pokój 272"
+    },
+    {
+        "name": "Zabrudzenia przy anemostacie",
+        "location": "Sąd Rejonowy w Zamości - pokój 273"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości P.273"
+    },
+    {
+        "name": "Zabrudzenia przy anemostacie",
+        "location": "Sąd Rejonowy w Zamości P.275"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości P.278"
+    },
+    {
+        "name": "Zabrudzenia przy anemostacie",
+        "location": "Sąd Rejonowy w Zamości P.279"
+    },
+    {
+        "name": "Zarysowania tynku ścian, zarysowania sufitów podwieszanych",
+        "location": "Sąd Rejonowy w Zamości P.280"
+    },
+    {
+        "name": "Zarysowania sufitów podwieszanych",
+        "location": "Sąd Rejonowy w Zamości P.281"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości P.283"
+    },
+    {
+        "name": "Wymagana regulacja okien",
+        "location": "Sąd Rejonowy w Zamości P.284"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości P.286"
+    },
+    {
+        "name": "Zarysowania sufitów podwieszanych",
+        "location": "Sąd Rejonowy w Zamości P.288"
+    },
+    {
+        "name": "Zarysowania tynku ścian, zarysowania sufitów podwieszanych",
+        "location": "Sąd Rejonowy w Zamości P.289"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości P.290"
+    },
+    {
+        "name": "Zarysowania sufitów podwieszanych",
+        "location": "Sąd Rejonowy w Zamości P.291"
+    },
+    {
+        "name": "Zarysowania sufitów podwieszanych",
+        "location": "Sąd Rejonowy w Zamości P.292"
+    },
+    {
+        "name": "Zarysowania sufitów podwieszanych",
+        "location": "Sąd Rejonowy w Zamości P.293"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości P.294"
+    },
+    {
+        "name": "Zarysowania sufitów podwieszanych, sufit podwieszany do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości P.295"
+    },
+    {
+        "name": "Poprawić dylatację",
+        "location": "Sąd Rejonowy w Zamości P.219/P.220"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości Hol Kancelarii Tajnej"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości Poczekalnia pomiędzy P.203/P.202"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości Poczekalnia pomiędzy P.207/P.208"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości Poczekalnia pomiędzy P.215/P.216"
+    },
+    {
+        "name": "Zarysowania tynku ścian, sufit do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości Poczekalnia pomiędzy P.220/P221"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości PPD 114 SR"
+    },
+    {
+        "name": "Zalany kaseton z czujką",
+        "location": "Sąd Rejonowy w Zamości PPD 246 SR"
+    },
+    {
+        "name": "Nieszczelności pomiędzy skrzydłem i ramą okienną",
+        "location": "Sąd Rejonowy w Zamości Okno przeciw pożarowe obok P.260"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości Okno przeciw pożarowe za P.229"
+    },
+    {
+        "name": "Zarysowania tynku ścian, zarysowania sufitu podwieszanego",
+        "location": "Sąd Rejonowy w Zamości P.301"
+    },
+    {
+        "name": "Zarysowania tynku ścian, zarysowania tynku w narożach, zarysowania sufitu podwieszanego",
+        "location": "Sąd Rejonowy w Zamości P.302"
+    },
+    {
+        "name": "Zarysowania sufitu podwieszanego, zalania kasetonów",
+        "location": "Sąd Rejonowy w Zamości P.303"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości P.304"
+    },
+    {
+        "name": "Zalany kaseton z lampą",
+        "location": "Sąd Rejonowy w Zamości P.307"
+    },
+    {
+        "name": "Zalany kaseton z lampą",
+        "location": "Sąd Rejonowy w Zamości P.308"
+    },
+    {
+        "name": "Zarysowania tynku ścian, zarysowania tynku w narożach",
+        "location": "Sąd Rejonowy w Zamości P.309"
+    },
+    {
+        "name": "Glify okienne - poprawki estetyczne, zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości P.312"
+    },
+    {
+        "name": "Glify okienne - poprawki estetyczne, zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości P.313"
+    },
+    {
+        "name": "Zalany kaseton",
+        "location": "Sąd Rejonowy w Zamości P.314"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości P.314/P.315"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości PPD 311"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości Hol obok 313"
+    },
+    {
+        "name": "Zalania kasetonów",
+        "location": "Sąd Rejonowy w Zamości PPD 311"
+    },
+    {
+        "name": "Zarysowania tynku ściany",
+        "location": "Sąd Rejonowy w Zamości pomiędzy Salą Rozpraw 47 i 49"
+    },
+    {
+        "name": "Wykwit wilgoci",
+        "location": "Sąd Rejonowy w Zamości nad kładką przy Sali Rozpraw 45"
+    },
+    {
+        "name": "Zarysowania tynku ściany",
+        "location": "Sąd Rejonowy w Zamości poniżej Sali Rozpraw 47"
+    },
+    {
+        "name": "Czujniki aspiracyjne wychodzą ze ściany",
+        "location": "Sąd Rejonowy w Zamości naprzeciwko Sali Rozpraw 41"
+    },
+    {
+        "name": "Zarysowania tynku ściany",
+        "location": "Sąd Rejonowy w Zamości nad Salą Rozpraw 19"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych",
+        "location": "Sąd Rejonowy w Zamości PPD 222 SR"
+    },
+    {
+        "name": "Glify okienne do poprawek estetycznych",
+        "location": "Sąd Okręgowy w Zamości Serwerownia SO 025"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Okręgowy w Zamości PPD 306 S.O."
+    },
+    {
+        "name": "Zarysowania tynku ścian, zalane kasetony",
+        "location": "Sąd Okręgowy w Zamości PPD 260 S.O."
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości PPD 114 S.R."
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości Serwerownia 071 S.R."
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Okręgowy w Zamości Serwerownia 025 S.O."
+    },
+    {
+        "name": "Zalane kasetony (z lampą i z anemostatem)",
+        "location": "Sąd Okręgowy w Zamości PPD 237 S.O."
+    },
+    {
+        "name": "Zalany kaseton z czujką",
+        "location": "Sąd Rejonowy w Zamości PPD 246 S.R."
+    },
+    {
+        "name": "Zalany kaseton",
+        "location": "Sąd Okręgowy w Zamości PPD 136 S.O."
+    },
+    {
+        "name": "Zalany kaseton",
+        "location": "Sąd Okręgowy w Zamości PPD 17 S.O."
+    },
+    {
+        "name": "Brak 3szt. kasetonów",
+        "location": "Sąd Okręgowy w Zamości PPD 42 S.O."
+    },
+    {
+        "name": "Pęknięcie płyt chodnikowych przed głównym wejściem",
+        "location": "Sąd Rejonowy w Zamości Teren zewnętrzny"
+    },
+    {
+        "name": "Niestabilny montaż płyt chodnikowych",
+        "location": "Sąd Rejonowy w Zamości Teren zewnętrzny"
+    },
+    {
+        "name": "Braki w spoinowaniu kostki granitowej i brukowej",
+        "location": "Sąd Rejonowy w Zamości Teren zewnętrzny"
+    },
+    {
+        "name": "Pęknięte spoiny i zacieki na płytach portali",
+        "location": "Sąd Rejonowy w Zamości Teren zewnętrzny"
+    },
+    {
+        "name": "Odspojona płyta granitowa cokołu - wejście główne (7 od lewej, po stronie S.R.)",
+        "location": "Sąd Rejonowy w Zamości - wejście główne"
+    },
+    {
+        "name": "Pęknięta płytka nakrywy cokołu - pomieszczenie 34 S.O.",
+        "location": "Sąd Okręgowy w Zamości - pomieszczenie 34"
+    },
+    {
+        "name": "Szczelina pod obróbką blacharską - wyjście ewakuacyjne przy pomieszczeniu 34 S.O.",
+        "location": "Sąd Okręgowy w Zamości - pomieszczenie 34"
+    },
+    {
+        "name": "Pęknięcia elewacji - od strony ulicy Pawłówka i parkingu S.R.",
+        "location": "Sąd Rejonowy w Zamości - elewacja od strony ulicy Pawłówka i parkingu"
+    },
+    {
+        "name": "Pęknięcia płyt granitowych okładzin - wjazd do garażu kiosku",
+        "location": "Sąd Okręgowy w Zamości - wjazd do garażu kiosku"
+    },
+    {
+        "name": "Uszczelnić spoinowanie w narożach ścian i nawierzchni - zjazd do parkingów",
+        "location": "Sąd Okręgowy w Zamości - zjazd do parkingów"
+    },
+    {
+        "name": "Przecieki z pod cokoliku - wjazd do garażu kiosku",
+        "location": "Sąd Okręgowy w Zamości - wjazd do garażu kiosku"
+    },
+    {
+        "name": "Zarysowania tynku ścian - wewnątrz kiosku",
+        "location": "Sąd Okręgowy w Zamości - kiosk"
+    },
+    {
+        "name": "Nieszczelność w ścianie - kiosk zejściowy do garażu podziemnego",
+        "location": "Sąd Okręgowy w Zamości - kiosk zejściowy do garażu podziemnego"
+    },
+    {
+        "name": "Zarysowania ścian w narożach - kiosk zejściowy do garażu podziemnego",
+        "location": "Sąd Okręgowy w Zamości - kiosk zejściowy do garażu podziemnego"
+    },
+    {
+        "name": "Pęknięta płytka cokolika - kiosk zejściowy do garażu podziemnego",
+        "location": "Sąd Okręgowy w Zamości - kiosk zejściowy do garażu podziemnego"
+    },
+    {
+        "name": "Pęknięcia płyt granitowych cokołu przy wejściu",
+        "location": "Sąd Rejonowy w Zamości - dziedziniec wewnętrzny"
+    },
+    {
+        "name": "Pęknięcia płyt granitowych fosy doświetleniowej piwnic",
+        "location": "Sąd Rejonowy w Zamości - dziedziniec wewnętrzny"
+    },
+    {
+        "name": "Ubytki w spoinowaniu płyt okładzinowych",
+        "location": "Sąd Rejonowy w Zamości - pomieszczenie 078"
+    },
+    {
+        "name": "Zaniżenia nawierzchni z kostki na dolnym poziomie fos doświetlniowych",
+        "location": "Sąd Rejonowy w Zamości - dziedziniec wewnętrzny"
+    },
+    {
+        "name": "Nieszczelność stropu nad wjazdem do dziedzińca podziemnego",
+        "location": "Sąd Rejonowy w Zamości - dziedziniec podziemny"
+    },
+    {
+        "name": "Nieszczelność nad wejściem do konwoju",
+        "location": "Sąd Rejonowy w Zamości - wejście do konwoju"
+    },
+    {
+        "name": "Klamka drzwi dla konwoju do regulacji",
+        "location": "Sąd Rejonowy w Zamości - wejście do konwoju"
+    },
+    {
+        "name": "Nierówności nawierzchni z kostki betonowej",
+        "location": "Sąd Rejonowy w Zamości - wejście G"
+    },
+    {
+        "name": "Brak dylatacji pomiędzy nawierzchnią z kostki i stopniem granitowym",
+        "location": "Sąd Rejonowy w Zamości - wejście G"
+    },
+    {
+        "name": "Pęknięcie stopnia wykonanego z granitu",
+        "location": "Sąd Rejonowy w Zamości - wejście G"
+    },
+    {
+        "name": "Nierówności nawierzchni z kostki betonowej",
+        "location": "Sąd Rejonowy w Zamości - wejście E"
+    },
+    {
+        "name": "Brak dylatacji pomiędzy nawierzchnią z kostki i stopniem granitowym",
+        "location": "Sąd Rejonowy w Zamości - wejście E"
+    },
+    {
+        "name": "Nierówności nawierzchni z kostki betonowej przy szlabanie parkingu",
+        "location": "Sąd Rejonowy w Zamości - parking"
+    },
+    {
+        "name": "Nierówności nawierzchni z kostki betonowej",
+        "location": "Sąd Rejonowy w Zamości - chodnik od ul. Pawłówka"
+    },
+    {
+        "name": "Nierówności opaski dookoła kiosku zjazdu do garażu podziemnego",
+        "location": "Sąd Rejonowy w Zamości - garaż"
+    },
+    {
+        "name": "Ubytki w spoinowaniu okładzin cokołów",
+        "location": "Sąd Rejonowy w Zamości - garaż"
+    },
+    {
+        "name": "Zarysowania tynku ścian wewnętrznych",
+        "location": "Sąd Rejonowy w Zamości - garaż"
+    },
+    {
+        "name": "Drzwi płycinowe do regulacji",
+        "location": "Sąd Rejonowy w Zamości - garaż"
+    },
+    {
+        "name": "Ślady nieszczelności na ścianach",
+        "location": "Sąd Rejonowy w Zamości - środkowa klatka schodowa"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - środkowa klatka schodowa"
+    },
+    {
+        "name": "Pęknięcia posadzek parkingu podziemnego",
+        "location": "Sąd Rejonowy w Zamości - parking podziemny"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - wymiennikownia"
+    },
+    {
+        "name": "Pęknięcia cokołów",
+        "location": "Sąd Rejonowy w Zamości - wymiennikownia"
+    },
+    {
+        "name": "Zarysowania tynku ścian",
+        "location": "Sąd Rejonowy w Zamości - klatka schodowa wyjścia z parkingu podziemnego"
+    },
+    {
+        "name": "Drzwi wejściowe do regulacji",
+        "location": "Sąd Rejonowy w Zamości - klatka schodowa wyjścia z parkingu podziemnego"
+    },
+    {
+        "name": "Spękania płyt granitowych przy balustradzie",
+        "location": "Sąd Rejonowy w Zamości - wyjście B"
+    },
+    {
+        "name": "Pęknięta okładzina granitowa ryzalitu",
+        "location": "Sąd Rejonowy w Zamości - pomiędzy wyjściami ewakuacyjnymi B i C"
+    },
+    {
+        "name": "Nietrwały montaż odwodnienia liniowego",
+        "location": "Sąd Rejonowy w Zamości - parking naziemny"
+    },
+    {
+        "name": "Nietrwały montaż listew maskujących fasady",
+        "location": "Sąd Rejonowy w Zamości - segment SB1"
+    }
+]

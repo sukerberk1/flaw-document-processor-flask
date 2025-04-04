@@ -20,7 +20,7 @@ def index():
     return render_template('index.html')
 
 @pdf_processor_bp.route('/upload', methods=['POST'])
-def upload_pdf():
+async def upload_pdf():
     if 'file' not in request.files:
         return jsonify({'error': 'No file part'}), 400
     
@@ -38,7 +38,7 @@ def upload_pdf():
         file.save(file_path)
         
         try:
-            document = service.process_pdf(file_path)
+            document = await service.process_pdf(file_path)
             
             # Only remove the file if it exists
             if os.path.exists(file_path):
