@@ -3,11 +3,8 @@ import json
 import time
 from flask import Blueprint, request, jsonify, current_app
 from werkzeug.utils import secure_filename
-from app.features.pdf_processor.services import PDFProcessorService
 
 pdf_agent_bp = Blueprint('pdf_agent', __name__, url_prefix='/agents/pdf')
-
-service = PDFProcessorService()
 
 @pdf_agent_bp.route('/scan', methods=['POST'])
 def scan_pdf():
@@ -35,38 +32,27 @@ def scan_pdf():
         print(f"Starting PDF processing: {file_path}")
         start_time = time.time()
         
-        # Process the PDF document
-        document = service.process_pdf(full_path)
-        
-        # Parse the JSON content
-        try:
-            pdf_data = json.loads(document.content)
-            
-            # Add processing metadata
-            processing_time = time.time() - start_time
-            pdf_data["processing_info"] = {
+        # Simplified response since PDFProcessorService is removed
+        processing_time = time.time() - start_time
+        pdf_data = {
+            "filename": os.path.basename(file_path),
+            "size_kb": os.path.getsize(full_path) / 1024,
+            "processing_info": {
                 "processing_time_seconds": round(processing_time, 2),
-                "processed_at": time.strftime("%Y-%m-%d %H:%M:%S"),
-                "ocr_used": pdf_data.get("used_ocr", False)
+                "processed_at": time.strftime("%Y-%m-%d %H:%M:%S")
             }
-            
-        except json.JSONDecodeError as json_err:
-            print(f"JSON parsing error: {str(json_err)}")
-            pdf_data = {
-                "error": "Failed to parse JSON data",
-                "error_details": str(json_err)
-            }
+        }
         
-        # Format the summary for display with HTML line breaks
-        summary = document.summary.replace('\n', '<br>')
+        # Create a simple summary
+        summary = f"PDF document: {os.path.basename(file_path)}<br>Size: {pdf_data['size_kb']:.2f} KB"
         
         # Log completion
         print(f"Completed PDF processing: {file_path} in {time.time() - start_time:.2f} seconds")
         
         return jsonify({
-            'filename': document.filename,
+            'filename': os.path.basename(file_path),
             'summary': summary,
-            'json_data': pdf_data  # Return the structured JSON data
+            'json_data': pdf_data
         })
     except Exception as e:
         import traceback
