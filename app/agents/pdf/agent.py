@@ -1,4 +1,5 @@
 import os
+import json
 from flask import Blueprint, request, jsonify, current_app
 from werkzeug.utils import secure_filename
 from app.features.pdf_processor.services import PDFProcessorService
@@ -24,13 +25,19 @@ def scan_pdf():
     try:
         document = service.process_pdf(full_path)
         
-        # Format the extracted text with HTML line breaks for display
-        formatted_text = document.content.replace('\n', '<br>')
+        # Parse the JSON content
+        try:
+            pdf_data = json.loads(document.content)
+        except json.JSONDecodeError:
+            pdf_data = {"error": "Failed to parse JSON data"}
+        
+        # Format a simple summary for display
+        summary = document.summary.replace('\n', '<br>')
         
         return jsonify({
             'filename': document.filename,
-            'summary': formatted_text,
-            'extracted_text': document.content  # Include raw text for potential other uses
+            'summary': summary,
+            'json_data': pdf_data  # Return the structured JSON data
         })
     except Exception as e:
         print(f"Error processing PDF: {str(e)}")

@@ -17,10 +17,12 @@ def create_app(config_name='default'):
     from app.features.pdf_processor.views import pdf_processor_bp
     from app.features.excel_processor.views import excel_processor_bp
     from app.agents.pdf.agent import pdf_agent_bp
+    from app.agents.word.agent import word_agent_bp
     
     app.register_blueprint(pdf_processor_bp)
     app.register_blueprint(excel_processor_bp)
     app.register_blueprint(pdf_agent_bp)
+    app.register_blueprint(word_agent_bp)
     
     # Helper function to get all files and directories recursively
     def get_file_structure(directory):

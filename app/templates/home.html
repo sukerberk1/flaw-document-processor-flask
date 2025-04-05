@@ -23,7 +23,7 @@ endblock %} {% block content %}
     <div class="files-header">
       <h2>Uploaded Files</h2>
       <div class="files-actions">
-        <button type="button" id="scan-all-pdfs" class="scan-all-btn">Scan All PDFs</button>
+        <button type="button" id="scan-all-docs" class="scan-all-btn">Scan All Documents</button>
         <button type="button" id="toggle-files" class="toggle-btn">Collapse</button>
       </div>
     </div>
@@ -37,11 +37,17 @@ endblock %} {% block content %}
           style="padding-left: {{ item.depth * 20 + 10 }}px;"
           {% if item.type == 'directory' %}data-dir="{{ item.path }}"{% endif %}
           {% if item.type == 'file' and item.path.lower().endswith('.pdf') %}data-pdf="{{ item.path }}"{% endif %}
+          {% if item.type == 'file' and item.path.lower().endswith(('.docx','.doc')) %}data-word="{{ item.path }}"{% endif %}
+          {% if item.type == 'file' and (item.path.lower().endswith('.pdf') or item.path.lower().endswith(('.docx','.doc'))) %}data-scannable="{{ item.path }}"{% endif %}
         >
           {% if item.type == 'directory' %}
           <span class="folder-icon">📁</span>
           {% else %}
-          <span class="file-icon">{% if item.path.lower().endswith('.pdf') %}📕{% else %}📄{% endif %}</span>
+          <span class="file-icon">
+            {% if item.path.lower().endswith('.pdf') %}📕
+            {% elif item.path.lower().endswith(('.docx','.doc')) %}📄
+            {% else %}📄{% endif %}
+          </span>
           {% endif %}
   
           <span class="file-name">
@@ -68,7 +74,7 @@ endblock %} {% block content %}
   
   <div class="scanned-pdfs-section" style="display: none;">
     <div class="section-header">
-      <h2>Scanned PDF Details</h2>
+      <h2>Scanned Document Details</h2>
       <button type="button" id="clear-scans" class="clear-btn">Clear All</button>
     </div>
     <div id="scanned-results"></div>

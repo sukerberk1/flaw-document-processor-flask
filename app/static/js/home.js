@@ -1,3 +1,27 @@
+// Function to highlight JSON syntax with colors
+function syntaxHighlight(json) {
+    if (!json) return '';
+    
+    // Replace any potentially harmful characters
+    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    
+    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+        let cls = 'json-number';
+        if (/^"/.test(match)) {
+            if (/:$/.test(match)) {
+                cls = 'json-key';
+            } else {
+                cls = 'json-string';
+            }
+        } else if (/true|false/.test(match)) {
+            cls = 'json-boolean';
+        } else if (/null/.test(match)) {
+            cls = 'json-null';
+        }
+        return '<span class="' + cls + '">' + match + '</span>';
+    });
+}
+
 // Handle file upload UI and flash messages
 document.addEventListener('DOMContentLoaded', function () {
     // Handle collapsible file section
@@ -161,11 +185,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
     
-    // Set up PDF scanning functionality
+    // Set up document scanning functionality
     const scannedSection = document.querySelector('.scanned-pdfs-section');
     const scannedResults = document.getElementById('scanned-results');
     const clearScansButton = document.getElementById('clear-scans');
-    const scanAllButton = document.getElementById('scan-all-pdfs');
+    const scanAllButton = document.getElementById('scan-all-docs');
     
     // Function to show the scanned PDFs section if it's hidden
     function showScannedSection() {
@@ -276,13 +300,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     
-    // Function to scan a single PDF
-    function scanPdf(filePath) {
+    // Function to scan a document (PDF or Word)
+    function scanDocument(filePath, documentType) {
         return new Promise((resolve, reject) => {
             const fileName = filePath.split('/').pop();
+            const endpoint = documentType === 'pdf' ? '/agents/pdf/scan' : '/agents/word/scan';
             
-            // Make API call to scan the PDF
-            fetch('/agents/pdf/scan', {
+            // Make API call to scan the document
+            fetch(endpoint, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -295,13 +320,54 @@ document.addEventListener('DOMContentLoaded', function () {
                     addScanResult(fileName, filePath, data.error, true);
                     resolve({ success: false, file: fileName });
                 } else {
-                    // Create a formatted display of the PDF content with proper styling
+                    // Display summary and JSON data in tabs
+                    const resultId = 'result-' + Date.now();
+                    const jsonString = JSON.stringify(data.json_data, null, 2);
+                    const docIcon = documentType === 'pdf' ? '📕' : '📄';
+                    const docType = documentType === 'pdf' ? 'PDF' : 'Word';
+                    
                     const formattedContent = `
-                        <div class="pdf-content">
-                            <div class="pdf-text">${data.summary}</div>
+                        <div class="pdf-result-tabs" id="${resultId}">
+                            <div class="doc-type-indicator">${docIcon} ${docType}</div>
+                            <div class="tab-buttons">
+                                <button class="tab-btn active" data-tab="summary-${resultId}">Summary</button>
+                                <button class="tab-btn" data-tab="json-${resultId}">JSON Data</button>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="summary-${resultId}">
+                                    <div class="pdf-text">${data.summary}</div>
+                                </div>
+                                <div class="tab-pane" id="json-${resultId}">
+                                    <div class="json-data-container">
+                                        <pre class="json-data">${syntaxHighlight(jsonString)}</pre>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     `;
                     addScanResult(fileName, filePath, formattedContent);
+                    
+                    // Add event listeners for tabs
+                    setTimeout(() => {
+                        const tabsContainer = document.getElementById(resultId);
+                        if (tabsContainer) {
+                            const tabButtons = tabsContainer.querySelectorAll('.tab-btn');
+                            tabButtons.forEach(button => {
+                                button.addEventListener('click', function() {
+                                    // Remove active class from all buttons and panes
+                                    const parent = this.closest('.pdf-result-tabs');
+                                    parent.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                                    parent.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+                                    
+                                    // Add active class to clicked button and corresponding pane
+                                    this.classList.add('active');
+                                    const tabName = this.getAttribute('data-tab');
+                                    parent.querySelector(`#${tabName}`).classList.add('active');
+                                });
+                            });
+                        }
+                    }, 100);
+                    
                     resolve({ success: true, file: fileName });
                 }
             })
@@ -312,20 +378,30 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     
-    // Add click handler to scan all PDFs button
+    // Function to scan a PDF document
+    function scanPdf(filePath) {
+        return scanDocument(filePath, 'pdf');
+    }
+    
+    // Function to scan a Word document
+    function scanWord(filePath) {
+        return scanDocument(filePath, 'word');
+    }
+    
+    // Add click handler to scan all documents button
     if (scanAllButton) {
         scanAllButton.addEventListener('click', async function() {
-            // Find all PDF files in the list
-            const pdfItems = document.querySelectorAll('li[data-pdf]');
+            // Find all scannable documents in the list
+            const scannableItems = document.querySelectorAll('li[data-scannable]');
             
-            if (pdfItems.length === 0) {
-                alert('No PDF files found to scan.');
+            if (scannableItems.length === 0) {
+                alert('No PDF or Word documents found to scan.');
                 return;
             }
             
             // Disable the button during processing
             scanAllButton.disabled = true;
-            scanAllButton.textContent = `Scanning ${pdfItems.length} PDFs...`;
+            scanAllButton.textContent = `Scanning ${scannableItems.length} documents...`;
             
             // Show progress in the scanned section
             const progressId = 'scan-progress-' + Date.now();
@@ -334,38 +410,45 @@ document.addEventListener('DOMContentLoaded', function () {
             progressCard.id = progressId;
             progressCard.innerHTML = `
                 <div class="scan-result-header">
-                    <h3 class="scan-result-title">Scanning ${pdfItems.length} PDF files...</h3>
+                    <h3 class="scan-result-title">Scanning ${scannableItems.length} document(s)...</h3>
                 </div>
                 <div class="scan-progress">
                     <div class="progress-bar">
                         <div class="progress-fill" style="width: 0%"></div>
                     </div>
-                    <div class="progress-text">0/${pdfItems.length} complete</div>
+                    <div class="progress-text">0/${scannableItems.length} complete</div>
                 </div>
             `;
             
             scannedResults.prepend(progressCard);
             showScannedSection();
             
-            // Get all PDF paths
-            const pdfPaths = Array.from(pdfItems).map(item => item.getAttribute('data-pdf'));
-            
-            // Process PDFs one by one to avoid overwhelming the server
+            // Process documents one by one to avoid overwhelming the server
             let completedCount = 0;
-            for (const pdfPath of pdfPaths) {
-                await scanPdf(pdfPath);
+            
+            for (const item of scannableItems) {
+                const filePath = item.getAttribute('data-scannable');
+                const isPdf = item.hasAttribute('data-pdf');
+                const isWord = item.hasAttribute('data-word');
+                
+                if (isPdf) {
+                    await scanPdf(filePath);
+                } else if (isWord) {
+                    await scanWord(filePath);
+                }
+                
                 completedCount++;
                 
                 // Update progress
                 const progressFill = progressCard.querySelector('.progress-fill');
                 const progressText = progressCard.querySelector('.progress-text');
-                const percentage = Math.round((completedCount / pdfPaths.length) * 100);
+                const percentage = Math.round((completedCount / scannableItems.length) * 100);
                 
                 progressFill.style.width = `${percentage}%`;
-                progressText.textContent = `${completedCount}/${pdfPaths.length} complete`;
+                progressText.textContent = `${completedCount}/${scannableItems.length} complete`;
                 
                 // If this is the last one, remove the progress card after a delay
-                if (completedCount === pdfPaths.length) {
+                if (completedCount === scannableItems.length) {
                     setTimeout(() => {
                         progressCard.remove();
                     }, 1500);
@@ -374,7 +457,7 @@ document.addEventListener('DOMContentLoaded', function () {
             
             // Re-enable the button
             scanAllButton.disabled = false;
-            scanAllButton.textContent = 'Scan All PDFs';
+            scanAllButton.textContent = 'Scan All Documents';
         });
     }
 }); 
