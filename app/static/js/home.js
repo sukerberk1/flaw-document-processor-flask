@@ -23,6 +23,9 @@ function syntaxHighlight(json) {
 }
 
 // Handle file upload UI and flash messages
+// Map to track file paths to their result cards
+const fileResultMap = new Map();
+
 document.addEventListener('DOMContentLoaded', function () {
     // Handle collapsible file section
     const toggleButton = document.getElementById('toggle-files');
@@ -243,12 +246,44 @@ document.addEventListener('DOMContentLoaded', function () {
         // Add to the results container
         scannedResults.prepend(resultCard);
         
+        // Store the result card ID for this file path in our map
+        if (!isError) {
+            fileResultMap.set(filePath, resultId);
+            
+            // Store in session storage as well
+            try {
+                const resultMapStorage = JSON.parse(sessionStorage.getItem('fileResultMap') || '{}');
+                resultMapStorage[filePath] = resultId;
+                sessionStorage.setItem('fileResultMap', JSON.stringify(resultMapStorage));
+            } catch (e) {
+                console.error('Error saving to session storage:', e);
+            }
+        }
+        
         // Add event listener to remove button
         const removeButton = resultCard.querySelector('.remove-scan-btn');
         removeButton.addEventListener('click', function() {
             const cardId = this.getAttribute('data-id');
             const card = document.getElementById(cardId);
             if (card) {
+                // Find and remove this card from the fileResultMap
+                for (const [path, id] of fileResultMap.entries()) {
+                    if (id === cardId) {
+                        fileResultMap.delete(path);
+                        
+                        // Also update session storage
+                        try {
+                            const resultMapStorage = JSON.parse(sessionStorage.getItem('fileResultMap') || '{}');
+                            delete resultMapStorage[path];
+                            sessionStorage.setItem('fileResultMap', JSON.stringify(resultMapStorage));
+                        } catch (e) {
+                            console.error('Error updating session storage:', e);
+                        }
+                        
+                        break;
+                    }
+                }
+                
                 card.remove();
                 
                 // Hide section if no results left
@@ -264,7 +299,7 @@ document.addEventListener('DOMContentLoaded', function () {
             pdfLink.addEventListener('click', function(e) {
                 e.preventDefault();
                 const path = this.getAttribute('data-path');
-                const fileElement = document.querySelector(`li[data-pdf="${path}"]`);
+                const fileElement = document.querySelector(`li[data-scannable="${path}"]`);
                 
                 if (fileElement) {
                     // Expand the file list if it's collapsed
@@ -290,6 +325,8 @@ document.addEventListener('DOMContentLoaded', function () {
         
         // Show the section if it was hidden
         showScannedSection();
+        
+        return resultId;
     }
     
     // Add event listener to clear all button
@@ -297,6 +334,20 @@ document.addEventListener('DOMContentLoaded', function () {
         clearScansButton.addEventListener('click', function() {
             scannedResults.innerHTML = '';
             scannedSection.style.display = 'none';
+            
+            // Reset all processed badges back to scannable
+            const processedFiles = JSON.parse(sessionStorage.getItem('processedFiles') || '[]');
+            processedFiles.forEach(filePath => {
+                const fileItem = document.querySelector(`li[data-scannable="${filePath}"]`);
+                if (fileItem) {
+                    updateBadgeStatus(fileItem, 'scannable');
+                }
+            });
+            
+            // Clear the map and session storage
+            fileResultMap.clear();
+            sessionStorage.removeItem('processedFiles');
+            sessionStorage.removeItem('fileResultMap');
         });
     }
     
@@ -305,6 +356,12 @@ document.addEventListener('DOMContentLoaded', function () {
         return new Promise((resolve, reject) => {
             const fileName = filePath.split('/').pop();
             const endpoint = documentType === 'pdf' ? '/agents/pdf/scan' : '/agents/word/scan';
+            
+            // Update the badge status to "processing"
+            const fileItem = document.querySelector(`li[data-scannable="${filePath}"]`);
+            if (fileItem) {
+                updateBadgeStatus(fileItem, 'processing');
+            }
             
             // Make API call to scan the document
             fetch(endpoint, {
@@ -368,10 +425,29 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                     }, 100);
                     
+                    // Update the badge status to "processed"
+                    const fileItem = document.querySelector(`li[data-scannable="${filePath}"]`);
+                    if (fileItem) {
+                        updateBadgeStatus(fileItem, 'processed');
+                        
+                        // Add to session storage
+                        let processed = JSON.parse(sessionStorage.getItem('processedFiles') || '[]');
+                        if (!processed.includes(filePath)) {
+                            processed.push(filePath);
+                            sessionStorage.setItem('processedFiles', JSON.stringify(processed));
+                        }
+                    }
+                    
                     resolve({ success: true, file: fileName });
                 }
             })
             .catch(error => {
+                // Update the badge status back to "scannable" on error
+                const fileItem = document.querySelector(`li[data-scannable="${filePath}"]`);
+                if (fileItem) {
+                    updateBadgeStatus(fileItem, 'scannable');
+                }
+                
                 addScanResult(fileName, filePath, `Error: ${error.message}`, true);
                 resolve({ success: false, file: fileName });
             });
@@ -386,6 +462,58 @@ document.addEventListener('DOMContentLoaded', function () {
     // Function to scan a Word document
     function scanWord(filePath) {
         return scanDocument(filePath, 'word');
+    }
+    
+    // Function to update document badge status
+    function updateBadgeStatus(element, status) {
+        const badge = element.querySelector('.file-badge');
+        if (badge) {
+            // Remove previous status classes
+            badge.classList.remove('badge-scannable', 'badge-processed', 'badge-processing');
+            
+            // Remove any previous click listeners
+            badge.replaceWith(badge.cloneNode(true));
+            const newBadge = element.querySelector('.file-badge');
+            
+            // Add the new status class
+            newBadge.classList.add(`badge-${status}`);
+            newBadge.dataset.status = status;
+            
+            // Update the text
+            if (status === 'processing') {
+                newBadge.textContent = 'Processing...';
+            } else if (status === 'processed') {
+                newBadge.textContent = 'Processed';
+                
+                // Get the file path
+                const filePath = element.getAttribute('data-scannable');
+                
+                // Add click handler to jump to result for processed files
+                if (filePath) {
+                    newBadge.addEventListener('click', function() {
+                        const resultId = fileResultMap.get(filePath);
+                        if (resultId) {
+                            const resultCard = document.getElementById(resultId);
+                            if (resultCard) {
+                                // Show the results section if it's hidden
+                                showScannedSection();
+                                
+                                // Scroll to the result card
+                                resultCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                
+                                // Highlight the result card briefly
+                                resultCard.classList.add('highlight-result');
+                                setTimeout(() => {
+                                    resultCard.classList.remove('highlight-result');
+                                }, 3000);
+                            }
+                        }
+                    });
+                }
+            } else {
+                newBadge.textContent = 'Scannable';
+            }
+        }
     }
     
     // Add click handler to scan all documents button
@@ -423,6 +551,9 @@ document.addEventListener('DOMContentLoaded', function () {
             scannedResults.prepend(progressCard);
             showScannedSection();
             
+            // Create a map of processed files
+            const processedFiles = new Map();
+            
             // Process documents one by one to avoid overwhelming the server
             let completedCount = 0;
             
@@ -431,10 +562,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 const isPdf = item.hasAttribute('data-pdf');
                 const isWord = item.hasAttribute('data-word');
                 
-                if (isPdf) {
-                    await scanPdf(filePath);
-                } else if (isWord) {
-                    await scanWord(filePath);
+                // Update the badge to show processing
+                updateBadgeStatus(item, 'processing');
+                
+                try {
+                    if (isPdf) {
+                        await scanPdf(filePath);
+                    } else if (isWord) {
+                        await scanWord(filePath);
+                    }
+                    
+                    // Mark as processed
+                    updateBadgeStatus(item, 'processed');
+                    processedFiles.set(filePath, true);
+                } catch (error) {
+                    console.error('Error processing document:', error);
+                    // Leave as scannable if there was an error
+                    updateBadgeStatus(item, 'scannable');
                 }
                 
                 completedCount++;
@@ -458,6 +602,27 @@ document.addEventListener('DOMContentLoaded', function () {
             // Re-enable the button
             scanAllButton.disabled = false;
             scanAllButton.textContent = 'Scan All Documents';
+            
+            // Save processed files to sessionStorage
+            sessionStorage.setItem('processedFiles', JSON.stringify(Array.from(processedFiles.keys())));
+        });
+    }
+    
+    // When the page loads, restore the processed badges from session storage and fileResultMap
+    const processedFiles = JSON.parse(sessionStorage.getItem('processedFiles') || '[]');
+    const storedResultMap = JSON.parse(sessionStorage.getItem('fileResultMap') || '{}');
+    
+    // Restore the fileResultMap from session storage
+    for (const [filePath, resultId] of Object.entries(storedResultMap)) {
+        fileResultMap.set(filePath, resultId);
+    }
+    
+    if (processedFiles.length > 0) {
+        processedFiles.forEach(filePath => {
+            const fileItem = document.querySelector(`li[data-scannable="${filePath}"]`);
+            if (fileItem) {
+                updateBadgeStatus(fileItem, 'processed');
+            }
         });
     }
 }); 

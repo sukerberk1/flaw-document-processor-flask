@@ -53,6 +53,14 @@ endblock %} {% block content %}
           <span class="file-name">
             {% if item.depth > 0 %} {% set path_parts = item.path.split('/') %} {{
             path_parts[-1] }} {% else %} {{ item.path }} {% endif %}
+            
+            {% if item.type == 'file' %}
+              {% if item.path.lower().endswith('.pdf') or item.path.lower().endswith(('.docx','.doc')) %}
+                <span class="file-badge badge-scannable" data-status="scannable">Scannable</span>
+              {% else %}
+                <span class="file-badge badge-unsupported">Unsupported</span>
+              {% endif %}
+            {% endif %}
           </span>
   
           <form

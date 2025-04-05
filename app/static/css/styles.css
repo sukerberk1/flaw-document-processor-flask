@@ -425,6 +425,17 @@ h1 {
   z-index: 5;
 }
 
+.highlight-result {
+  box-shadow: 0 0 12px rgba(25, 135, 84, 0.6);
+  animation: pulse-green 1.5s;
+}
+
+@keyframes pulse-green {
+  0% { box-shadow: 0 0 0 0 rgba(25, 135, 84, 0.6); }
+  70% { box-shadow: 0 0 0 12px rgba(25, 135, 84, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(25, 135, 84, 0); }
+}
+
 .progress-card {
   border-left: 4px solid #17a2b8;
 }
@@ -496,6 +507,55 @@ h1 {
   padding: 2px 6px;
   font-size: 0.8rem;
   color: #6c757d;
+}
+
+/* File status badges */
+.file-badge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  margin-right: 8px;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.badge-scannable {
+  background-color: #e3f2fd;
+  color: #0d6efd;
+  border: 1px solid #b6d4fe;
+}
+
+.badge-unsupported {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  border: 1px solid #dee2e6;
+}
+
+.badge-processed {
+  background-color: #d1e7dd;
+  color: #0f5132;
+  border: 1px solid #badbcc;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.badge-processed:hover {
+  background-color: #b1d8cb;
+  text-decoration: underline;
+}
+
+.badge-processing {
+  background-color: #fff3cd;
+  color: #664d03;
+  border: 1px solid #ffecb5;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
 }
 
 .tab-buttons {
