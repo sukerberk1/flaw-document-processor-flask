@@ -83,9 +83,27 @@ endblock %} {% block content %}
   <div class="scanned-pdfs-section" style="display: none;">
     <div class="section-header">
       <h2>Scanned Document Details</h2>
-      <button type="button" id="clear-scans" class="clear-btn">Clear All</button>
+      <div class="section-controls">
+        <button type="button" id="toggle-details" class="toggle-btn">Collapse</button>
+        <button type="button" id="clear-scans" class="clear-btn">Clear All</button>
+      </div>
     </div>
-    <div id="scanned-results"></div>
+    <div id="scanned-results" class="collapsible-section"></div>
+    
+    <div class="combined-data-section" style="display: none;">
+      <div class="section-header">
+        <h2>Combined Document Data</h2>
+        <button type="button" id="toggle-combined" class="toggle-btn">Show</button>
+      </div>
+      <div id="combined-data-container" class="combined-data-container" style="display: none;">
+        <div class="json-data-container">
+          <pre id="combined-json-data" class="json-data"></pre>
+        </div>
+        <div class="copy-json-container">
+          <button id="copy-combined-json" class="copy-btn">Copy to Clipboard</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %} {% block scripts %}

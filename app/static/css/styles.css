@@ -344,6 +344,20 @@ h1 {
   margin-bottom: 1rem;
 }
 
+.section-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.collapsible-section {
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.collapsible-section.collapsed {
+  max-height: 0;
+}
+
 .clear-btn {
   background-color: #6c757d;
   color: white;
@@ -636,6 +650,41 @@ h1 {
 
 .json-null {
   color: #fd971f;
+}
+
+/* Combined data section styling */
+.combined-data-section {
+  margin-top: 40px;
+  border-top: 2px dashed #dee2e6;
+  padding-top: 20px;
+}
+
+.combined-data-container {
+  margin-top: 15px;
+}
+
+.copy-json-container {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.copy-btn {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.copy-btn:hover {
+  background-color: #5a6268;
+}
+
+.copy-btn.success {
+  background-color: #28a745;
 }
 
 .file-input-wrapper {

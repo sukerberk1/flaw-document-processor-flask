@@ -26,6 +26,9 @@ function syntaxHighlight(json) {
 // Map to track file paths to their result cards
 const fileResultMap = new Map();
 
+// Object to store all JSON data from processed documents
+const allDocumentData = {};
+
 document.addEventListener('DOMContentLoaded', function () {
     // Handle collapsible file section
     const toggleButton = document.getElementById('toggle-files');
@@ -193,14 +196,51 @@ document.addEventListener('DOMContentLoaded', function () {
     const scannedResults = document.getElementById('scanned-results');
     const clearScansButton = document.getElementById('clear-scans');
     const scanAllButton = document.getElementById('scan-all-docs');
+    const toggleDetailsButton = document.getElementById('toggle-details');
+    const combinedDataSection = document.querySelector('.combined-data-section');
+    const combinedDataContainer = document.getElementById('combined-data-container');
+    const combinedJsonData = document.getElementById('combined-json-data');
+    const toggleCombinedButton = document.getElementById('toggle-combined');
+    const copyCombinedJsonButton = document.getElementById('copy-combined-json');
     
     // Function to show the scanned PDFs section if it's hidden
     function showScannedSection() {
         if (scannedSection.style.display === 'none') {
             scannedSection.style.display = 'block';
             
+            // If the section is not collapsed, update its max height
+            if (!scannedResults.classList.contains('collapsed')) {
+                // Wait a bit for the content to render
+                setTimeout(() => {
+                    scannedResults.style.maxHeight = scannedResults.scrollHeight + 'px';
+                }, 50);
+            }
+            
             // Smooth scroll to the scanned section
             scannedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+    
+    // Function to update the combined JSON data display
+    function updateCombinedJsonDisplay() {
+        // Only show the combined section if we have data
+        if (Object.keys(allDocumentData).length > 0) {
+            // Show the combined data section
+            combinedDataSection.style.display = 'block';
+            
+            // Format the JSON data with syntax highlighting
+            const jsonString = JSON.stringify(allDocumentData, null, 2);
+            combinedJsonData.innerHTML = syntaxHighlight(jsonString);
+            
+            // Save the combined data to session storage
+            try {
+                sessionStorage.setItem('combinedDocumentData', jsonString);
+            } catch (e) {
+                console.error('Error saving combined data to session storage:', e);
+            }
+        } else {
+            // Hide the combined data section if there's no data
+            combinedDataSection.style.display = 'none';
         }
     }
     
@@ -245,6 +285,14 @@ document.addEventListener('DOMContentLoaded', function () {
         
         // Add to the results container
         scannedResults.prepend(resultCard);
+        
+        // Update max-height for animation if the container is not collapsed
+        if (!scannedResults.classList.contains('collapsed')) {
+            // Wait for DOM to update - use a longer timeout
+            setTimeout(() => {
+                scannedResults.style.maxHeight = scannedResults.scrollHeight + 'px';
+            }, 50);
+        }
         
         // Store the result card ID for this file path in our map
         if (!isError) {
@@ -338,16 +386,28 @@ document.addEventListener('DOMContentLoaded', function () {
             // Reset all processed badges back to scannable
             const processedFiles = JSON.parse(sessionStorage.getItem('processedFiles') || '[]');
             processedFiles.forEach(filePath => {
-                const fileItem = document.querySelector(`li[data-scannable="${filePath}"]`);
+                // Find the file item using either PDF or Word selector
+                let fileItem = document.querySelector(`li[data-pdf="${filePath}"]`);
+                if (!fileItem) {
+                    fileItem = document.querySelector(`li[data-word="${filePath}"]`);
+                }
+                
                 if (fileItem) {
                     updateBadgeStatus(fileItem, 'scannable');
                 }
             });
             
-            // Clear the map and session storage
+            // Clear the maps and session storage
             fileResultMap.clear();
+            Object.keys(allDocumentData).forEach(key => delete allDocumentData[key]);
             sessionStorage.removeItem('processedFiles');
             sessionStorage.removeItem('fileResultMap');
+            sessionStorage.removeItem('combinedDocumentData');
+            
+            // Hide the combined data section
+            combinedDataSection.style.display = 'none';
+            combinedDataContainer.style.display = 'none';
+            combinedJsonData.innerHTML = '';
         });
     }
     
@@ -357,10 +417,37 @@ document.addEventListener('DOMContentLoaded', function () {
             const fileName = filePath.split('/').pop();
             const endpoint = documentType === 'pdf' ? '/agents/pdf/scan' : '/agents/word/scan';
             
+            // Check if this file already has a result card
+            // If so, remove it to avoid duplicates
+            const existingResultId = fileResultMap.get(filePath);
+            if (existingResultId) {
+                const existingCard = document.getElementById(existingResultId);
+                if (existingCard) {
+                    existingCard.remove();
+                }
+                fileResultMap.delete(filePath);
+                
+                // Also remove from session storage
+                try {
+                    const resultMapStorage = JSON.parse(sessionStorage.getItem('fileResultMap') || '{}');
+                    delete resultMapStorage[filePath];
+                    sessionStorage.setItem('fileResultMap', JSON.stringify(resultMapStorage));
+                } catch (e) {
+                    console.error('Error updating session storage:', e);
+                }
+            }
+            
             // Update the badge status to "processing"
-            const fileItem = document.querySelector(`li[data-scannable="${filePath}"]`);
+            // Find the file item using either PDF or Word selector
+            let fileItem = document.querySelector(`li[data-pdf="${filePath}"]`);
+            if (!fileItem) {
+                fileItem = document.querySelector(`li[data-word="${filePath}"]`);
+            }
+            
             if (fileItem) {
                 updateBadgeStatus(fileItem, 'processing');
+            } else {
+                console.warn(`Could not find element for file path: ${filePath}`);
             }
             
             // Make API call to scan the document
@@ -425,8 +512,29 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                     }, 100);
                     
+                    // First, check if this file is already in the combined data
+                    // If so, remove previous data to avoid duplicates
+                    const documentKey = `${documentType}_${fileName.replace(/[^a-zA-Z0-9]/g, '_')}`;
+                    if (allDocumentData[documentKey]) {
+                        delete allDocumentData[documentKey];
+                    }
+                    
+                    // Add to the combined JSON data
+                    if (data.json_data) {
+                        // Add the data to our combined data object
+                        allDocumentData[documentKey] = data.json_data;
+                        
+                        // Update the combined data display
+                        updateCombinedJsonDisplay();
+                    }
+                    
                     // Update the badge status to "processed"
-                    const fileItem = document.querySelector(`li[data-scannable="${filePath}"]`);
+                    // Find the file item using either PDF or Word selector
+                    let fileItem = document.querySelector(`li[data-pdf="${filePath}"]`);
+                    if (!fileItem) {
+                        fileItem = document.querySelector(`li[data-word="${filePath}"]`);
+                    }
+                    
                     if (fileItem) {
                         updateBadgeStatus(fileItem, 'processed');
                         
@@ -443,7 +551,12 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .catch(error => {
                 // Update the badge status back to "scannable" on error
-                const fileItem = document.querySelector(`li[data-scannable="${filePath}"]`);
+                // Find the file item using either PDF or Word selector
+                let fileItem = document.querySelector(`li[data-pdf="${filePath}"]`);
+                if (!fileItem) {
+                    fileItem = document.querySelector(`li[data-word="${filePath}"]`);
+                }
+                
                 if (fileItem) {
                     updateBadgeStatus(fileItem, 'scannable');
                 }
@@ -519,13 +632,49 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add click handler to scan all documents button
     if (scanAllButton) {
         scanAllButton.addEventListener('click', async function() {
-            // Find all scannable documents in the list
-            const scannableItems = document.querySelectorAll('li[data-scannable]');
+            // Find all scannable documents in the list - look for PDF and Word files
+            const pdfItems = document.querySelectorAll('li[data-pdf]');
+            const wordItems = document.querySelectorAll('li[data-word]');
+            const scannableItems = [...pdfItems, ...wordItems];
+            
+            console.log("Found PDF items:", pdfItems.length);
+            console.log("Found Word items:", wordItems.length);
+            console.log("Total scannable items:", scannableItems.length);
             
             if (scannableItems.length === 0) {
                 alert('No PDF or Word documents found to scan.');
                 return;
             }
+            
+            // Clear all existing data without confirmation
+            // Clear all existing scan results and data
+            scannedResults.innerHTML = '';
+            
+            // Reset all processed badges back to scannable
+            const processedFiles = JSON.parse(sessionStorage.getItem('processedFiles') || '[]');
+            processedFiles.forEach(filePath => {
+                // Find the file item using either PDF or Word selector
+                let fileItem = document.querySelector(`li[data-pdf="${filePath}"]`);
+                if (!fileItem) {
+                    fileItem = document.querySelector(`li[data-word="${filePath}"]`);
+                }
+                
+                if (fileItem) {
+                    updateBadgeStatus(fileItem, 'scannable');
+                }
+            });
+            
+            // Clear the maps and session storage
+            fileResultMap.clear();
+            Object.keys(allDocumentData).forEach(key => delete allDocumentData[key]);
+            sessionStorage.removeItem('processedFiles');
+            sessionStorage.removeItem('fileResultMap');
+            sessionStorage.removeItem('combinedDocumentData');
+            
+            // Hide the combined data section
+            combinedDataSection.style.display = 'none';
+            combinedDataContainer.style.display = 'none';
+            combinedJsonData.innerHTML = '';
             
             // Disable the button during processing
             scanAllButton.disabled = true;
@@ -551,16 +700,31 @@ document.addEventListener('DOMContentLoaded', function () {
             scannedResults.prepend(progressCard);
             showScannedSection();
             
-            // Create a map of processed files
-            const processedFiles = new Map();
+            // Create a map of successfully processed files
+            const processedFilesMap = new Map();
             
             // Process documents one by one to avoid overwhelming the server
             let completedCount = 0;
             
             for (const item of scannableItems) {
-                const filePath = item.getAttribute('data-scannable');
-                const isPdf = item.hasAttribute('data-pdf');
-                const isWord = item.hasAttribute('data-word');
+                // Get the path from either data-pdf or data-word attribute
+                let filePath;
+                let isPdf = false;
+                let isWord = false;
+                
+                if (item.hasAttribute('data-pdf')) {
+                    filePath = item.getAttribute('data-pdf');
+                    isPdf = true;
+                } else if (item.hasAttribute('data-word')) {
+                    filePath = item.getAttribute('data-word');
+                    isWord = true;
+                }
+                
+                // Skip if we couldn't determine the file path
+                if (!filePath) {
+                    console.warn("Couldn't determine file path for item:", item);
+                    continue;
+                }
                 
                 // Update the badge to show processing
                 updateBadgeStatus(item, 'processing');
@@ -574,7 +738,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     
                     // Mark as processed
                     updateBadgeStatus(item, 'processed');
-                    processedFiles.set(filePath, true);
+                    processedFilesMap.set(filePath, true);
                 } catch (error) {
                     console.error('Error processing document:', error);
                     // Leave as scannable if there was an error
@@ -604,7 +768,86 @@ document.addEventListener('DOMContentLoaded', function () {
             scanAllButton.textContent = 'Scan All Documents';
             
             // Save processed files to sessionStorage
-            sessionStorage.setItem('processedFiles', JSON.stringify(Array.from(processedFiles.keys())));
+            sessionStorage.setItem('processedFiles', JSON.stringify(Array.from(processedFilesMap.keys())));
+        });
+    }
+    
+    // Set up details section toggle button
+    if (toggleDetailsButton) {
+        toggleDetailsButton.addEventListener('click', function() {
+            // Set initial height if not set
+            if (!scannedResults.style.maxHeight && !scannedResults.classList.contains('collapsed')) {
+                scannedResults.style.maxHeight = scannedResults.scrollHeight + 'px';
+            }
+            
+            if (scannedResults.classList.contains('collapsed')) {
+                // Expand
+                scannedResults.classList.remove('collapsed');
+                scannedResults.style.maxHeight = scannedResults.scrollHeight + 'px';
+                toggleDetailsButton.textContent = 'Collapse';
+                
+                // Store preference in localStorage
+                localStorage.setItem('detailsCollapsed', 'false');
+            } else {
+                // Collapse
+                scannedResults.classList.add('collapsed');
+                scannedResults.style.maxHeight = '0';
+                toggleDetailsButton.textContent = 'Expand';
+                
+                // Store preference in localStorage
+                localStorage.setItem('detailsCollapsed', 'true');
+            }
+        });
+        
+        // Check for saved preference
+        const savedPreference = localStorage.getItem('detailsCollapsed');
+        if (savedPreference === 'true') {
+            scannedResults.classList.add('collapsed');
+            scannedResults.style.maxHeight = '0';
+            toggleDetailsButton.textContent = 'Expand';
+        }
+    }
+    
+    // Set up combined JSON toggle button
+    if (toggleCombinedButton) {
+        toggleCombinedButton.addEventListener('click', function() {
+            if (combinedDataContainer.style.display === 'none') {
+                // Show the combined data
+                combinedDataContainer.style.display = 'block';
+                toggleCombinedButton.textContent = 'Hide';
+            } else {
+                // Hide the combined data
+                combinedDataContainer.style.display = 'none';
+                toggleCombinedButton.textContent = 'Show';
+            }
+        });
+    }
+    
+    // Set up copy to clipboard functionality
+    if (copyCombinedJsonButton) {
+        copyCombinedJsonButton.addEventListener('click', function() {
+            try {
+                // Create a temporary textarea to copy the content
+                const textarea = document.createElement('textarea');
+                textarea.value = JSON.stringify(allDocumentData, null, 2);
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                
+                // Show success feedback
+                const originalText = this.textContent;
+                this.textContent = 'Copied!';
+                this.classList.add('success');
+                
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.classList.remove('success');
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+            }
         });
     }
     
@@ -617,9 +860,25 @@ document.addEventListener('DOMContentLoaded', function () {
         fileResultMap.set(filePath, resultId);
     }
     
+    // Try to restore the combined document data
+    try {
+        const storedCombinedData = sessionStorage.getItem('combinedDocumentData');
+        if (storedCombinedData) {
+            Object.assign(allDocumentData, JSON.parse(storedCombinedData));
+            updateCombinedJsonDisplay();
+        }
+    } catch (e) {
+        console.error('Error restoring combined data:', e);
+    }
+    
     if (processedFiles.length > 0) {
         processedFiles.forEach(filePath => {
-            const fileItem = document.querySelector(`li[data-scannable="${filePath}"]`);
+            // Find the file item using either PDF or Word selector
+            let fileItem = document.querySelector(`li[data-pdf="${filePath}"]`);
+            if (!fileItem) {
+                fileItem = document.querySelector(`li[data-word="${filePath}"]`);
+            }
+            
             if (fileItem) {
                 updateBadgeStatus(fileItem, 'processed');
             }
