@@ -22,19 +22,67 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     
     // File input enhancement
-    const fileInput = document.querySelector('input[type="file"]');
+    const fileInput = document.querySelector('#file-upload');
     if (fileInput) {
         fileInput.addEventListener('change', function() {
-            const fileName = this.files[0]?.name;
-            if (fileName) {
-                const submitBtn = this.closest('form').querySelector('button[type="submit"]');
-                submitBtn.textContent = `Upload ${fileName}`;
+            const numFiles = this.files.length;
+            
+            // Update the label text
+            const fileInputLabel = this.nextElementSibling;
+            if (fileInputLabel) {
+                if (numFiles === 0) {
+                    fileInputLabel.textContent = 'Choose files or folders';
+                } else if (numFiles === 1) {
+                    fileInputLabel.textContent = `Selected: ${this.files[0].name}`;
+                } else {
+                    fileInputLabel.textContent = `Selected: ${numFiles} files`;
+                }
+            }
+            
+            // Update the upload button
+            const submitBtn = this.closest('form').querySelector('button[type="submit"]');
+            if (submitBtn) {
+                if (numFiles === 0) {
+                    submitBtn.textContent = 'Upload';
+                } else if (numFiles === 1) {
+                    submitBtn.textContent = `Upload 1 file`;
+                } else {
+                    submitBtn.textContent = `Upload ${numFiles} files`;
+                }
             }
         });
     }
     
-    // Add a subtle animation to file list items
+    // Add a subtle animation to file list items and visual cues for directories
     const fileItems = document.querySelectorAll('.files-list li');
+    
+    // First apply visual grouping for directories and their children
+    fileItems.forEach(item => {
+        if (item.classList.contains('directory-item')) {
+            const dirPath = item.dataset.dir;
+            // Highlight child items when hovering over a directory
+            item.addEventListener('mouseenter', () => {
+                // Find all files that are children of this directory
+                const childItems = document.querySelectorAll(`.file-item`);
+                childItems.forEach(child => {
+                    const filePath = child.querySelector('input[name="filepath"]').value;
+                    if (filePath.startsWith(dirPath + '/')) {
+                        child.classList.add('directory-child-hover');
+                    }
+                });
+                item.classList.add('directory-hover');
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                document.querySelectorAll('.directory-child-hover').forEach(el => {
+                    el.classList.remove('directory-child-hover');
+                });
+                item.classList.remove('directory-hover');
+            });
+        }
+    });
+    
+    // Then apply the animations
     fileItems.forEach((item, index) => {
         const depth = parseInt(item.style.paddingLeft) / 20 - 0.5;
         

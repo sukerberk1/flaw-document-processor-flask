@@ -152,7 +152,10 @@ h1 {
 }
 
 .directory-item {
-  background-color: #f0f8ff;
+  background-color: #e6f2ff;
+  margin-top: 0.5rem;
+  border-top: 1px solid #b8daff;
+  font-weight: bold;
 }
 
 .directory-item::before {
@@ -161,8 +164,30 @@ h1 {
   left: 0;
   top: 0;
   bottom: 0;
-  width: 2px;
+  width: 3px;
   background-color: #007bff;
+}
+
+.file-item {
+  background-color: #f8f9fa;
+}
+
+.directory-hover {
+  background-color: #cce5ff !important;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+  z-index: 10;
+}
+
+.directory-child-hover {
+  background-color: #f0f7ff !important;
+  transition: background-color 0.2s ease;
+}
+
+/* Style for visual separator between different directory groups */
+.directory-item:not(:first-child) {
+  border-top: 1px solid #dee2e6;
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .file-name {
@@ -171,6 +196,34 @@ h1 {
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0 0.5rem;
+}
+
+.file-input-container {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+#file-upload {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.file-upload-label {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.file-upload-label:hover {
+  background-color: #0056b3;
 }
 
 .form-hint {

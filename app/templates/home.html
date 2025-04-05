@@ -12,8 +12,11 @@ endblock %} {% block content %}
       enctype="multipart/form-data"
       class="upload-form"
     >
-      <input type="file" name="file" required multiple />
-      <p class="form-hint">Select files, or zip archives</p>
+      <div class="file-input-container">
+        <input type="file" name="file" id="file-upload" required multiple />
+        <label for="file-upload" class="file-upload-label">Choose files or folders</label>
+      </div>
+      <p class="form-hint">Select files or zip archives (zip files will be extracted automatically)</p>
       <button type="submit" class="btn">Upload</button>
     </form>
   </div>
@@ -24,8 +27,9 @@ endblock %} {% block content %}
     <ul class="files-list">
       {% for item in files %}
       <li
-        class="{{ item.type }}-item"
+        class="{{ item.type }}-item" 
         style="padding-left: {{ item.depth * 20 + 10 }}px;"
+        {% if item.type == 'directory' %}data-dir="{{ item.path }}"{% endif %}
       >
         {% if item.type == 'directory' %}
         <span class="folder-icon">📁</span>

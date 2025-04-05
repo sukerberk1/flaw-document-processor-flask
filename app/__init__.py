@@ -22,13 +22,14 @@ def create_app(config_name='default'):
     
     # Helper function to get all files and directories recursively
     def get_file_structure(directory):
-        result = []
+        # Collect all files and directories
+        all_items = []
         for root, dirs, files in os.walk(directory):
             rel_path = os.path.relpath(root, directory)
             if rel_path != '.':  # Skip the root directory itself
                 # Calculate the depth for indentation
                 depth = rel_path.count(os.sep)
-                result.append({'type': 'directory', 'path': rel_path, 'depth': depth})
+                all_items.append({'type': 'directory', 'path': rel_path, 'depth': depth})
             
             for file in files:
                 file_path = os.path.join(rel_path, file)
@@ -38,11 +39,47 @@ def create_app(config_name='default'):
                 else:
                     depth = rel_path.count(os.sep) + 1
                     
-                result.append({'type': 'file', 'path': file_path, 'depth': depth})
+                all_items.append({'type': 'file', 'path': file_path, 'depth': depth})
+        
+        # Create a tree structure to properly organize folders and their children
+        def path_key(path):
+            # Create a key for sorting that puts parent directories first,
+            # then ensures files within a directory are grouped together
+            parts = path.split(os.sep)
+            # For each part, if it's a file keep it as is, otherwise add a trailing slash
+            # to ensure directories come before files in lexicographic sorting
+            return tuple([(p + '/') if i < len(parts)-1 or './' not in path else p for i, p in enumerate(parts)])
+        
+        # Sort all items so folders appear directly above their children
+        # First by path depth, then by path components
+        sorted_items = sorted(all_items, key=lambda x: (x['depth'], path_key(x['path'])))
+        
+        # Process the sorted list to ensure each folder is followed by its immediate children
+        result = []
+        path_map = {}
+        
+        # First pass: build a map of all paths to their items
+        for item in sorted_items:
+            path_map[item['path']] = item
+        
+        # Second pass: reorganize to ensure proper folder-file grouping
+        for item in sorted_items:
+            if item['type'] == 'directory':
+                result.append(item)
+                # Find all files that are direct children of this directory
+                dir_path = item['path']
+                dir_depth = item['depth']
+                for child in sorted_items:
+                    if child['type'] == 'file' and os.path.dirname(child['path']) == dir_path:
+                        # This ensures files that are direct children come right after their parent directory
+                        result.append(child)
+        
+        # Add any remaining files at the root level
+        for item in sorted_items:
+            if item['type'] == 'file' and item not in result:
+                result.append(item)
                 
-        # Sort to ensure directories come before files at the same level
-        # and everything is sorted alphabetically within its type
-        return sorted(result, key=lambda x: (x['path'].count(os.sep), x['type'] == 'file', x['path'].lower()))
+        return result
 
     # Register home page route
     @app.route('/')
@@ -60,17 +97,21 @@ def create_app(config_name='default'):
             for file in files:
                 if file.lower().endswith('.zip'):
                     nested_zip_path = os.path.join(root, file)
-                    nested_extract_path = os.path.splitext(nested_zip_path)[0]
                     
-                    # Create directory if it doesn't exist
-                    if not os.path.exists(nested_extract_path):
-                        os.makedirs(nested_extract_path)
-                        
-                    # Extract the nested zip
-                    extract_zip(nested_zip_path, nested_extract_path)
+                    # Use the parent directory as the extraction path instead of creating a new one
+                    nested_extract_path = os.path.dirname(nested_zip_path)
                     
-                    # Remove the zip file after extraction
-                    os.remove(nested_zip_path)
+                    # Extract the nested zip to its current directory
+                    try:
+                        with zipfile.ZipFile(nested_zip_path, 'r') as zip_ref:
+                            zip_ref.extractall(nested_extract_path)
+                            
+                        # Remove the nested zip file after extraction
+                        os.remove(nested_zip_path)
+                    except Exception as e:
+                        # If there's an error with a nested zip, continue with the rest
+                        print(f"Error extracting nested zip {nested_zip_path}: {str(e)}")
+                        continue
     
     # File upload route
     @app.route('/upload', methods=['POST'])
@@ -114,6 +155,10 @@ def create_app(config_name='default'):
                     # Extract the zip recursively
                     extract_zip(file_path, extract_dir)
                     flash(f'Zip file {filename} extracted successfully')
+                    
+                    # Delete the original zip file after extraction
+                    if os.path.exists(file_path):
+                        os.remove(file_path)
                 except Exception as e:
                     flash(f'Error extracting zip file: {str(e)}')
         
