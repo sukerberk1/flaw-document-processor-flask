@@ -2,8 +2,6 @@
 endblock %} {% block content %}
 <div class="home-content">
   <h1>Home</h1>
-  <p>Welcome to the Flask Vertical Slice Architecture application.</p>
-
   <div class="upload-section">
     <h2>Upload Files</h2>
     <form
@@ -22,40 +20,46 @@ endblock %} {% block content %}
   </div>
 
   <div class="files-section">
-    <h2>Uploaded Files</h2>
-    {% if files %}
-    <ul class="files-list">
-      {% for item in files %}
-      <li
-        class="{{ item.type }}-item" 
-        style="padding-left: {{ item.depth * 20 + 10 }}px;"
-        {% if item.type == 'directory' %}data-dir="{{ item.path }}"{% endif %}
-      >
-        {% if item.type == 'directory' %}
-        <span class="folder-icon">📁</span>
-        {% else %}
-        <span class="file-icon">📄</span>
-        {% endif %}
-
-        <span class="file-name">
-          {% if item.depth > 0 %} {% set path_parts = item.path.split('/') %} {{
-          path_parts[-1] }} {% else %} {{ item.path }} {% endif %}
-        </span>
-
-        <form
-          action="{{ url_for('delete_file') }}"
-          method="POST"
-          class="delete-form"
+    <div class="files-header">
+      <h2>Uploaded Files</h2>
+      <button type="button" id="toggle-files" class="toggle-btn">Collapse</button>
+    </div>
+    
+    <div id="files-container" class="files-container">
+      {% if files %}
+      <ul class="files-list">
+        {% for item in files %}
+        <li
+          class="{{ item.type }}-item" 
+          style="padding-left: {{ item.depth * 20 + 10 }}px;"
+          {% if item.type == 'directory' %}data-dir="{{ item.path }}"{% endif %}
         >
-          <input type="hidden" name="filepath" value="{{ item.path }}" />
-          <button type="submit" class="delete-btn">Delete</button>
-        </form>
-      </li>
-      {% endfor %}
-    </ul>
-    {% else %}
-    <p>No files uploaded yet.</p>
-    {% endif %}
+          {% if item.type == 'directory' %}
+          <span class="folder-icon">📁</span>
+          {% else %}
+          <span class="file-icon">📄</span>
+          {% endif %}
+  
+          <span class="file-name">
+            {% if item.depth > 0 %} {% set path_parts = item.path.split('/') %} {{
+            path_parts[-1] }} {% else %} {{ item.path }} {% endif %}
+          </span>
+  
+          <form
+            action="{{ url_for('delete_file') }}"
+            method="POST"
+            class="delete-form"
+          >
+            <input type="hidden" name="filepath" value="{{ item.path }}" />
+            <button type="submit" class="delete-btn">Delete</button>
+          </form>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p>No files uploaded yet.</p>
+      {% endif %}
+    </div>
   </div>
 </div>
 {% endblock %} {% block scripts %}

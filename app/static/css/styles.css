@@ -133,6 +133,36 @@ h1 {
   background-color: #f8f9fa;
 }
 
+.files-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.toggle-btn {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.toggle-btn:hover {
+  background-color: #5a6268;
+}
+
+.files-container {
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.files-container.collapsed {
+  max-height: 0;
+}
+
 .files-list {
   list-style: none;
   padding: 0;
@@ -159,7 +189,7 @@ h1 {
 }
 
 .directory-item::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -232,7 +262,8 @@ h1 {
   color: #6c757d;
 }
 
-.folder-icon, .file-icon {
+.folder-icon,
+.file-icon {
   margin-right: 0.5rem;
   font-size: 1.2rem;
 }
@@ -303,7 +334,6 @@ h1 {
 
 .result-section h2 {
   color: #2c3e50;
-  margin-bottom: 1rem;
 }
 
 .summary-content {
