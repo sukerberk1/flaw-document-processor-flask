@@ -1,4 +1,4 @@
 #!/bin/bash
 export FLASK_APP=app
 export FLASK_ENV=development
-flask run
+flask run --port=5001

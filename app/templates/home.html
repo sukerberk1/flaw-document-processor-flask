@@ -22,7 +22,10 @@ endblock %} {% block content %}
   <div class="files-section">
     <div class="files-header">
       <h2>Uploaded Files</h2>
-      <button type="button" id="toggle-files" class="toggle-btn">Collapse</button>
+      <div class="files-actions">
+        <button type="button" id="scan-all-pdfs" class="scan-all-btn">Scan All PDFs</button>
+        <button type="button" id="toggle-files" class="toggle-btn">Collapse</button>
+      </div>
     </div>
     
     <div id="files-container" class="files-container">
@@ -33,11 +36,12 @@ endblock %} {% block content %}
           class="{{ item.type }}-item" 
           style="padding-left: {{ item.depth * 20 + 10 }}px;"
           {% if item.type == 'directory' %}data-dir="{{ item.path }}"{% endif %}
+          {% if item.type == 'file' and item.path.lower().endswith('.pdf') %}data-pdf="{{ item.path }}"{% endif %}
         >
           {% if item.type == 'directory' %}
           <span class="folder-icon">📁</span>
           {% else %}
-          <span class="file-icon">📄</span>
+          <span class="file-icon">{% if item.path.lower().endswith('.pdf') %}📕{% else %}📄{% endif %}</span>
           {% endif %}
   
           <span class="file-name">
@@ -60,6 +64,14 @@ endblock %} {% block content %}
       <p>No files uploaded yet.</p>
       {% endif %}
     </div>
+  </div>
+  
+  <div class="scanned-pdfs-section" style="display: none;">
+    <div class="section-header">
+      <h2>Scanned PDF Details</h2>
+      <button type="button" id="clear-scans" class="clear-btn">Clear All</button>
+    </div>
+    <div id="scanned-results"></div>
   </div>
 </div>
 {% endblock %} {% block scripts %}

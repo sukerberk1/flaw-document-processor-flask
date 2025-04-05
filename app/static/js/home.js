@@ -160,4 +160,221 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+    
+    // Set up PDF scanning functionality
+    const scannedSection = document.querySelector('.scanned-pdfs-section');
+    const scannedResults = document.getElementById('scanned-results');
+    const clearScansButton = document.getElementById('clear-scans');
+    const scanAllButton = document.getElementById('scan-all-pdfs');
+    
+    // Function to show the scanned PDFs section if it's hidden
+    function showScannedSection() {
+        if (scannedSection.style.display === 'none') {
+            scannedSection.style.display = 'block';
+            
+            // Smooth scroll to the scanned section
+            scannedSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+    
+    // Function to add a new scan result card
+    function addScanResult(fileName, filePath, content, isError = false) {
+        // Create a unique ID for this scan result
+        const resultId = 'scan-' + Date.now();
+        
+        // Get current time for timestamp
+        const timestamp = new Date().toLocaleString();
+        
+        // Create a new result card
+        const resultCard = document.createElement('div');
+        resultCard.className = 'scan-result-card';
+        resultCard.id = resultId;
+        
+        // Set card content
+        let cardContent = '';
+        if (isError) {
+            cardContent = `
+                <div class="scan-result-header">
+                    <h3 class="scan-result-title">Error scanning ${fileName}</h3>
+                    <button class="remove-scan-btn" data-id="${resultId}">×</button>
+                </div>
+                <div class="scan-result-content error-message">${content}</div>
+                <div class="timestamp">${timestamp}</div>
+            `;
+        } else {
+            cardContent = `
+                <div class="scan-result-header">
+                    <h3 class="scan-result-title">
+                        <a href="#" class="pdf-link" data-path="${filePath}">${fileName}</a>
+                    </h3>
+                    <button class="remove-scan-btn" data-id="${resultId}">×</button>
+                </div>
+                <div class="scan-result-content">${content}</div>
+                <div class="timestamp">${timestamp}</div>
+            `;
+        }
+        
+        resultCard.innerHTML = cardContent;
+        
+        // Add to the results container
+        scannedResults.prepend(resultCard);
+        
+        // Add event listener to remove button
+        const removeButton = resultCard.querySelector('.remove-scan-btn');
+        removeButton.addEventListener('click', function() {
+            const cardId = this.getAttribute('data-id');
+            const card = document.getElementById(cardId);
+            if (card) {
+                card.remove();
+                
+                // Hide section if no results left
+                if (scannedResults.children.length === 0) {
+                    scannedSection.style.display = 'none';
+                }
+            }
+        });
+        
+        // Add event listener to the PDF link to scroll to the file in the list
+        const pdfLink = resultCard.querySelector('.pdf-link');
+        if (pdfLink) {
+            pdfLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                const path = this.getAttribute('data-path');
+                const fileElement = document.querySelector(`li[data-pdf="${path}"]`);
+                
+                if (fileElement) {
+                    // Expand the file list if it's collapsed
+                    const filesContainer = document.getElementById('files-container');
+                    if (filesContainer.classList.contains('collapsed')) {
+                        const toggleButton = document.getElementById('toggle-files');
+                        toggleButton.click();
+                    }
+                    
+                    // Highlight the file item
+                    fileElement.classList.add('highlight-file');
+                    setTimeout(() => {
+                        fileElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 300);
+                    
+                    // Remove highlight after a few seconds
+                    setTimeout(() => {
+                        fileElement.classList.remove('highlight-file');
+                    }, 3000);
+                }
+            });
+        }
+        
+        // Show the section if it was hidden
+        showScannedSection();
+    }
+    
+    // Add event listener to clear all button
+    if (clearScansButton) {
+        clearScansButton.addEventListener('click', function() {
+            scannedResults.innerHTML = '';
+            scannedSection.style.display = 'none';
+        });
+    }
+    
+    // Function to scan a single PDF
+    function scanPdf(filePath) {
+        return new Promise((resolve, reject) => {
+            const fileName = filePath.split('/').pop();
+            
+            // Make API call to scan the PDF
+            fetch('/agents/pdf/scan', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ file_path: filePath })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    addScanResult(fileName, filePath, data.error, true);
+                    resolve({ success: false, file: fileName });
+                } else {
+                    // Create a formatted display of the PDF content with proper styling
+                    const formattedContent = `
+                        <div class="pdf-content">
+                            <div class="pdf-text">${data.summary}</div>
+                        </div>
+                    `;
+                    addScanResult(fileName, filePath, formattedContent);
+                    resolve({ success: true, file: fileName });
+                }
+            })
+            .catch(error => {
+                addScanResult(fileName, filePath, `Error: ${error.message}`, true);
+                resolve({ success: false, file: fileName });
+            });
+        });
+    }
+    
+    // Add click handler to scan all PDFs button
+    if (scanAllButton) {
+        scanAllButton.addEventListener('click', async function() {
+            // Find all PDF files in the list
+            const pdfItems = document.querySelectorAll('li[data-pdf]');
+            
+            if (pdfItems.length === 0) {
+                alert('No PDF files found to scan.');
+                return;
+            }
+            
+            // Disable the button during processing
+            scanAllButton.disabled = true;
+            scanAllButton.textContent = `Scanning ${pdfItems.length} PDFs...`;
+            
+            // Show progress in the scanned section
+            const progressId = 'scan-progress-' + Date.now();
+            const progressCard = document.createElement('div');
+            progressCard.className = 'scan-result-card progress-card';
+            progressCard.id = progressId;
+            progressCard.innerHTML = `
+                <div class="scan-result-header">
+                    <h3 class="scan-result-title">Scanning ${pdfItems.length} PDF files...</h3>
+                </div>
+                <div class="scan-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text">0/${pdfItems.length} complete</div>
+                </div>
+            `;
+            
+            scannedResults.prepend(progressCard);
+            showScannedSection();
+            
+            // Get all PDF paths
+            const pdfPaths = Array.from(pdfItems).map(item => item.getAttribute('data-pdf'));
+            
+            // Process PDFs one by one to avoid overwhelming the server
+            let completedCount = 0;
+            for (const pdfPath of pdfPaths) {
+                await scanPdf(pdfPath);
+                completedCount++;
+                
+                // Update progress
+                const progressFill = progressCard.querySelector('.progress-fill');
+                const progressText = progressCard.querySelector('.progress-text');
+                const percentage = Math.round((completedCount / pdfPaths.length) * 100);
+                
+                progressFill.style.width = `${percentage}%`;
+                progressText.textContent = `${completedCount}/${pdfPaths.length} complete`;
+                
+                // If this is the last one, remove the progress card after a delay
+                if (completedCount === pdfPaths.length) {
+                    setTimeout(() => {
+                        progressCard.remove();
+                    }, 1500);
+                }
+            }
+            
+            // Re-enable the button
+            scanAllButton.disabled = false;
+            scanAllButton.textContent = 'Scan All PDFs';
+        });
+    }
 }); 
