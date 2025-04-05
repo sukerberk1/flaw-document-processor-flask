@@ -23,7 +23,21 @@ ASSISTANT_SYSTEM_PROMPT = """
 DEFECTS_LOCATION_INSTRUCTIONS = """\n
 You must provide a location of where the defects report is located.
 It should be within the document, most likely at the beginning or end of the document.
-The location should be identifiable place on the map.
+The location should be identifiable place on the map and should be as concrete as possible.
+
+Example of report beginning:
+<report-beginning-example>
+Zamość, dnia 08 kwietnia 2022 r. 
+PROTOKÓŁ  
+z przeglądu stanu technicznego branży budowlanej w okresie gwarancyjnym 
+budynku Sądu Okręgowego i Rejonowego w Zamościu przeprowadzonego w dniach 21
+25.03.2022 r. sporządzony w dniu 08.04.2022 r. 
+</report-beginning-example>
+
+Desired location output:
+<location-output>
+Sąd Okręgowy i Rejonowy w Zamościu
+</location-output>
 
 Answer with a concrete place, without any introductions or explanations.
 """
@@ -32,15 +46,21 @@ DEFECT_LIST_INSTRUCTIONS = """\n
 You must provide a list of defects from the following report document.
 Document contains various defects in various locations.
 Example of defect format in the doument:
-<defect-example>
+<defect-examples>
 latarnia doświetleniowa - kiosk I - sala rozpraw nr 30 - zmurszenie blachy (dziura) przy oknie
-</defect-example>
+P.29A - okno do regulacji
+
+</defect-examples>
 
 Your answer should strictly follow a json format:
 [
     {
         "name": "Latarnia doświetleniowa - zmurszenie blachy (dziura) przy oknie",
         "location":"Sąd Rejonowy w Zamości Kiosk I - sala rozpraw nr 30"
+    },
+    {
+        "name": "Okno do regulacji",
+        "location":"Sąd Rejonowy w Zamości P.29A"
     }
 ]
 
@@ -137,7 +157,7 @@ class PDFProcessorService:
             return f"Error asking llm: {str(e)}"
 
 
-    def generate_defect_location(self, text) -> str:
+    def generate_report_location(self, text) -> str:
         return self.ask_llm(text, [
                     { "role": "system", "content": ASSISTANT_SYSTEM_PROMPT},
                     {"role": "user", "content": DEFECTS_LOCATION_INSTRUCTIONS + get_document_delimited(text)},
@@ -145,7 +165,7 @@ class PDFProcessorService:
     
     async def generate_defect_list(self, text: str, location_prompt: str) -> str:
         lines = text.split("\n")
-        chunk_size = 20
+        chunk_size = 15
 
         async def process_chunk(chunk):
             """Asynchronously process a single chunk."""
@@ -163,6 +183,8 @@ class PDFProcessorService:
         # Run tasks concurrently and gather results
         results = await asyncio.gather(*tasks)
 
+        await asyncio.sleep(2)  # Optional sleep to avoid rate limits
+        print("Cleaning up event loop...")
         # Join results and return
         return "\n".join(results)
     
@@ -204,7 +226,7 @@ class PDFProcessorService:
         filename = os.path.basename(file_path)
         content = self.read_pdf(file_path)
         
-        location = self.generate_defect_location(content)
+        location = self.generate_report_location(content)
 
         defects_lists_raw = await self.generate_defect_list(content, location)
         summary = PDFProcessorService.process_raw_defect_lists(defects_lists_raw)
