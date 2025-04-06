@@ -105,6 +105,7 @@ endblock %} {% block content %}
         <h2 class="section-title">Combined Document Data</h2>
         <div class="section-controls">
           <button type="button" id="copy-combined-json" class="copy-btn">Copy to Clipboard</button>
+          <button type="button" id="generate-summary" class="summary-btn">Generate Summary</button>
           <button type="button" id="toggle-combined" class="toggle-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path d="M6 9l6 6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -112,9 +113,22 @@ endblock %} {% block content %}
           </button>
         </div>
       </div>
-      <div id="combined-data-container" class="combined-data-container" style="display: none;">
-        <div class="json-data-container">
-          <pre id="combined-json-data" class="json-data"></pre>
+      <div id="combined-data-tabs" class="combined-data-tabs">
+        <div class="tab-buttons">
+          <button class="tab-btn active" data-tab="json-tab">JSON Data</button>
+          <button class="tab-btn" data-tab="summary-tab">AI Summary</button>
+        </div>
+        <div id="combined-data-container" class="combined-data-container tab-pane active" data-tab-id="json-tab" style="display: none;">
+          <div class="json-data-container">
+            <pre id="combined-json-data" class="json-data"></pre>
+          </div>
+        </div>
+        <div id="combined-summary-container" class="combined-data-container tab-pane" data-tab-id="summary-tab" style="display: none;">
+          <div id="summary-loading" class="summary-loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Generating summary...</p>
+          </div>
+          <div id="summary-content" class="summary-content"></div>
         </div>
       </div>
     </div>

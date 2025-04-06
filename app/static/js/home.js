@@ -200,8 +200,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const combinedDataSection = document.querySelector('.combined-data-section');
     const combinedDataContainer = document.getElementById('combined-data-container');
     const combinedJsonData = document.getElementById('combined-json-data');
+    const combinedSummaryContainer = document.getElementById('combined-summary-container');
+    const summaryContent = document.getElementById('summary-content');
+    const summaryLoading = document.getElementById('summary-loading');
     const toggleCombinedButton = document.getElementById('toggle-combined');
     const copyCombinedJsonButton = document.getElementById('copy-combined-json');
+    const generateSummaryButton = document.getElementById('generate-summary');
     
     // Function to show the scanned PDFs section if it's hidden
     function showScannedSection() {
@@ -856,22 +860,94 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
     
+    // Set up tab functionality for combined data section
+    const setupTabs = () => {
+        const tabButtons = document.querySelectorAll('.tab-buttons .tab-btn');
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Deactivate all tabs
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-pane').forEach(pane => pane.style.display = 'none');
+                
+                // Activate selected tab
+                const tabId = button.getAttribute('data-tab');
+                button.classList.add('active');
+                const tabPane = document.querySelector(`.tab-pane[data-tab-id="${tabId}"]`);
+                if (tabPane) {
+                    tabPane.style.display = 'block';
+                }
+            });
+        });
+    };
+    
+    // Initialize tabs
+    setupTabs();
+    
     // Set up combined JSON toggle button
     if (toggleCombinedButton) {
         toggleCombinedButton.addEventListener('click', function() {
-            if (combinedDataContainer.style.display === 'none') {
+            const activeTab = document.querySelector('.tab-pane.active');
+            
+            if (activeTab && activeTab.style.display === 'none') {
                 // Show the combined data
-                combinedDataContainer.style.display = 'block';
+                document.querySelectorAll('.tab-pane.active').forEach(pane => {
+                    pane.style.display = 'block';
+                });
                 toggleCombinedButton.classList.remove('collapsed');
             } else {
                 // Hide the combined data
-                combinedDataContainer.style.display = 'none';
+                document.querySelectorAll('.tab-pane').forEach(pane => {
+                    pane.style.display = 'none';
+                });
                 toggleCombinedButton.classList.add('collapsed');
             }
         });
         
         // Initialize as collapsed
         toggleCombinedButton.classList.add('collapsed');
+    }
+    
+    // Set up summary generation button
+    if (generateSummaryButton) {
+        generateSummaryButton.addEventListener('click', function() {
+            // Show the summary tab
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.style.display = 'none');
+            
+            const summaryTab = document.querySelector('.tab-btn[data-tab="summary-tab"]');
+            if (summaryTab) {
+                summaryTab.classList.add('active');
+                combinedSummaryContainer.style.display = 'block';
+                
+                // Show loading spinner
+                summaryLoading.style.display = 'flex';
+                summaryContent.innerHTML = '';
+                
+                // Make API call to generate summary
+                fetch('/agents/main/summarize')
+                    .then(response => response.json())
+                    .then(data => {
+                        // Hide loading spinner
+                        summaryLoading.style.display = 'none';
+                        
+                        if (data.error) {
+                            // Show error message
+                            summaryContent.innerHTML = `<div class="error-message">${data.error}</div>`;
+                        } else {
+                            // Show summary content
+                            summaryContent.innerHTML = `
+                                <div class="summary-text">${data.summary}</div>
+                                <div class="summary-meta">Analysis of ${data.document_count} document(s)</div>
+                            `;
+                        }
+                    })
+                    .catch(error => {
+                        // Hide loading spinner and show error
+                        summaryLoading.style.display = 'none';
+                        summaryContent.innerHTML = `<div class="error-message">Error generating summary: ${error.message}</div>`;
+                    });
+            }
+        });
     }
     
     // Set up copy to clipboard functionality
