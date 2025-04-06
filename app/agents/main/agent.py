@@ -30,7 +30,7 @@ def summarize_combined_data():
             }), 404
         
         # Configuration for processing
-        MAX_CHUNKS_TO_PROCESS = 12  # Control how many chunks to process per document
+        MAX_CHUNKS_TO_PROCESS = 25  # Increased to process more chunks per document for better coverage
         
         # Initialize defect list - this will store all detected defects
         defect_list = []
@@ -123,28 +123,36 @@ def summarize_combined_data():
                 current_app.logger.warning(f"Chunk too large ({count_tokens(chunk_text)} tokens), truncating to 500 characters")
                 chunk_text = truncated_chunk
             
-            # Updated prompt to extract defects mentioned IN the document, not issues WITH the document
+            # Enhanced prompt with stronger emphasis on finding ALL possible defects
             system_message = """
-            Extract defects that are MENTIONED or DESCRIBED in this document chunk.
+            IMPORTANT: Your PRIMARY task is to extract EVERY SINGLE defect that is mentioned, implied, or referenced in this document chunk. Be EXTREMELY thorough and err on the side of over-identification rather than missing defects.
             
-            Look for any mentions of:
-            - Product defects or issues
-            - Equipment failures or malfunctions
-            - Quality problems with materials or components
-            - System errors or bugs that are discussed
-            - Reported failures or non-conformities
+            Aggressively look for ANY mentions of:
+            - Product defects, issues, bugs, or quality concerns
+            - Equipment failures, breakdowns, malfunctions, or performance degradation
+            - Material problems, component failures, or physical defects
+            - System errors, exceptions, crashes, or unexpected behaviors
+            - Reported failures, incidents, non-conformities, or quality escapes
+            - Customer complaints, returns, or dissatisfaction related to quality
+            - Non-compliance with standards, specifications, or regulations
+            - Even MINOR issues, warnings, or risks that COULD become defects
+            - Troubleshooting discussions, repair procedures, or workarounds that imply defects
             
-            DO NOT analyze the document itself for errors or inconsistencies.
-            ONLY extract defects that the document is describing or referring to.
+            CRITICALLY IMPORTANT GUIDELINES:
+            1. DO NOT miss ANY potential defect, even if mentioned only briefly or indirectly
+            2. Include defects even if they seem minor, non-critical, or already resolved
+            3. Extract defects from both explicit statements AND implicit references
+            4. Consider industry-specific language that might indicate defects
+            5. DO NOT analyze the document itself for errors - only extract defects mentioned IN the content
             
             Format each mentioned defect as:
             DEFECT #[number]:
             - TYPE: [type of defect mentioned]
-            - DESCRIPTION: [what is the defect/issue]
+            - DESCRIPTION: [what is the defect/issue, be specific and detailed]
             - EVIDENCE: [exact text mentioning the defect]
             - CONFIDENCE: [low/medium/high]
             
-            If no defects are mentioned: "NO DEFECTS FOUND"
+            If truly NO defects are mentioned, respond with: "NO DEFECTS FOUND"
             """
             
             # Call LLM client with the prompts
@@ -302,17 +310,40 @@ def summarize_combined_data():
                     if len(chunked_content) > chunks_to_process:
                         current_app.logger.info(f"Skipping {len(chunked_content) - chunks_to_process} remaining chunks to avoid rate limiting")
         
-        # Deduplicate defects (same issue might be detected in multiple chunks)
+        # More conservative deduplication to preserve unique defects
         unique_defects = []
         seen_descriptions = set()
         
         for defect in defect_list:
-            # Create a key for deduplication based on description and evidence
-            defect_key = (defect.get('description', ''), defect.get('evidence', '')[:100])
+            # Create a more specific key for deduplication - only exact matches will be considered duplicates
+            defect_type = defect.get('defect_type', '').strip().lower()
+            description = defect.get('description', '').strip().lower()
+            evidence = defect.get('evidence', '')[:50].strip().lower()
+            document = defect.get('document', '').strip().lower()
             
+            # Combine type, description, and evidence for a more precise deduplication key
+            # This ensures we only deduplicate extremely similar defects
+            defect_key = (defect_type, description, evidence, document)
+            
+            # If key not seen before, add it to our unique list
             if defect_key not in seen_descriptions:
                 seen_descriptions.add(defect_key)
                 unique_defects.append(defect)
+            else:
+                # Even for "duplicates", check if there's any additional evidence
+                # that might indicate a slightly different defect
+                for existing_defect in unique_defects:
+                    existing_type = existing_defect.get('defect_type', '').strip().lower()
+                    existing_desc = existing_defect.get('description', '').strip().lower()
+                    existing_doc = existing_defect.get('document', '').strip().lower()
+                    
+                    # If it's a match to an existing defect but has different evidence, keep it too
+                    if (existing_type == defect_type and 
+                        existing_desc == description and
+                        existing_doc == document and
+                        defect.get('evidence', '') != existing_defect.get('evidence', '')):
+                        unique_defects.append(defect)
+                        break
         
         current_app.logger.info(f"After deduplication: {len(unique_defects)} unique defects from {len(defect_list)} total defects")
         
@@ -321,26 +352,33 @@ def summarize_combined_data():
             # Prepare a summary for the LLM to do a final check
             defect_summary = json.dumps(unique_defects)
             
-            # Simplified final check message to reduce token usage
+            # Enhanced final check message to ensure maximum defect coverage
             final_check_message = """
-            Review these extracted defects that were MENTIONED in the documents.
+            CRITICALLY IMPORTANT: Your task is to review these extracted defects and ENSURE that NO potential defects have been missed. You are the FINAL check to guarantee maximum defect identification.
             
-            1. Organize similar defects together
-            2. Remove any false positives that aren't actual product/system defects mentioned in the text
-            3. Standardize naming of similar defect types
+            Follow these steps with extreme thoroughness:
             
-            Don't analyze the documents themselves - focus ONLY on defects explicitly mentioned IN the document content.
+            1. Carefully review all defects already identified
+            2. Identify ANY ADDITIONAL defects that might have been missed in the initial analysis
+            3. Consolidate similar defects but NEVER remove unique defects even if they seem minor
+            4. Standardize defect types and descriptions for clarity
+            5. Apply domain expertise to identify industry-specific defects that might have been overlooked
             
-            First, provide a brief SUMMARY of the main defect categories found.
-            Then list each mentioned defect in this format:
+            It is ABSOLUTELY CRITICAL that your review captures ALL possible defects mentioned in the documents.
+            
+            First, provide a comprehensive SUMMARY of the main defect categories found, organized by type/severity.
+            
+            Then list EVERY defect using this format:
             
             DEFECT #[number]:
-            - TYPE: [type of defect/issue]
-            - DESCRIPTION: [what is being described as defective]
-            - EVIDENCE: [text where it's mentioned]
+            - TYPE: [precise categorization of the defect type]
+            - DESCRIPTION: [detailed, specific description of what is defective]
+            - EVIDENCE: [exact text mentioning the defect]
             - CONFIDENCE: [low/medium/high]
-            - DOCUMENT: [name]
-            - LOCATION: [info]
+            - DOCUMENT: [source document name]
+            - LOCATION: [where in the document]
+            
+            Remember: It is better to over-identify potential defects than to miss any. Include everything that could reasonably be considered a defect.
             """
             
             # Use a simpler version of the defect list for the final review to reduce token usage
