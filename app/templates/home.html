@@ -15,14 +15,15 @@ endblock %} {% block content %}
         <label for="file-upload" class="file-upload-label">Choose files or folders</label>
       </div>
       <p class="form-hint">Select files or zip archives (zip files will be extracted automatically)</p>
-      <button type="submit" class="btn">Upload</button>
+      <button type="submit" class="btn btn-primary">Upload</button>
     </form>
   </div>
 
   <div class="files-section">
     <div class="files-header">
-      <h2>Uploaded Files</h2>
+      <h2 class="section-title">Uploaded Files</h2>
       <div class="files-actions">
+        <button type="button" id="scan-all-docs" class="scan-all-btn">Scan All Documents</button>
         <button type="button" id="toggle-files" class="toggle-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path d="M6 9l6 6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -30,8 +31,6 @@ endblock %} {% block content %}
         </button>
       </div>
     </div>
-
-    <button type="button" id="scan-all-docs" class="scan-all-btn">Scan All Documents</button>
     
     <div id="files-container" class="files-container">
       {% if files %}
@@ -87,8 +86,9 @@ endblock %} {% block content %}
   
   <div class="scanned-pdfs-section" style="display: none;">
     <div class="section-header">
-      <h2>Scanned Document Details</h2>
+      <h2 class="section-title">Scanned Document Details</h2>
       <div class="section-controls">
+        <button type="button" id="clear-scans" class="clear-btn">Clear All</button>
         <button type="button" id="toggle-details" class="toggle-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <path d="M6 9l6 6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -97,25 +97,23 @@ endblock %} {% block content %}
       </div>
     </div>
 
-    <button type="button" id="clear-scans" class="clear-btn">Clear All</button>
-
     <div id="scanned-results" class="collapsible-section"></div>
     
     <div class="combined-data-section" style="display: none;">
       <div class="section-header">
-        <h2>Combined Document Data</h2>
-        <button type="button" id="toggle-combined" class="toggle-btn">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M6 9l6 6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
+        <h2 class="section-title">Combined Document Data</h2>
+        <div class="section-controls">
+          <button type="button" id="copy-combined-json" class="copy-btn">Copy to Clipboard</button>
+          <button type="button" id="toggle-combined" class="toggle-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M6 9l6 6 6-6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
       </div>
       <div id="combined-data-container" class="combined-data-container" style="display: none;">
         <div class="json-data-container">
           <pre id="combined-json-data" class="json-data"></pre>
-        </div>
-        <div class="copy-json-container">
-          <button id="copy-combined-json" class="copy-btn">Copy to Clipboard</button>
         </div>
       </div>
     </div>
