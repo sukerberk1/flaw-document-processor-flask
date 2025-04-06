@@ -23,10 +23,11 @@ endblock %} {% block content %}
     <div class="files-header">
       <h2>Uploaded Files</h2>
       <div class="files-actions">
-        <button type="button" id="scan-all-docs" class="scan-all-btn">Scan All Documents</button>
-        <button type="button" id="toggle-files" class="toggle-btn">Collapse</button>
+        <button type="button" id="toggle-files" class="toggle-btn"><span class="arrow"></span></button>
       </div>
     </div>
+
+    <button type="button" id="scan-all-docs" class="scan-all-btn">Scan All Documents</button>
     
     <div id="files-container" class="files-container">
       {% if files %}
@@ -84,16 +85,18 @@ endblock %} {% block content %}
     <div class="section-header">
       <h2>Scanned Document Details</h2>
       <div class="section-controls">
-        <button type="button" id="toggle-details" class="toggle-btn">Collapse</button>
-        <button type="button" id="clear-scans" class="clear-btn">Clear All</button>
+        <button type="button" id="toggle-details" class="toggle-btn"><span class="arrow"></span></button>
       </div>
     </div>
+
+    <button type="button" id="clear-scans" class="clear-btn">Clear All</button>
+
     <div id="scanned-results" class="collapsible-section"></div>
     
     <div class="combined-data-section" style="display: none;">
       <div class="section-header">
         <h2>Combined Document Data</h2>
-        <button type="button" id="toggle-combined" class="toggle-btn">Show</button>
+        <button type="button" id="toggle-combined" class="toggle-btn"><span class="arrow"></span></button>
       </div>
       <div id="combined-data-container" class="combined-data-container" style="display: none;">
         <div class="json-data-container">

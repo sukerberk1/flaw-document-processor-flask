@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Expand
                 filesContainer.classList.remove('collapsed');
                 filesContainer.style.maxHeight = filesContainer.scrollHeight + 'px';
-                toggleButton.textContent = 'Collapse';
+                toggleButton.classList.remove('collapsed');
                 
                 // Store preference in localStorage
                 localStorage.setItem('filesContainerCollapsed', 'false');
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Collapse
                 filesContainer.classList.add('collapsed');
                 filesContainer.style.maxHeight = '0';
-                toggleButton.textContent = 'Expand';
+                toggleButton.classList.add('collapsed');
                 
                 // Store preference in localStorage
                 localStorage.setItem('filesContainerCollapsed', 'true');
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (savedPreference === 'true') {
             filesContainer.classList.add('collapsed');
             filesContainer.style.maxHeight = '0';
-            toggleButton.textContent = 'Expand';
+            toggleButton.classList.add('collapsed');
         }
     }
     
@@ -784,7 +784,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Expand
                 scannedResults.classList.remove('collapsed');
                 scannedResults.style.maxHeight = scannedResults.scrollHeight + 'px';
-                toggleDetailsButton.textContent = 'Collapse';
+                toggleDetailsButton.classList.remove('collapsed');
                 
                 // Store preference in localStorage
                 localStorage.setItem('detailsCollapsed', 'false');
@@ -792,7 +792,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Collapse
                 scannedResults.classList.add('collapsed');
                 scannedResults.style.maxHeight = '0';
-                toggleDetailsButton.textContent = 'Expand';
+                toggleDetailsButton.classList.add('collapsed');
                 
                 // Store preference in localStorage
                 localStorage.setItem('detailsCollapsed', 'true');
@@ -804,7 +804,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (savedPreference === 'true') {
             scannedResults.classList.add('collapsed');
             scannedResults.style.maxHeight = '0';
-            toggleDetailsButton.textContent = 'Expand';
+            toggleDetailsButton.classList.add('collapsed');
         }
     }
     
@@ -814,13 +814,16 @@ document.addEventListener('DOMContentLoaded', function () {
             if (combinedDataContainer.style.display === 'none') {
                 // Show the combined data
                 combinedDataContainer.style.display = 'block';
-                toggleCombinedButton.textContent = 'Hide';
+                toggleCombinedButton.classList.remove('collapsed');
             } else {
                 // Hide the combined data
                 combinedDataContainer.style.display = 'none';
-                toggleCombinedButton.textContent = 'Show';
+                toggleCombinedButton.classList.add('collapsed');
             }
         });
+        
+        // Initialize as collapsed
+        toggleCombinedButton.classList.add('collapsed');
     }
     
     // Set up copy to clipboard functionality
