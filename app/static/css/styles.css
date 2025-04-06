@@ -31,6 +31,9 @@ footer {
   background-color: #333;
   color: white;
 }
+footer a {
+  color: white;
+}
 
 /* Flash messages */
 .flash-messages {
@@ -774,7 +777,6 @@ h1 {
 .combined-data-section {
   border-top: 1px solid #e9ecef;
   border-radius: 0 0 10px 10px;
-  margin-top: 0rem;
   padding-top: 1rem;
 }
 
