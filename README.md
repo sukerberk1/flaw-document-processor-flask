@@ -1,15 +1,16 @@
-# Vertical Slice Architecture
+# Document Defect Analysis - Vertical Slice Architecture
 
-This project demonstrates how to apply **Vertical Slice Architecture** to a Flask web application, where the application is organized by **features**, not technical layers.
+This Flask application analyzes uploaded documents (PDF, Word) to identify and extract defects mentioned within their content. The project demonstrates **Vertical Slice Architecture** principles, organizing the codebase by **features** (agents) rather than by technical layers.
 
-[YouTube Demo – Vertical Slice Architecture](https://www.youtube.com/watch?v=dabeidyv5dg&t=1656s)
+The application processes documents, breaks them into chunks, and uses AI to identify defects mentioned in the document text.
 
 ## Features
 
-Located in the `/app/features` directory. Each feature encapsulates its own logic and dependencies:
+The application uses a vertical slice architecture with features organized into agent-based components:
 
-- `pdf_processor` – Summarizes content from PDF files using the ChatGPT API.
-- `excel_processor` – Processes Excel files and summarizes them using the ChatGPT API.
+- **PDF Agent** - Extracts and processes content from PDF files
+- **Word Agent** - Extracts and processes content from Word documents
+- **Main Agent** - Analyzes document content to identify and summarize defects mentioned in the documents
 
 ## Live Demo
 
@@ -23,25 +24,79 @@ Located in the `/app/features` directory. Each feature encapsulates its own logi
 
 ## Project Structure
 
-Each feature is self-contained with:
+The application follows a vertical slice architecture organized by agents:
 
 ```bash
-app/features/<feature_name>/
-├── __init__.py         # Package initialization and registration
-├── models.py           # Data models and database interactions
-├── services.py         # Business logic and core functionality
-├── views.py            # Route handlers and request processing
-└── template/           # Frontend assets
-    ├── index.html      # Main template for the feature
-    └── js/
-        └── new_feature.js  # Feature-specific JavaScript
+app/
+├── agents/                # Agent-based feature organization
+│   ├── main/              # Main agent for defect analysis
+│   │   ├── __init__.py    # Package initialization
+│   │   ├── agent.py       # Agent implementation with routes
+│   │   └── form.md        # Documentation for forms
+│   ├── pdf/               # PDF processing agent
+│   │   ├── __init__.py
+│   │   └── agent.py
+│   └── word/              # Word document processing agent
+│       ├── __init__.py
+│       └── agent.py
+├── static/                # Static assets
+│   └── ...
+├── templates/             # HTML templates
+│   ├── base.html          # Base template
+│   └── home.html          # Home page template
+└── uploads/               # Directory for uploaded files
 ```
 
 Detailed instructions for LLMs can be found in the [**feature_conventions.md**](./feature_conventions.md) file in the root project directory.
 
 ## Setup Instructions
 
+### Docker Setup (Recommended)
+
 1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/yourusername/vertical-slice-architecture-flask.git
+   cd vertical-slice-architecture-flask
+   ```
+
+2. **Set up environment variables**
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Edit the `.env` file to add your OpenAI API key:
+
+   ```
+   OPENAI_API_KEY=your_openai_key_here
+   SECRET_KEY=your_secret_key_here  # Optional, defaults to dev_key_for_flask_app
+   ```
+
+3. **Build and start the Docker container**
+
+   ```bash
+   docker compose up
+   ```
+
+   The application will be available at http://localhost:5001
+
+4. **To stop the application**
+
+   ```bash
+   # Press Ctrl+C if running in the foreground, or
+   docker compose down
+   ```
+
+5. **To run in detached mode (background)**
+   ```bash
+   docker compose up -d
+   ```
+
+### Option 2: Running Locally
+
+1. **Clone the repository**
+
 2. **Create a virtual environment**
 
    ```bash
@@ -59,7 +114,15 @@ Detailed instructions for LLMs can be found in the [**feature_conventions.md**](
    pip install -r requirements.txt
    ```
 
-5. **Run the application**
+5. **Set up environment variables**
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Edit the `.env` file to add your OpenAI API key.
+
+6. **Run the application**
 
    ```bash
    ./run.sh
@@ -74,3 +137,12 @@ Run all tests using `pytest`:
 ```bash
 pytest
 ```
+
+## Docker Details
+
+1. Dockerfile - Sets up the Python environment with all required dependencies
+2. docker-compose.yml - Configures the service with proper port mapping and environment variables
+3. .dockerignore - Excludes unnecessary files from the Docker image
+4. .env.example - Template for environment variables
+
+The container includes all necessary dependencies, including Tesseract OCR and Poppler for PDF processing. Your uploads folder is mounted as a volume so files will persist between container restarts.
