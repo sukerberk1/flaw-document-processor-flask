@@ -66,11 +66,17 @@ Detailed instructions for LLMs can be found in the [**feature_conventions.md**](
    cp .env.example .env
    ```
 
-   Edit the `.env` file to add your OpenAI API key:
+   Edit the `.env` file with the appropriate configuration:
 
    ```
+   # If using OpenAI (optional)
    OPENAI_API_KEY=your_openai_key_here
-   SECRET_KEY=your_secret_key_here  # Optional, defaults to dev_key_for_flask_app
+   
+   # Choose LLM engine: 'local' (Ollama) or 'openai'
+   LLM_ENGINE=local
+   
+   # Secret key for Flask (Optional)
+   SECRET_KEY=your_secret_key_here  # defaults to dev_key_for_flask_app
    ```
 
 3. **Build and start the Docker container**
@@ -140,9 +146,22 @@ pytest
 
 ## Docker Details
 
-1. Dockerfile - Sets up the Python environment with all required dependencies
-2. docker-compose.yml - Configures the service with proper port mapping and environment variables
-3. .dockerignore - Excludes unnecessary files from the Docker image
-4. .env.example - Template for environment variables
+1. **Dockerfile** - Sets up the Python environment with all required dependencies
+2. **docker-compose.yml** - Configures the services:
+   - **web** - The Flask application
+   - **ollama** - Local LLM service running Llama 3 by default
+3. **.dockerignore** - Excludes unnecessary files from the Docker image
+4. **.env.example** - Template for environment variables
 
 The container includes all necessary dependencies, including Tesseract OCR and Poppler for PDF processing. Your uploads folder is mounted as a volume so files will persist between container restarts.
+
+### Local LLM Support
+
+By default, the application uses Ollama with Llama 3 (8B parameters) as the local LLM. The first startup will take some time as it downloads the model (approximately 4.7GB). You can switch to other models by changing the `OLLAMA_MODEL` environment variable.
+
+Some recommended models:
+- `llama3:8b` (default) - Good all-around model with excellent instruction following
+- `phi3:mini` - Microsoft's 3.8B parameter model, smaller but still effective for summarization
+- `mistral:7b` - Another good option with strong performance
+
+To use OpenAI instead of a local model, set `LLM_ENGINE=openai` in your .env file and ensure you have a valid API key.

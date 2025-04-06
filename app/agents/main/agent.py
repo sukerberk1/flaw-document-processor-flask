@@ -2,13 +2,13 @@ from flask import Blueprint, request, jsonify, current_app
 import os
 import json
 import tiktoken
-from openai import OpenAI
+from app.llm_client import LLMClientFactory
 
 # Create blueprint with the ORIGINAL name to maintain compatibility
 main_agent_bp = Blueprint('main_agent', __name__, url_prefix='/agents/main')
 
-# Initialize OpenAI client
-client = OpenAI()
+# Initialize LLM client using the factory
+llm_client = LLMClientFactory.get_client()
 
 # Initialize tokenizer for gpt-3.5-turbo
 tokenizer = tiktoken.encoding_for_model("gpt-3.5-turbo")
@@ -147,20 +147,17 @@ def summarize_combined_data():
             If no defects are mentioned: "NO DEFECTS FOUND"
             """
             
-            # Call OpenAI API with reduced parameters
-            response = client.chat.completions.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": system_message},
-                    {"role": "user", "content": f"Analyze document '{doc_name}' at {chunk_location}:\n\n{chunk_text}"}
-                ],
-                max_tokens=500,  # Reduced max tokens
+            # Call LLM client with the prompts
+            user_message = f"Analyze document '{doc_name}' at {chunk_location}:\n\n{chunk_text}"
+            response_text = llm_client.chat_completion(
+                system_prompt=system_message,
+                user_prompt=user_message,
+                max_tokens=500,
                 temperature=0.3
             )
             
-            # Parse the response using a more structured text-based approach instead of JSON
+            # Parse the response using a more structured text-based approach
             try:
-                response_text = response.choices[0].message.content.strip()
                 current_app.logger.debug(f"Raw LLM response: {response_text[:200]}...")
                 
                 # Check if there are no defects found
@@ -364,19 +361,15 @@ def summarize_combined_data():
             # Convert to JSON with the simplified list
             simple_defect_summary = json.dumps(simplified_defects)
             
-            response = client.chat.completions.create(
-                model="gpt-3.5-turbo",  # Use standard model instead of 16k to reduce costs
-                messages=[
-                    {"role": "system", "content": final_check_message},
-                    {"role": "user", "content": f"Review these defects:\n\n{simple_defect_summary}"}
-                ],
-                max_tokens=800,  # Reduced token limit
+            response_text = llm_client.chat_completion(
+                system_prompt=final_check_message,
+                user_prompt=f"Review these defects:\n\n{simple_defect_summary}",
+                max_tokens=800,
                 temperature=0.2
             )
             
             # Parse final review response using a text-based approach
             try:
-                response_text = response.choices[0].message.content.strip()
                 current_app.logger.debug(f"Raw final review response: {response_text[:200]}...")
                 
                 # Extract the summary section (everything before the first DEFECT)

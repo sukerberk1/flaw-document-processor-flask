@@ -30,5 +30,9 @@ ENV PORT=5000
 # Expose port
 EXPOSE 5000
 
-# Run gunicorn server
-CMD gunicorn --bind 0.0.0.0:$PORT wsgi:app
+# Make script executable
+COPY run_with_ollama.sh /app/run_with_ollama.sh
+RUN chmod +x /app/run_with_ollama.sh
+
+# Run with the Ollama initialization script
+CMD ["/app/run_with_ollama.sh"]
