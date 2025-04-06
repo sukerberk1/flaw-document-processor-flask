@@ -114,21 +114,30 @@ endblock %} {% block content %}
         </div>
       </div>
       <div id="combined-data-tabs" class="combined-data-tabs">
-        <div class="tab-buttons">
-          <button class="tab-btn active" data-tab="json-tab">JSON Data</button>
-          <button class="tab-btn" data-tab="summary-tab">AI Summary</button>
-        </div>
-        <div id="combined-data-container" class="combined-data-container tab-pane active" data-tab-id="json-tab" style="display: none;">
-          <div class="json-data-container">
-            <pre id="combined-json-data" class="json-data"></pre>
+        <div id="combined-data-container" class="combined-data-container" style="display: none;">
+          <div class="collapsible-content">
+            <div class="tab-navigation">
+              <div class="tab-buttons">
+                <button class="tab-btn active" data-tab="json-tab">JSON Data</button>
+                <button class="tab-btn" data-tab="summary-tab">AI Summary</button>
+              </div>
+            </div>
+            
+            <div class="tab-content">
+              <div class="tab-pane active" id="json-tab">
+                <div class="json-data-container">
+                  <pre id="combined-json-data" class="json-data"></pre>
+                </div>
+              </div>
+              <div class="tab-pane" id="summary-tab">
+                <div id="summary-loading" class="summary-loading" style="display: none;">
+                  <div class="spinner"></div>
+                  <p>Generating summary...</p>
+                </div>
+                <div id="summary-content" class="summary-content"></div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div id="combined-summary-container" class="combined-data-container tab-pane" data-tab-id="summary-tab" style="display: none;">
-          <div id="summary-loading" class="summary-loading" style="display: none;">
-            <div class="spinner"></div>
-            <p>Generating summary...</p>
-          </div>
-          <div id="summary-content" class="summary-content"></div>
         </div>
       </div>
     </div>

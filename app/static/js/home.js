@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Error saving combined data to session storage:', e);
             }
             
-            // Save to main.json in uploads folder via API
+            // Save to API (stored in memory)
             fetch('/save-combined-data', {
                 method: 'POST',
                 headers: {
@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded', function () {
             })
             .then(response => response.json())
             .then(data => {
-                console.log('Combined data saved to main.json', data);
+                console.log('Combined data saved successfully', data);
             })
             .catch(error => {
                 console.error('Error saving combined data:', error);
@@ -505,6 +505,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     const jsonString = JSON.stringify(data.json_data, null, 2);
                     const docIcon = documentType === 'pdf' ? '📕' : '📄';
                     const docType = documentType === 'pdf' ? 'PDF' : 'Word';
+                    
+                    // No metadata summary needed anymore
                     
                     const formattedContent = `
                         <div class="pdf-result-tabs" id="${resultId}">
@@ -866,13 +868,32 @@ document.addEventListener('DOMContentLoaded', function () {
         tabButtons.forEach(button => {
             button.addEventListener('click', () => {
                 // Deactivate all tabs
-                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-                document.querySelectorAll('.tab-pane').forEach(pane => pane.style.display = 'none');
+                const parentContainer = button.closest('.tab-navigation') || document.body;
+                parentContainer.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                
+                // Find the tab content container (either PDF tabs or combined data tabs)
+                const tabContentContainer = button.closest('.pdf-result-tabs') || 
+                                          button.closest('.combined-data-tabs').querySelector('.tab-content');
+                                          
+                if (tabContentContainer) {
+                    tabContentContainer.querySelectorAll('.tab-pane').forEach(pane => {
+                        pane.style.display = 'none';
+                    });
+                }
                 
                 // Activate selected tab
                 const tabId = button.getAttribute('data-tab');
                 button.classList.add('active');
-                const tabPane = document.querySelector(`.tab-pane[data-tab-id="${tabId}"]`);
+                
+                // Handle both formats: id attribute or data-tab-id attribute
+                let tabPane = document.getElementById(tabId);
+                if (!tabPane) {
+                    tabPane = document.querySelector(`#${tabId}`);
+                }
+                if (!tabPane) {
+                    tabPane = document.querySelector(`.tab-pane#${tabId}`);
+                }
+                
                 if (tabPane) {
                     tabPane.style.display = 'block';
                 }
@@ -886,19 +907,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Set up combined JSON toggle button
     if (toggleCombinedButton) {
         toggleCombinedButton.addEventListener('click', function() {
-            const activeTab = document.querySelector('.tab-pane.active');
-            
-            if (activeTab && activeTab.style.display === 'none') {
+            if (combinedDataContainer.style.display === 'none') {
                 // Show the combined data
-                document.querySelectorAll('.tab-pane.active').forEach(pane => {
-                    pane.style.display = 'block';
-                });
+                combinedDataContainer.style.display = 'block';
                 toggleCombinedButton.classList.remove('collapsed');
             } else {
                 // Hide the combined data
-                document.querySelectorAll('.tab-pane').forEach(pane => {
-                    pane.style.display = 'none';
-                });
+                combinedDataContainer.style.display = 'none';
                 toggleCombinedButton.classList.add('collapsed');
             }
         });
@@ -910,14 +925,28 @@ document.addEventListener('DOMContentLoaded', function () {
     // Set up summary generation button
     if (generateSummaryButton) {
         generateSummaryButton.addEventListener('click', function() {
-            // Show the summary tab
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.tab-pane').forEach(pane => pane.style.display = 'none');
+            // Ensure combined data container is visible
+            if (combinedDataContainer.style.display === 'none') {
+                combinedDataContainer.style.display = 'block';
+                toggleCombinedButton.classList.remove('collapsed');
+            }
             
+            // Show the summary tab
             const summaryTab = document.querySelector('.tab-btn[data-tab="summary-tab"]');
             if (summaryTab) {
+                // First activate the tab
+                const tabButtons = document.querySelectorAll('.combined-data-tabs .tab-btn');
+                tabButtons.forEach(btn => btn.classList.remove('active'));
                 summaryTab.classList.add('active');
-                combinedSummaryContainer.style.display = 'block';
+                
+                // Then show the summary pane and hide others
+                const tabContent = document.querySelector('.combined-data-tabs .tab-content');
+                if (tabContent) {
+                    tabContent.querySelectorAll('.tab-pane').forEach(pane => {
+                        pane.style.display = 'none';
+                    });
+                    document.getElementById('summary-tab').style.display = 'block';
+                }
                 
                 // Show loading spinner
                 summaryLoading.style.display = 'flex';

@@ -733,6 +733,17 @@ h1 {
   display: block;
 }
 
+.tab-navigation {
+  margin-bottom: 15px;
+}
+
+.collapsible-content {
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  border: 1px solid #eaeaea;
+}
+
 /* JSON styling */
 .json-data-container {
   max-height: 500px;
@@ -946,4 +957,44 @@ h1 {
 .error-message {
   color: #c00;
   margin: 0;
+}
+
+/* Metadata summary styling */
+.metadata-summary {
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #e9ecef;
+}
+
+.metadata-title {
+  margin: 0 0 10px 0;
+  font-size: 1.3rem;
+  color: #343a40;
+  font-weight: 600;
+}
+
+.metadata-subtitle {
+  font-size: 0.95rem;
+  color: #6c757d;
+  margin-bottom: 12px;
+}
+
+.document-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  font-size: 0.9rem;
+  color: #495057;
+  background-color: #e9ecef;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.no-metadata {
+  padding: 20px;
+  text-align: center;
+  color: #6c757d;
+  font-style: italic;
 }
