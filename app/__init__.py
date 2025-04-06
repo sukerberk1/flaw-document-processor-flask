@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 import os
 import glob
 import zipfile
 import shutil
+import json
 from werkzeug.utils import secure_filename
 
 def create_app(config_name='default'):
@@ -188,6 +189,11 @@ def create_app(config_name='default'):
                     # Delete a directory and all its contents
                     shutil.rmtree(full_path)
                     flash(f'Directory {file_path} and all contents deleted successfully')
+                
+                # Remove main.json if it exists when files are deleted
+                main_json_path = os.path.join(app.config['UPLOAD_FOLDER'], 'main.json')
+                if os.path.exists(main_json_path):
+                    os.remove(main_json_path)
             except Exception as e:
                 flash(f'Error deleting: {str(e)}')
         else:
@@ -195,6 +201,21 @@ def create_app(config_name='default'):
             
         return redirect(url_for('home'))
     
+    @app.route('/save-combined-data', methods=['POST'])
+    def save_combined_data():
+        data = request.json
+        if not data:
+            return jsonify({'error': 'No data provided'}), 400
+            
+        try:
+            # Save to main.json in the uploads folder
+            main_json_path = os.path.join(app.config['UPLOAD_FOLDER'], 'main.json')
+            with open(main_json_path, 'w', encoding='utf-8') as f:
+                json.dump(data, f, indent=2, ensure_ascii=False)
+                
+            return jsonify({'success': True, 'message': 'Combined data saved successfully'})
+        except Exception as e:
+            return jsonify({'error': f'Error saving combined data: {str(e)}'}), 500
     
     return app
 

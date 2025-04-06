@@ -238,6 +238,22 @@ document.addEventListener('DOMContentLoaded', function () {
             } catch (e) {
                 console.error('Error saving combined data to session storage:', e);
             }
+            
+            // Save to main.json in uploads folder via API
+            fetch('/save-combined-data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: jsonString
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Combined data saved to main.json', data);
+            })
+            .catch(error => {
+                console.error('Error saving combined data:', error);
+            });
         } else {
             // Hide the combined data section if there's no data
             combinedDataSection.style.display = 'none';
@@ -403,6 +419,22 @@ document.addEventListener('DOMContentLoaded', function () {
             sessionStorage.removeItem('processedFiles');
             sessionStorage.removeItem('fileResultMap');
             sessionStorage.removeItem('combinedDocumentData');
+            
+            // Delete main.json by sending empty data to the endpoint
+            fetch('/save-combined-data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({})
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Combined data cleared from main.json', data);
+            })
+            .catch(error => {
+                console.error('Error clearing combined data:', error);
+            });
             
             // Hide the combined data section
             combinedDataSection.style.display = 'none';
@@ -670,6 +702,22 @@ document.addEventListener('DOMContentLoaded', function () {
             sessionStorage.removeItem('processedFiles');
             sessionStorage.removeItem('fileResultMap');
             sessionStorage.removeItem('combinedDocumentData');
+            
+            // Delete main.json by sending empty data to the endpoint
+            fetch('/save-combined-data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({})
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Combined data cleared from main.json', data);
+            })
+            .catch(error => {
+                console.error('Error clearing combined data:', error);
+            });
             
             // Hide the combined data section
             combinedDataSection.style.display = 'none';
