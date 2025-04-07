@@ -1,8 +1,10 @@
 import os
+from typing import List, Dict, Any
 from PyPDF2 import PdfReader
 from openai import OpenAI, AsyncOpenAI
 from dotenv import load_dotenv
 from app.features.pdf_processor.models import PDFDocument
+from app.domain.models import MinimalDefect
 import asyncio
 import json
 import re
@@ -156,14 +158,13 @@ class PDFProcessorService:
             print(f"OpenAI API error: {str(e)}")
             return f"Error asking llm: {str(e)}"
 
-
     def generate_report_location(self, text) -> str:
         return self.ask_llm(text, [
                     { "role": "system", "content": ASSISTANT_SYSTEM_PROMPT},
                     {"role": "user", "content": DEFECTS_LOCATION_INSTRUCTIONS + get_document_delimited(text)},
                 ]) + "\n\n"
     
-    async def generate_defect_list(self, text: str, location_prompt: str) -> str:
+    async def generate_defect_list(self, text: str, location_prompt: str) -> List[MinimalDefect]:
         lines = text.split("\n")
         chunk_size = 15
 
@@ -181,44 +182,27 @@ class PDFProcessorService:
         tasks = [process_chunk(chunk) for chunk in chunks]
 
         # Run tasks concurrently and gather results
-        results = await asyncio.gather(*tasks)
+        defect_lists_results = await asyncio.gather(*tasks)
 
-        await asyncio.sleep(2)  # Optional sleep to avoid rate limits
+        all_defects: List[MinimalDefect] = []
+
+        for raw_defect_list in defect_lists_results:
+            sanitized_defect_list = raw_defect_list.replace("```", "").replace("json", '').replace("I don't know.", "").replace("I don't know", "")
+            try:
+                chunk_found_defects: List[MinimalDefect] = json.loads(sanitized_defect_list)
+                if isinstance(chunk_found_defects, list):
+                    print(f"Found {len(chunk_found_defects)} defects in chunk.")
+                    all_defects.extend(chunk_found_defects)
+                else:
+                    print(f"Unexpected result: {raw_defect_list}")
+            except json.JSONDecodeError as e:
+                print(f"JSON decode error: {str(e)}")
+                print(f"Raw defect list: {raw_defect_list}")
+
+        await asyncio.sleep(2)  #TODO this sleep does not work to avoid rate limits
         print("Cleaning up event loop...")
         # Join results and return
-        return "\n".join(results)
-    
-    def flatten_json_arrays(json_string: str) -> list:
-        """Flatten a string containing multiple JSON arrays into a single list of dictionaries."""
-        try:
-            # Split the string into individual JSON arrays
-            json_arrays = re.split(r"\]\s*\[", json_string)
-            
-            # Clean up the split strings and parse them as JSON
-            flattened_list = []
-            for array_str in json_arrays:
-                # Add missing brackets after splitting
-                array_str = array_str.strip()
-                if not array_str.startswith("["):
-                    array_str = "[" + array_str
-                if not array_str.endswith("]"):
-                    array_str = array_str + "]"
-                
-                print(array_str)  # Debugging line to check the JSON string
-                # Parse the JSON array and extend the flattened list
-                flattened_list.extend(json.loads(array_str))
-            
-            return flattened_list
-        except json.JSONDecodeError as e:
-            print(f"Error decoding JSON: {str(e)}")
-            return []
-    
-
-    def process_raw_defect_lists(raw_defect_lists: str) -> str:
-        """Process raw defect lists into a structured format."""
-        defect_lists = raw_defect_lists.replace("```", "").replace("json", '').replace("I don't know.", "").replace("I don't know", "")
-        flattened_defects = PDFProcessorService.flatten_json_arrays(defect_lists)
-        return str(flattened_defects).replace("\"", "\\\"").replace("'", '"') #.replace("None", "null").replace("True", "true").replace("False", "false")
+        return all_defects
 
 
     async def process_pdf(self, file_path):
@@ -228,7 +212,10 @@ class PDFProcessorService:
         
         location = self.generate_report_location(content)
 
-        defects_lists_raw = await self.generate_defect_list(content, location)
-        summary = PDFProcessorService.process_raw_defect_lists(defects_lists_raw)
+        defects_lists = await self.generate_defect_list(content, location)
 
-        return PDFDocument(filename, content, summary)
+        return PDFDocument(
+            filename, 
+            content, 
+            str(defects_lists).replace("'", '"') # format into json string
+            )
